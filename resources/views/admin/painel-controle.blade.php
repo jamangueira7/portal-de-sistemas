@@ -3,7 +3,7 @@
 <div class="container-lg mt-5">
 	<div class="row">
     <div class="accordion" id="accordionExample">
-      <div class="col-3">
+      <div class="col-3 pt-4">
         <div class="card">
           <div class="card-header" id="headingOne">            
             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -20,8 +20,8 @@
         </div> 
       </div>
       <div class="col-9">
-        <div class="conteudo accordion" id="accordionExample1">
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="conteudo-acordeon-direito accordion" id="accordionExample1">
+          <div id="collapseOne" class="item-colapse collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -33,9 +33,23 @@
                    
                   </div>
                   <div id="collapseOne1" class="collapse" aria-labelledby="headingOne1" data-parent="#accordionExample1">
-                    <div class="card-body">
-                      <p>Portal 1 - item 1 - URL</p>
-                      <p>Portal 1 - item 1 - GRUPO PERMISSAO</p> 
+                    <div class="card-body">                      
+                        <p>Portal 1 - item 1 - URL</p>
+                        <input type="text" name="URL"/>                                          
+                      <div class="cont-check">
+                        <p>Portal 1 - item 1 - GRUPO PERMISSAO</p> 
+                        <div class="item-check">
+                          <label class="label-nome">Grupo 1
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="label-nome">Grupo 2
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      </div>
+                      
 
                     </div>
                   </div>
