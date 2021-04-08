@@ -11,9 +11,7 @@
 </head>
 <body>
     @include('template.header')
-
-    @yield('conteudo-view')
-    
+    @yield('conteudo-view')    
     @include('template.footer')
 </body>
 </html>
