@@ -113,3 +113,14 @@ ul.menu-sites li {
 
   .conteudo-login img { width: 250px;margin-bottom: 8px;}
 
+/* painel de controle */
+.accordion{
+  display: flex;
+  width: 100%;
+  background: lightgoldenrodyellow;
+  height: 600px;
+}
+.accordion .conteudo{background: lightblue;}
+.accordion .conteudo .card-header {background: none!important;border-bottom: none!important;}
+.accordion .card-header{padding: 0!important;}
+.accordion .conteudo{width: 100%;}
