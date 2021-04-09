@@ -113,6 +113,7 @@ ul.menu-sites li {
 
   .conteudo-login img { width: 250px;margin-bottom: 8px;}
 
+<<<<<<< HEAD
 /* painel de controle */
 .accordion{
   display: flex;
@@ -180,3 +181,5 @@ ul.menu-sites li {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+=======
+>>>>>>> eaa3d8b4ca931c3c77288f76b9cd6a488c2ed231
