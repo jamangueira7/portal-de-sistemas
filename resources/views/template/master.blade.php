@@ -11,13 +11,9 @@
 </head>
 <body>
     @include('template.header')
-<<<<<<< HEAD
-    @yield('conteudo-view')    
-=======
 
     @yield('conteudo-view')
-    
->>>>>>> eaa3d8b4ca931c3c77288f76b9cd6a488c2ed231
+
     @include('template.footer')
 </body>
 </html>

@@ -18,5 +18,5 @@ Route::get('/login', 'FreeController@login');
 Route::get('/logout', 'FreeController@login');
 
 
-Route::get('/admin/', 'AdminController@login');
+Route::get('/admin/itens-menu', 'AdminController@list');
 

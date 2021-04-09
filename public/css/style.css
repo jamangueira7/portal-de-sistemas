@@ -1,4 +1,11 @@
-body{background: #f9faf9!important;margin:0;}
+html, body {
+    height: 100%;
+}
+
+body{
+    background: #f9faf9!important;
+    margin:0;
+}
 .bg_white{background: #fff;}
 .bg_red{background:lightpink;}
 .bg_green{background:lightgreen;}
@@ -54,7 +61,7 @@ nav.menu_topo_logo {
   font-weight: bold;
   font-size: 16px;
   margin-left: 16px;
-  
+
   }
 
 
@@ -94,7 +101,7 @@ ul.menu-sites li {
   padding: 30px;
   background: #f7f7f7;
   border:1px solid #c3c4c7;
-  
+
 }
 .conteudo-login {
   height: 500px;
@@ -102,7 +109,7 @@ ul.menu-sites li {
   justify-content: center;
   align-content: center;
   justify-items: center;
-  
+
 }
 .conteudo-login input{border-radius: 5px; border-color: #c3c4c7;}
 .conteudo-login .btn{margin: 8px 0; background: #239c56!important;border-color: #1b302c;}
@@ -113,7 +120,7 @@ ul.menu-sites li {
 
   .conteudo-login img { width: 250px;margin-bottom: 8px;}
 
-<<<<<<< HEAD
+
 /* painel de controle */
 .accordion{
   display: flex;
@@ -181,5 +188,3 @@ ul.menu-sites li {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-=======
->>>>>>> eaa3d8b4ca931c3c77288f76b9cd6a488c2ed231
