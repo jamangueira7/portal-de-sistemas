@@ -23,17 +23,18 @@
         <div class="conteudo-acordeon-direito accordion" id="accordionExample1">
           <div id="collapseOne" class="item-colapse collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
+              <h3>Portal 1</h3>
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                  <div class="card-header" id="headingOne1">
-                    
+                <li class="nav-item">                  
+                  <!-- cHAMADA DO ITEM 1 -->
+                  <div class="card-header" id="headingOne1">                                    
                     <div type="button" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
                       Portal 1 - item 1
-                    </div>
-                   
+                    </div>                   
                   </div>
+                  <!-- CHAMADA ITEM 1 - CONTEUDO -->
                   <div id="collapseOne1" class="collapse" aria-labelledby="headingOne1" data-parent="#accordionExample1">
-                    <div class="card-body">                      
+                    <div class="pt-2">                      
                         <p>Portal 1 - item 1 - URL</p>
                         <input type="text" name="URL"/>                                          
                       <div class="cont-check">
@@ -49,11 +50,10 @@
                           </label>
                         </div>
                       </div>
-                      
-
                     </div>
                   </div>
                 </li>
+                <!-- PORTAL 1 ITEM 2 -->
                 <li class="nav-item">
                   <a class="nav-link" href="#">Portal 1 - item 2</a>
                 </li>              
