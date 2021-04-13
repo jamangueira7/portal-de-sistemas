@@ -14,12 +14,13 @@ class CreatePagesGroups extends Migration
     public function up()
     {
         Schema::create('pages_groups', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->timestamps();
-            $table->softDeletes($column = 'deleted_at', $precision = 0);
+            $table->increments('id');
 
             $table->foreignUuid('group_id')->references('id')->on('groups');
             $table->foreignUuid('page_id')->references('id')->on('pages');
+
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
+            $table->timestamps();
         });
     }
 

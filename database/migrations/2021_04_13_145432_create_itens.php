@@ -13,9 +13,18 @@ class CreateItens extends Migration
      */
     public function up()
     {
-        Schema::create('itens', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('description');
+            $table->string('title');
+            $table->string('father')->nullable();
+            $table->text('url');
+
+            $table->foreignUuid('page_id')
+                ->references('id')
+                ->on('pages')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });
@@ -28,6 +37,6 @@ class CreateItens extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itens');
+        Schema::dropIfExists('items');
     }
 }

@@ -15,12 +15,13 @@ class CreateUsersGroups extends Migration
     {
         Schema::create('users_groups', function (Blueprint $table) {
 
-            $table->uuid('id')->primary();
-            $table->timestamps();
-            $table->softDeletes($column = 'deleted_at', $precision = 0);
+            $table->increments('id');
 
             $table->foreignUuid('group_id')->references('id')->on('groups');
             $table->foreignUuid('user_id')->references('id')->on('users');
+
+            $table->timestamps();
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
         });
     }
 
