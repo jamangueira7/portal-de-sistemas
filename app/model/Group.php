@@ -11,4 +11,14 @@ class Group extends Model
 
     protected $fillable = ['description'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function pages()
+    {
+        return $this->hasMany(Page::class);
+    }
 }

@@ -11,4 +11,9 @@ class Item extends Model
 
     protected $fillable = ['title', 'father', 'url', 'page_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
 }
