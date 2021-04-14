@@ -9,6 +9,7 @@ class FreeController extends Controller
 {
     public function index(PagesRepository $repository)
     {
+
         try {
             $pages = $repository->getAll();
 
