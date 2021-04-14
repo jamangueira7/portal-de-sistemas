@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model\User;
+use App\Model\Group;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -19,14 +19,9 @@ use Illuminate\Support\Str;
 
 
 
-$factory->define(User::class, function (Faker $faker) {
-    $nickname = 'T806'. rand(100,999);
+$factory->define(Group::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'nickname' => $nickname ,
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'login' => $nickname,
+        'description' => $faker->title,
     ];
 });

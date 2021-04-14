@@ -7,11 +7,18 @@
 						<a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Blog
 						</a>
-						<div class="dropdown-menu" aria-labelledby="menu-categorias">
-							<a href="#" class="dropdown-item">HTML</a>
-							<a href="#" class="dropdown-item">CSS</a>
-							<a href="#" class="dropdown-item">JS</a>
-						</div>
+
+                        @if($pages)
+                            <div class="dropdown-menu" aria-labelledby="menu-categorias">
+                                @foreach($pages as $page)
+                                    <a href="#" class="dropdown-item">{{$page->description}}</a>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="dropdown-menu" aria-labelledby="menu-categorias">
+                                <h3>Sem dados</h3>
+                            </div>
+                        @endif
 					</li>
         </li>
         <li class="item_usuario">
@@ -21,11 +28,11 @@
           <li class="nav-item">
             <a class="nav-link" href="#">NOME</a>
           </li>
-        </li> 
+        </li>
       </ul>
-    </div>  
+    </div>
   </div>
-  
+
     <div class="container-fluid bg_white mb-2">
       <div class="row">
         <div class="container">
@@ -35,8 +42,8 @@
                 <img src="/img/cropped-logo-160x60-1.png">
               </a>
             </div>
-          </nav>                       
+          </nav>
         </div>
       </div>
-    </div>   
+    </div>
   </header>
