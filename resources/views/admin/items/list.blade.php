@@ -25,7 +25,9 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $items->links() }}
+            <div class="row justify-content-center">
+                {{ $items->links() }}
+            </div>
         @else
             <h3>Sem dados.</h3>
         @endif
