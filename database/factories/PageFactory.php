@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\model\Page;
+use App\Model\Page;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -22,6 +22,6 @@ use Illuminate\Support\Str;
 $factory->define(Page::class, function (Faker $faker) {
 
     return [
-        'description' => $faker->title,
+        'description' => $faker->streetName,
     ];
 });

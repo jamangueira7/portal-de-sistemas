@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
-use App\model\User;
-use App\model\Page;
-use App\model\Group;
-use App\model\Item;
+use App\Model\User;
+use App\Model\Page;
+use App\Model\Group;
+use App\Model\Item;
 
 class DatabaseSeeder extends Seeder
 {

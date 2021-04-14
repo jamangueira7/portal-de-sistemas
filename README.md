@@ -1,11 +1,10 @@
 <p align="center">
-  <img alt="Login" src=".github/logo-login.png">
+  <img alt="Logo Tokio Marine" src=".github/logo-login.png">
 </p>
 
 <p align="center">
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
   <a href="#-como-rodar">Como rodar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-rotas">Rotas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;
  </p>
 
@@ -32,21 +31,27 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 🚀 Como Rodar
 
 - Clone o projeto.
-- composer install.
+- Rodar o camando "composer install".
 - Rodar o Postgres com docker:
 ```
 docker run --name postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
-```
-- Criar um banco com o nome pp_project_manager.
-- composer server.
-- acesse http://localhost:8080/
-- Entrar na pasta front e executar npm install em outro terminal para rodar o front-end.
-- Depois executar npm start.
 
-User o comando para criar ou recriar o banco.
+.env ficaria assim:
+
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=portal-de-sistemas
+DB_USERNAME=postgres
+DB_PASSWORD=docker
+
 ```
-php database.php fresh
-```
+- Criar um banco com o nome portal-de-sistemas.
+- Rodar as migrations com o comando "php artisan migrate:fresh".
+- Caso queria criar dados mocados rodar as seeds"php artisan db:seed".
+- Rodar comando "composer server".
+- acesse http://localhost:8080/
+
 
 
 ## Licença

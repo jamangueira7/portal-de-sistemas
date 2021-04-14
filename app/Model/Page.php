@@ -1,12 +1,12 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class Group extends Model
+class Page extends Model
 {
     use SoftDeletes;
     use Uuid;
@@ -18,13 +18,19 @@ class Group extends Model
     protected $fillable = ['description'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
-    public function users()
+
+    public function groups()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(Group::class, 'pages_groups', 'page_id', 'group_id')->withTimestamps();
     }
 
-    public function pages()
+    public function itens()
     {
-        return $this->hasMany(Page::class);
+        return $this->hasMany(Item::class);
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Favorite::class, 'favorites', 'page_id');
     }
 }

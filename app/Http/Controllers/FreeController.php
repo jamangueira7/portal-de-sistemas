@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\PagesRepository;
 
 class FreeController extends Controller
 {
-    public function index()
+    public function index(PagesRepository $repository)
     {
-        return view('home.index');
+        try {
+            $pages = $repository->getAll();
+
+            return view('home.index', [
+                'pages' => $pages
+            ]);
+        } catch (\Exception $err) {
+            return view('home.index');
+        }
     }
 
     public function login()
