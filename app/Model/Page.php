@@ -24,7 +24,7 @@ class Page extends Model
         return $this->belongsToMany(Group::class, 'pages_groups', 'page_id', 'group_id')->withTimestamps();
     }
 
-    public function itens()
+    public function items()
     {
         return $this->hasMany(Item::class);
     }

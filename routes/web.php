@@ -18,5 +18,7 @@ Route::get('/login', 'FreeController@login');
 Route::get('/logout', 'FreeController@login');
 
 
-Route::get('/admin/itens-menu', 'AdminController@list');
+Route::get('/admin/items-menu', 'AdminController@list')->name('admin.items.list');
+Route::get('/admin/items-menu/{id}', 'AdminController@details')->name('admin.items.details');
+Route::put('/admin/items-menu/{id}', 'AdminController@update')->name('admin.items.update');
 

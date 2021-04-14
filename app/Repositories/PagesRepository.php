@@ -7,6 +7,6 @@ use App\Model\Page;
 class PagesRepository {
     public function getAll()
     {
-        return Page::all();
+        return Page::paginate(10);
     }
 }

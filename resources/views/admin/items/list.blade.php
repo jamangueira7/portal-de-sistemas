@@ -1,8 +1,6 @@
 @extends('template.admin.master')
 @section('conteudo-view')
-<section class="mt-5 pt-5">
-
-    <div class="container">
+    <div class="container col-md-10 mt-5 pt-5">
         @if($items)
             <table class="table table-striped">
                 <thead class="thead-dark">
@@ -20,22 +18,20 @@
                             <td>{{$item->title}}</td>
                             <td>{{$item->created_at}}</td>
                             <td>
-                                <button type="button" class="btn btn-outline-warning">Detalhes</button>
-                                <button type="button" class="btn btn-outline-info">Alterar</button>
-                                <button type="button" class="btn btn-outline-danger">Deletar</button>
+                                <a href="{{route('admin.items.details', [$item->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
+                                <butaton type="button" class="btn btn-outline-danger">Deletar</butaton>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{ $items->links() }}
         @else
             <h3>Sem dados.</h3>
         @endif
 
 
     </div>
-
-</section>
 
 @stop
 

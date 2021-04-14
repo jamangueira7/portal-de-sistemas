@@ -15,7 +15,7 @@
     <div class="container-fluid bg-white"
          style="height: 100%; overflow-y: hidden;"
     >
-        <div class="row" style="height: 100%; overflow-y: hidden;">
+        <div class="row" style="height: 100% !important; overflow-y: hidden;">
             @include('template.admin.nav')
 
             @yield('conteudo-view')'
