@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\ItemsRepository;
+use App\Repositories\UsersRepository;
 use App\Repositories\PagesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 
-class ItemController extends Controller
+class UserController extends Controller
 {
-    public function list(ItemsRepository $repository)
+    public function list(UsersRepository $repository)
     {
         try {
             $items = $repository->getAll();
@@ -29,7 +29,7 @@ class ItemController extends Controller
 
     }
 
-    public function details($id, ItemsRepository $repository, PagesRepository $pagesRepository)
+    public function details($id, UsersRepository $repository, PagesRepository $pagesRepository)
     {
         try {
             $item = $repository->getById($id);
@@ -49,7 +49,7 @@ class ItemController extends Controller
 
     }
 
-    public function update(Request $request, $id, ItemsRepository $repository)
+    public function update(Request $request, $id, UsersRepository $repository)
     {
         try {
             $item = $repository->update($id, $request->all());
@@ -89,7 +89,7 @@ class ItemController extends Controller
 
     }
 
-    public function create(Request $request, ItemsRepository $repository)
+    public function create(Request $request, UsersRepository $repository)
     {
         try {
             $item = $repository->create($request->all());
@@ -112,7 +112,7 @@ class ItemController extends Controller
 
     }
 
-    public function destroy(Request $request, $id, ItemsRepository $repository)
+    public function destroy(Request $request, $id, UsersRepository $repository)
     {
 
         try {
