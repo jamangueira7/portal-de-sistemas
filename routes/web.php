@@ -31,9 +31,16 @@ Route::get('/admin/items-menu/delete/{id}', 'Admin\ItemController@destroy')->nam
 Route::get('/admin/groups', 'Admin\GroupController@list')->name('admin.groups.list');
 Route::get('/admin/groups/details/{id}', 'Admin\GroupController@details')->name('admin.groups.details');
 
-//Items
+//Users
 Route::get('/admin/users', 'Admin\UserController@list')->name('admin.users.list');
 Route::get('/admin/users/details/{id}', 'Admin\UserController@details')->name('admin.users.details');
 Route::put('/admin/users/update/{id}', 'Admin\UserController@update')->name('admin.users.update');
 Route::get('/admin/users/delete/{id}', 'Admin\UserController@destroy')->name('admin.users.delete');
 
+//pages
+Route::get('/admin/pages', 'Admin\PageController@list')->name('admin.pages.list');
+Route::get('/admin/pages/details/{id}', 'Admin\PageController@details')->name('admin.pages.details');
+Route::put('/admin/pages/update/{id}', 'Admin\PageController@update')->name('admin.pages.update');
+Route::get('/admin/pages/new', 'Admin\PageController@new')->name('admin.pages.new');
+Route::post('/admin/pages', 'Admin\PageController@create')->name('admin.pages.create');
+Route::get('/admin/pages/delete/{id}', 'Admin\PageController@destroy')->name('admin.pages.delete');
