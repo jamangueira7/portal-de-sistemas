@@ -27,4 +27,17 @@ class ItemsRepository {
 
         return $response;
     }
+
+    public function create($data)
+    {
+
+        $response = Item::create([
+            'title' => $data['title'],
+            'father' => null,
+            'url' => $data['url'],
+            'page_id' => $data['page'],
+        ]);
+
+        return $response;
+    }
 }

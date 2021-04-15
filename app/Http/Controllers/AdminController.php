@@ -45,7 +45,33 @@ class AdminController extends Controller
             return redirect()->route('admin.items.list');
 
         } catch (\Exception $err) {
-            return view('admin.items.list');
+            return redirect()->route('admin.items.list');
+        }
+
+    }
+
+    public function new(PagesRepository $repository)
+    {
+        try {
+            $pages = $repository->getAll();
+            return view('admin.items.create', [
+                'pages' => $pages
+            ]);
+
+        } catch (\Exception $err) {
+            return redirect()->route('admin.items.list');
+        }
+
+    }
+
+    public function create(Request $request, ItemsRepository $repository)
+    {
+        try {
+            $item = $repository->create($request->all());
+            return redirect()->route('admin.items.list');
+
+        } catch (\Exception $err) {
+            return redirect()->route('admin.items.list');
         }
 
     }
