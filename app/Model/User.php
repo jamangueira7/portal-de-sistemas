@@ -19,7 +19,6 @@ class User extends Model
     protected $fillable = ['nickname', 'email', 'name', 'login', 'password'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
-
     public function groups()
     {
         return $this->belongsToMany(Group::class, 'users_groups', 'user_id', 'group_id')->withTimestamps();

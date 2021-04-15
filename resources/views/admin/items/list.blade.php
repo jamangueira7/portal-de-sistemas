@@ -1,9 +1,11 @@
 @extends('template.admin.master')
 @section('conteudo-view')
+
     <div class="container">
         <div class="row  justify-content-end row-cols-md-4 mb-2 mr-1">
             <a href="{{route('admin.items.new')}}" type="button" class="btn btn-outline-success btn-block">Novo</a>
         </div>
+
         @if($items)
             <table class="table table-striped">
                 <thead class="thead-dark">
@@ -22,7 +24,9 @@
                             <td>{{$item->created_at}}</td>
                             <td>
                                 <a href="{{route('admin.items.details', [$item->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
+
                                 <button onclick="deleteRegister('{{$item->id}}')" type="button" class="btn btn-outline-danger">Deletar</button>
+
                             </td>
                         </tr>
                     @endforeach
@@ -83,3 +87,4 @@
         });
     </script>
 @stop
+

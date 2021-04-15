@@ -10,6 +10,7 @@ class PagesRepository {
         return Page::paginate(10);
     }
 
+
     public function getById($id)
     {
         return Page::find($id);
