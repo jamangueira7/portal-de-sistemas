@@ -18,7 +18,19 @@
         <div class="row" style="height: 100% !important; overflow-y: hidden;">
             @include('template.admin.nav')
 
-            @yield('conteudo-view')'
+            <div class="container col-md-10 mt-5 pt-5">
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{session('success')['messages']}}
+                    </div>
+                @elseif(session('error'))
+                    <div class="alert alert-danger">
+                        {{session('error')['messages']}}
+                    </div>
+                @endif
+                @yield('conteudo-view')'
+            </div>
+
         </div>
     </div>
     @include('template.admin.footer')
@@ -28,8 +40,12 @@
         <script src="{{ asset('js/ajax-3-5-1.js') }}"></script>
 
         <script src="{{ asset('js/jquery-3-3-1.js') }}"></script>
+
         <script src="{{ asset('js/popper.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
+        @yield('js-view')
+
     </body>
+
 </html>

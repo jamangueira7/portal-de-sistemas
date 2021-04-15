@@ -15,7 +15,8 @@ class User extends Model
     public $incrementing = false;
     protected $guarded = [];
 
-    protected $fillable = ['nickname', 'email', 'name', 'password', 'login'];
+    protected $hidden = ['password'];
+    protected $fillable = ['nickname', 'email', 'name', 'login', 'password'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function groups()
