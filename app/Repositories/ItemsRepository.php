@@ -40,4 +40,11 @@ class ItemsRepository {
 
         return $response;
     }
+
+    public function destroy($id)
+    {
+        $response = Item::find($id)->delete();
+
+        return $response;
+    }
 }

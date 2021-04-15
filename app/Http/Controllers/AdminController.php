@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ItemsRepository;
 use App\Repositories\PagesRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class AdminController extends Controller
 {
@@ -95,6 +96,30 @@ class AdminController extends Controller
             session()->flash('success', [
                 'success' => true,
                 'messages' => "Item cadastrado com sucesso.",
+            ]);
+
+            return redirect()->route('admin.items.list');
+
+        } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema ao cadastrar o Item.",
+            ]);
+
+            return redirect()->route('admin.items.list');
+        }
+
+    }
+
+    public function destroy(Request $request, $id, ItemsRepository $repository)
+    {
+
+        try {
+            $item = $repository->destroy($id);
+
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Item deletado com sucesso.",
             ]);
 
             return redirect()->route('admin.items.list');

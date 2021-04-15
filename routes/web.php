@@ -17,10 +17,12 @@ Route::get('/', 'FreeController@index');
 Route::get('/login', 'FreeController@login');
 Route::get('/logout', 'FreeController@login');
 
+//Items
 Route::get('/admin/items-menu', 'AdminController@list')->name('admin.items.list');
 Route::get('/admin/items-menu/details/{id}', 'AdminController@details')->name('admin.items.details');
 Route::put('/admin/items-menu/update/{id}', 'AdminController@update')->name('admin.items.update');
 Route::get('/admin/items-menu/new', 'AdminController@new')->name('admin.items.new');
 Route::post('/admin/items-menu', 'AdminController@create')->name('admin.items.create');
+Route::get('/admin/items-menu/delete/{id}', 'AdminController@destroy')->name('admin.items.delete');
 
 
