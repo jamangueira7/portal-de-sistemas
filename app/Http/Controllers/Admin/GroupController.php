@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Repositories\ItemsRepository;
 use App\Repositories\PagesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class GroupController extends Controller
 {
     public function list(ItemsRepository $repository)
     {
