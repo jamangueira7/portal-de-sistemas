@@ -13,38 +13,36 @@ class UserController extends Controller
     public function list(UsersRepository $repository)
     {
         try {
-            $items = $repository->getAll();
-            return view('admin.items.list', [
-                'items' => $items
+            $val = $repository->getAll();
+            return view('admin.users.list', [
+                'users' => $val
             ]);
 
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao listar os Itens.",
+                'messages' => "Aconteceu algum problema ao listar os Usuarios.",
             ]);
 
-            return view('admin.items.list');
+            return view('admin.users.list');
         }
 
     }
 
-    public function details($id, UsersRepository $repository, PagesRepository $pagesRepository)
+    public function details($id, UsersRepository $repository)
     {
         try {
-            $item = $repository->getById($id);
-            $pages = $pagesRepository->getAll();
-            return view('admin.items.details', [
-                'item' => $item,
-                'pages' => $pages
+            $val = $repository->getById($id);
+            return view('admin.users.details', [
+                'user' => $val,
             ]);
 
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao ver os detalhes do Item.",
+                'messages' => "Aconteceu algum problema ao ver os detalhes do Usuario.",
             ]);
-            return view('admin.items.list');
+            return view('admin.users.list');
         }
 
     }
@@ -56,58 +54,17 @@ class UserController extends Controller
 
             session()->flash('success', [
                 'success' => true,
-                'messages' => "Item alterado com sucesso.",
+                'messages' => "Usuario alterado com sucesso.",
             ]);
 
-            return redirect()->route('admin.items.list');
+            return redirect()->route('admin.users.list');
 
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao alterar o Item.",
+                'messages' => "Aconteceu algum problema ao alterar o Usuario.",
             ]);
-            return redirect()->route('admin.items.list');
-        }
-
-    }
-
-    public function new(PagesRepository $repository)
-    {
-        try {
-            $pages = $repository->getAll();
-            return view('admin.items.create', [
-                'pages' => $pages
-            ]);
-
-        } catch (\Exception $err) {
-            session()->flash('error', [
-                'error' => true,
-                'messages' => "Aconteceu algum problema ao mostrar pagina de cadastro do Item.",
-            ]);
-            return redirect()->route('admin.items.list');
-        }
-
-    }
-
-    public function create(Request $request, UsersRepository $repository)
-    {
-        try {
-            $item = $repository->create($request->all());
-
-            session()->flash('success', [
-                'success' => true,
-                'messages' => "Item cadastrado com sucesso.",
-            ]);
-
-            return redirect()->route('admin.items.list');
-
-        } catch (\Exception $err) {
-            session()->flash('error', [
-                'error' => true,
-                'messages' => "Aconteceu algum problema ao cadastrar o Item.",
-            ]);
-
-            return redirect()->route('admin.items.list');
+            return redirect()->route('admin.users.list');
         }
 
     }
@@ -120,18 +77,18 @@ class UserController extends Controller
 
             session()->flash('success', [
                 'success' => true,
-                'messages' => "Item deletado com sucesso.",
+                'messages' => "Usuario deletado com sucesso.",
             ]);
 
-            return redirect()->route('admin.items.list');
+            return redirect()->route('admin.users.list');
 
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao cadastrar o Item.",
+                'messages' => "Aconteceu algum problema ao remover o Usuario.",
             ]);
 
-            return redirect()->route('admin.items.list');
+            return redirect()->route('admin.users.list');
         }
 
     }

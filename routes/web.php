@@ -31,4 +31,9 @@ Route::get('/admin/items-menu/delete/{id}', 'Admin\ItemController@destroy')->nam
 Route::get('/admin/groups', 'Admin\GroupController@list')->name('admin.groups.list');
 Route::get('/admin/groups/details/{id}', 'Admin\GroupController@details')->name('admin.groups.details');
 
+//Items
+Route::get('/admin/users', 'Admin\UserController@list')->name('admin.users.list');
+Route::get('/admin/users/details/{id}', 'Admin\UserController@details')->name('admin.users.details');
+Route::put('/admin/users/update/{id}', 'Admin\UserController@update')->name('admin.users.update');
+Route::get('/admin/users/delete/{id}', 'Admin\UserController@destroy')->name('admin.users.delete');
 
