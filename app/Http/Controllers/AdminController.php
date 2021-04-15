@@ -17,6 +17,11 @@ class AdminController extends Controller
             ]);
 
         } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema ao listar o Item.",
+            ]);
+
             return view('admin.items.list');
         }
 
@@ -33,6 +38,10 @@ class AdminController extends Controller
             ]);
 
         } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema ao ver os detalhes do Item.",
+            ]);
             return view('admin.items.list');
         }
 
@@ -42,9 +51,19 @@ class AdminController extends Controller
     {
         try {
             $item = $repository->update($id, $request->all());
+
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Item alterado com sucesso.",
+            ]);
+
             return redirect()->route('admin.items.list');
 
         } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema ao alterar o Item.",
+            ]);
             return redirect()->route('admin.items.list');
         }
 
@@ -59,6 +78,10 @@ class AdminController extends Controller
             ]);
 
         } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema ao mostrar pagina de cadastro do Item.",
+            ]);
             return redirect()->route('admin.items.list');
         }
 
@@ -68,9 +91,20 @@ class AdminController extends Controller
     {
         try {
             $item = $repository->create($request->all());
+
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Item cadastrado com sucesso.",
+            ]);
+
             return redirect()->route('admin.items.list');
 
         } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema ao cadastrar o Item.",
+            ]);
+
             return redirect()->route('admin.items.list');
         }
 

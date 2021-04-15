@@ -1,6 +1,6 @@
 @extends('template.admin.master')
 @section('conteudo-view')
-    <div class="container col-md-8 mt-5 pt-5">
+    <div class="container col-md-10">
         <h2 class="mb-5">Alterar Item de menu</h2>
         <form method="POST" action="{{route('admin.items.update', [$item->id])}}">
             @csrf

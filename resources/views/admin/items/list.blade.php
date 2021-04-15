@@ -1,6 +1,6 @@
 @extends('template.admin.master')
 @section('conteudo-view')
-    <div class="container col-md-10 mt-5 pt-5">
+    <div class="container">
         <div class="row  justify-content-end row-cols-md-4 mb-2 mr-1">
             <a href="{{route('admin.items.new')}}" type="button" class="btn btn-outline-success btn-block">Novo</a>
         </div>
