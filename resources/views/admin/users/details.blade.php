@@ -1,4 +1,8 @@
 @extends('template.admin.master')
+
+@section('conteudo-css')
+@stop
+
 @section('conteudo-view')
     <div class="container col-md-10">
         <h2 class="mb-5">Alterar Item de menu</h2>
@@ -19,15 +23,24 @@
                 <input disabled value="{{$user->login}}" type="text" class="form-control" name="login" id="login" placeholder="URL">
             </div>
 
-            {{--<div class="form-group">
-                <label for="page">Pagina:</label>
-                <select class="custom-select" name="page" id="page">
-                    <option value="{{$item->page->id}}" selected>{{$item->page->description}}</option>
-                    @foreach($pages as $page)
-                        <option value="{{$page->id}}">{{$page->description}}</option>
-                    @endforeach
-                </select>
-            </div>--}}
+
+
+            <label for="groups">Grupos:</label>
+            <div class="form-group row">
+                @foreach($groups as $group)
+                    <div class="form-check col-3">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="check-{{$group->id}}"
+                            name="groups[]"
+                            value="{{$group->id}}"
+                            {{in_array($group->id, $user_groups) ? 'checked' : ''}}
+                        >
+                        <label class="form-check-label" for="check-{{$group->id}}">{{$group->description}}</label>
+                    </div>
+                @endforeach
+            </div>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Alterar</button>
@@ -35,5 +48,5 @@
         </form>
     </div>
 @stop
-
-
+@section('js-view')
+@stop

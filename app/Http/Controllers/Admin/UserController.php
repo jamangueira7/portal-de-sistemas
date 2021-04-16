@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\GroupsRepository;
 use App\Repositories\UsersRepository;
 use App\Repositories\PagesRepository;
 use Illuminate\Http\Request;
@@ -29,12 +30,17 @@ class UserController extends Controller
 
     }
 
-    public function details($id, UsersRepository $repository)
+    public function details($id, UsersRepository $repository, GroupsRepository $groupsRepository)
     {
         try {
             $val = $repository->getById($id);
+            $user_groups = $repository->getAllGroupsIDByUser($id);
+            $groups = $groupsRepository->getAll();
+
             return view('admin.users.details', [
                 'user' => $val,
+                'groups' => $groups,
+                'user_groups' => $user_groups,
             ]);
 
         } catch (\Exception $err) {

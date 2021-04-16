@@ -188,3 +188,26 @@ ul.menu-sites li {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+@media (max-height: 1250px) {
+    #container-main {
+        height: 990px;
+        overflow-y: hidden;
+    }
+}
+
+@media (max-height: 950px) {
+    #container-main {
+        height: 90%;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-height: 800px) {
+    #container-main {
+        height: 90%;
+        overflow-y: scroll;
+    }
+}
+
+
