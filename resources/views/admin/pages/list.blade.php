@@ -1,39 +1,33 @@
 @extends('template.admin.master')
 @section('conteudo-view')
-
     <div class="container">
         <div class="row  justify-content-end row-cols-md-4 mb-2 mr-1">
-            <a href="{{route('admin.items.new')}}" type="button" class="btn btn-outline-success btn-block">Novo</a>
+            <a href="{{route('admin.pages.new')}}" type="button" class="btn btn-outline-success btn-block">Novo</a>
         </div>
-
-        @if($items)
+        @if($pages)
             <table class="table table-striped">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Registrado</th>
+                    <th scope="col">Descrição</th>
                     <th scope="col">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($items as $item)
+                    @foreach($pages as $page)
                         <tr>
-                            <th scope="row">{{$item->id}}</th>
-                            <td>{{$item->title}}</td>
-                            <td>{{$item->created_at}}</td>
+                            <th scope="row">{{$page->id}}</th>
+                            <td>{{$page->description}}</td>
                             <td>
-                                <a href="{{route('admin.items.details', [$item->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
-
-                                <button onclick="deleteRegister('{{$item->id}}')" type="button" class="btn btn-outline-danger">Deletar</button>
-
+                                <a href="{{route('admin.pages.details', [$page->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
+                                <button onclick="deleteRegister('{{$page->id}}')" type="button" class="btn btn-outline-danger">Deletar</button>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="row justify-content-center">
-                {{ $items->links() }}
+                {{ $pages->links() }}
             </div>
         @else
             <h3>Sem dados.</h3>
@@ -80,11 +74,10 @@
 
         modalConfirm(function(confirm){
             if(confirm){
-                window.location = '/admin/items-menu/delete/'+idDeelte;
+                window.location = '/admin/pages/delete/'+idDeelte;
             }else{
                 return;
             }
         });
     </script>
 @stop
-

@@ -2,27 +2,26 @@
 
 namespace App\Repositories;
 
-use App\Model\Item;
+use App\Model\User;
 
-class ItemsRepository {
+class UsersRepository {
     public function getAll()
     {
-        return Item::paginate(10);
+        return User::paginate(10);
     }
 
     public function getById($id)
     {
-        return Item::find($id);
+        $model = User::find($id);
+
+        return User::find($id);
     }
 
     public function update($id, $data)
     {
 
-        $response = Item::find($id)->update([
-            'title' => $data['title'],
-            'father' => null,
-            'url' => $data['url'],
-            'page_id' => $data['page'],
+        $response = User::find($id)->update([
+            'name' => $data['name']
         ]);
 
         return $response;
@@ -43,7 +42,7 @@ class ItemsRepository {
 
     public function destroy($id)
     {
-        $response = Item::find($id)->delete();
+        $response = User::find($id)->delete();
 
         return $response;
     }
