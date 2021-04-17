@@ -29,6 +29,7 @@
                         {{session('error')['messages']}}
                     </div>
                 @endif
+
                 @yield('conteudo-view')
             </div>
 

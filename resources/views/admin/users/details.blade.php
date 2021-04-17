@@ -24,7 +24,6 @@
             </div>
 
 
-
             <label for="groups">Grupos:</label>
             <div class="form-group row">
                 @foreach($groups as $group)
@@ -48,5 +47,6 @@
         </form>
     </div>
 @stop
+
 @section('js-view')
 @stop
