@@ -5,7 +5,7 @@
 
 @section('conteudo-view')
     <div class="container col-md-10">
-        <h2 class="mb-5">Alterar Item de menu</h2>
+        <h2 class="mb-5">Alterar usuário</h2>
         <form method="POST" action="{{route('admin.users.update', [$user->id])}}">
             @csrf
             @method('PUT')
