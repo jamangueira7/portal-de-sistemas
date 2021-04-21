@@ -13,7 +13,7 @@ class ItemController extends Controller
     public function list(ItemsRepository $repository)
     {
         try {
-            $items = $repository->getAll();
+            $items = $repository->getAllWith();
             return view('admin.items.list', [
                 'items' => $items
             ]);
@@ -34,9 +34,11 @@ class ItemController extends Controller
         try {
             $item = $repository->getById($id);
             $pages = $pagesRepository->getAll();
+            $items = $repository->getAll();
             return view('admin.items.details', [
                 'item' => $item,
-                'pages' => $pages
+                'pages' => $pages,
+                'items' => $items,
             ]);
 
         } catch (\Exception $err) {

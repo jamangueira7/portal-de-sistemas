@@ -27,7 +27,7 @@ Route::get('/admin/items-menu/new', 'Admin\ItemController@new')->name('admin.ite
 Route::post('/admin/items-menu', 'Admin\ItemController@create')->name('admin.items.create');
 Route::get('/admin/items-menu/delete/{id}', 'Admin\ItemController@destroy')->name('admin.items.delete');
 
-//Groups
+//groups
 Route::get('/admin/groups', 'Admin\GroupController@list')->name('admin.groups.list');
 Route::get('/admin/groups/details/{id}', 'Admin\GroupController@details')->name('admin.groups.details');
 
