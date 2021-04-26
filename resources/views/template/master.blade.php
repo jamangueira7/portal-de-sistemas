@@ -12,6 +12,16 @@
 <body>
     @include('template.header')
 
+    @if(session('success'))
+        <div class="alert alert-success m-5">
+            {{session('success')['messages']}}
+        </div>
+    @elseif(session('error'))
+        <div class="alert alert-danger m-5">
+            {{session('error')['messages']}}
+        </div>
+    @endif
+
     @yield('conteudo-view')
 
     @include('template.footer')
