@@ -23,7 +23,7 @@
         </li>
         <li class="item_usuario">
           <li class="nav-item active">
-            <a class="nav-link" href="#">ACESSAR</a>
+            <a class="nav-link" href="{{route('free.login')}}">ACESSAR</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">NOME</a>
