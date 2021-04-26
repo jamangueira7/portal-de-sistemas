@@ -40,9 +40,12 @@ class FreeController extends Controller
         try {
             $auth = $repository->login($request->all());
 
-            return view('home.tela-login', [
-                'pages' => $auth
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Você está logado.",
             ]);
+
+            return redirect()->route('free.index');
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
