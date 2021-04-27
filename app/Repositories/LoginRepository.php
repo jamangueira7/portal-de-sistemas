@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Model\User;
+use App\model\User;
 use Illuminate\Support\Facades\Http;
 
 
@@ -46,11 +46,13 @@ class LoginRepository {
         $repositoryGroup = new GroupsRepository();
         $repositoryGroup->saveGroupsByUser($user['id'], $userData['memberOf']);
 
-
-        cookie(env('COOKIE_NAME_OPENAM'), [
+        $res['key'] = env('COOKIE_NAME_OPENAM');
+        $res['body'] = [
             'tokenId' => $res['tokenId'],
-            'user' => $user['name'],
-            'email' => $user['email'],
-        ], 1140);
+            'userName' => $user['name'],
+            'userAccess' => $repositoryGroup->isAdmin($userData['memberOf'])
+        ];
+
+        return $res;
     }
 }

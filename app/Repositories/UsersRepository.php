@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Model\User;
-use App\Model\UserGroup;
+use App\model\User;
+use App\model\UserGroup;
 
 class UsersRepository {
     public function getAll()

@@ -23,10 +23,10 @@
         </li>
         <li class="item_usuario">
           <li class="nav-item active">
-            <a class="nav-link" href="{{route('free.login')}}">ACESSAR</a>
+              <a class="nav-link" href="{{ session('userName') ? route('free.logout') : route('free.login') }}">{{ session('userName') ? 'SAIR' : 'ACESSAR' }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">NOME</a>
+              <a class="nav-link" href="#">{{ session('userName') ? session('userName') : '' }}</a>
           </li>
         </li>
       </ul>

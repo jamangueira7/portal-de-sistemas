@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FreeController@index')->name('free.index');
 Route::get('/login', 'FreeController@login')->name('free.login');
-Route::get('/logout', 'FreeController@login')->name('free.logout');
+Route::get('/logout', 'FreeController@logout')->name('free.logout');
 Route::post('/authenticate', 'FreeController@authenticate')->name('free.authenticate');
 
 //ROTAS DO ADMINISTRATIVO

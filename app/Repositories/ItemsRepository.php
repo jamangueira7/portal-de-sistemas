@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Model\Item;
+use App\model\Item;
 
 class ItemsRepository {
     public function getAll()

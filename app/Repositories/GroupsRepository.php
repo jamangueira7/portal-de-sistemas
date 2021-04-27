@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Model\Group;
-use App\Model\UserGroup;
+use App\model\Group;
+use App\model\UserGroup;
 
 class GroupsRepository {
     public function getAll()
@@ -27,7 +27,7 @@ class GroupsRepository {
             $aux = explode(",", $group);
             $group_name = explode("=", $aux[0]);
 
-            $groupExist = Group::where('description', strtoupper($group_name[1]));
+            $groupExist = Group::where('description', strtoupper($group_name[1]))->first();
 
             if(empty($groupExist)) {
                 $group_new = Group::create([
@@ -41,6 +41,19 @@ class GroupsRepository {
             }
 
 
+        }
+    }
+
+    public function isAdmin($groups)
+    {
+        foreach ($groups as $group) {
+            $aux = explode(",", $group);
+            $group_name = explode("=", $aux[0]);
+            if($group_name[1] == 'SGS_PORTAL_SISTEMAS_ADMINISTRADORES') {
+                return true;
+            }
+
+            return false;
         }
     }
 }

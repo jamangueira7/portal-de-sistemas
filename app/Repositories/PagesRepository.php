@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Model\Page;
+use App\model\Page;
 
 class PagesRepository {
     public function getAll()
