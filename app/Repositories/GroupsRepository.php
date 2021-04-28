@@ -38,6 +38,17 @@ class GroupsRepository {
                     'user_id' => $user_id,
                     'group_id' => $group_new['id'],
                 ]);
+            } else {
+                $user_group = UserGroup::where('user_id', $user_id)
+                    ->where('group_id', $groupExist['id'])
+                    ->first();
+
+                if(empty($user_group)) {
+                    UserGroup::create([
+                        'user_id' => $user_id,
+                        'group_id' => $groupExist['id'],
+                    ]);
+                }
             }
 
 
@@ -52,8 +63,8 @@ class GroupsRepository {
             if($group_name[1] == 'SGS_PORTAL_SISTEMAS_ADMINISTRADORES') {
                 return true;
             }
-
-            return false;
         }
+
+        return false;
     }
 }

@@ -5,8 +5,8 @@
 
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
-            <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            <a class="nav-link" href="{{ route('free.index') }}"><i class="fas fa-home"></i> Home</a>
+            <a class="nav-link" href="{{ route('free.logout') }}"><i class="fas fa-sign-out-alt"></i> Sair</a>
         </li>
     </ul>
 </nav>
