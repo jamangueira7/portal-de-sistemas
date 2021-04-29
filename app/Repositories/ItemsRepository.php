@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Helpers\Helper;
 use App\model\Item;
 
 class ItemsRepository {
@@ -25,6 +26,7 @@ class ItemsRepository {
 
         $response = Item::find($id)->update([
             'title' => $data['title'],
+            'slug' => Helper::slugify($data['title']),
             'father' => $data['father'] == -1 ? null : $data['father'],
             'url' => $data['url'],
             'page_id' => $data['page'],
@@ -38,6 +40,7 @@ class ItemsRepository {
 
         $response = Item::create([
             'title' => $data['title'],
+            'slug' => Helper::slugify($data['title']),
             'father' => null,
             'url' => $data['url'],
             'page_id' => $data['page'],

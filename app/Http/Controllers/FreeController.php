@@ -10,9 +10,8 @@ class FreeController extends Controller
 {
     public function index(PagesRepository $repository)
     {
-
         try {
-            $pages = $repository->PagasByGroupWithUser('6e9c211f-b63b-4e8e-b935-6e65fa771afd');
+            $pages = $repository->PagesByGroupWithUser('6e9c211f-b63b-4e8e-b935-6e65fa771afd');
             return view('home.index', [
                 'pages' => $pages ?? []
             ]);

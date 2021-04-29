@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Helpers\Helper;
 use App\model\Item;
 use App\model\Page;
 use App\model\PageGroup;
@@ -13,7 +14,43 @@ class PagesRepository {
         return Page::paginate(10);
     }
 
-    public function PagasByGroupWithUser($user_id)
+    public function PagesBySlug($slug)
+    {
+        $res = [];
+        $page = Page::where('slug', $slug)->first();
+
+        if(!$page) {
+            throw new \Exception('Essa pagina não existe.');
+        }
+
+        $res['page'] = $page;
+        $fathers = Item::where('page_id', $page['id'])->whereNull('father')->get();
+
+        foreach ($fathers as $father) {
+            $res['fathers'][$father['id']]['father'] = $father;
+            $res['fathers'][$father['id']]['childrens'] = $this->findChildrens($father['id']);
+        }
+
+        return $res;
+
+    }
+
+    public function findChildrens($father)
+    {
+       $child = [];
+
+        $items = Item::where('father', $father)->get();
+        foreach ($items as $item) {
+            $child[] = $item;
+            $sons = $this->findChildrens($item['id']);
+            if($sons) {
+                $child['children'] = $sons;
+            }
+        }
+        return $child;
+    }
+
+    public function PagesByGroupWithUser($user_id)
     {
         $groupsByUser = UserGroup::where('user_id', $user_id)->get();
         $pages = [];
@@ -37,22 +74,6 @@ class PagesRepository {
 
     }
 
-    private function makeChildrens($page_id)
-    {
-        $res = [];
-        $fathers = Item::where('page_id', $page_id)->whereNull('father')->get();
-        foreach ($fathers as $item) {
-            $res[$item['id']]['father'] = $item;
-            $childrens = Item::where('father', $item['id'])->get();
-            if(!empty($childrens)) {
-                $res[$item['id']]['children'] = $childrens;
-            }
-
-        }
-        return $res;
-    }
-
-
     public function getById($id)
     {
         return Page::find($id);
@@ -63,6 +84,7 @@ class PagesRepository {
 
         $response = Page::find($id)->update([
             'description' => $data['description'],
+            'slug' => Helper::slugify($data['description']),
         ]);
 
         return $response;
@@ -72,7 +94,8 @@ class PagesRepository {
     {
 
         $response = Page::create([
-            'description' => $data['description']
+            'description' => $data['description'],
+            'slug' => Helper::slugify($data['description']),
         ]);
 
         return $response;
