@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'FreeController@index');
-Route::get('/login', 'FreeController@login');
-Route::get('/logout', 'FreeController@login');
+Route::get('/', 'FreeController@index')->name('free.index');
+Route::get('/login', 'FreeController@login')->name('free.login');
+Route::get('/logout', 'FreeController@login')->name('free.logout');
+Route::post('/authenticate', 'FreeController@authenticate')->name('free.authenticate');
 
 //ROTAS DO ADMINISTRATIVO
 
@@ -27,7 +28,7 @@ Route::get('/admin/items-menu/new', 'Admin\ItemController@new')->name('admin.ite
 Route::post('/admin/items-menu', 'Admin\ItemController@create')->name('admin.items.create');
 Route::get('/admin/items-menu/delete/{id}', 'Admin\ItemController@destroy')->name('admin.items.delete');
 
-//Groups
+//groups
 Route::get('/admin/groups', 'Admin\GroupController@list')->name('admin.groups.list');
 Route::get('/admin/groups/details/{id}', 'Admin\GroupController@details')->name('admin.groups.details');
 

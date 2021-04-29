@@ -27,6 +27,23 @@
             </div>
 
             <div class="form-group">
+                <label for="father">Escolha um pai para esse item:</label>
+                <select class="custom-select" name="father" id="father">
+                    <option value="-1" selected>Sem pai</option>
+                    @foreach($items as $val)
+                        @if($val->id === $item->father)
+                            <option value="{{$val->id}}" selected>{{$val->title}}</option>
+                        @elseif($val->id === $item->id)
+
+                        @else
+                            <option value="{{$val->id}}">{{$val->title}}</option>
+                        @endif
+
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Alterar</button>
             </div>
         </form>

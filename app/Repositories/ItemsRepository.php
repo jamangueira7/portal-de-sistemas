@@ -7,6 +7,11 @@ use App\Model\Item;
 class ItemsRepository {
     public function getAll()
     {
+        return Item::all();
+    }
+
+    public function getAllWith()
+    {
         return Item::paginate(10);
     }
 
@@ -20,7 +25,7 @@ class ItemsRepository {
 
         $response = Item::find($id)->update([
             'title' => $data['title'],
-            'father' => null,
+            'father' => $data['father'] == -1 ? null : $data['father'],
             'url' => $data['url'],
             'page_id' => $data['page'],
         ]);

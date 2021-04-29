@@ -12,8 +12,9 @@ class GroupController extends Controller
 {
     public function list(GroupsRepository $repository)
     {
+
         try {
-            $val = $repository->getAll();
+            $val = $repository->getAllWith();
             return view('admin.groups.list', [
                 'groups' => $val
             ]);
