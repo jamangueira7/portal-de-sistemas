@@ -17,11 +17,13 @@ use Illuminate\Support\Str;
 |
 */
 
-
+use App\Helpers\Helper;
 
 $factory->define(Page::class, function (Faker $faker) {
 
+    $name = $faker->streetName;
     return [
-        'description' => $faker->streetName,
+        'description' => $name,
+        'slug' => Helper::slugify($name)
     ];
 });

@@ -3,23 +3,21 @@
     <div class="container text-right">
       <ul class="mb-0 py-2 menu-sites">
         <li class="menu_topo">
-          <li class="nav-item dropdown">
-						<a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Blog
-						</a>
+          @if($pages)
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Blog
+                </a>
 
-                        @if($pages)
-                            <div class="dropdown-menu" aria-labelledby="menu-categorias">
-                                @foreach($pages as $page)
-                                    <a href="#" class="dropdown-item">{{$page->description}}</a>
-                                @endforeach
-                            </div>
-                        @else
-                            <div class="dropdown-menu" aria-labelledby="menu-categorias">
-                                <h3>Sem dados</h3>
-                            </div>
-                        @endif
-					</li>
+                <div class="dropdown-menu" aria-labelledby="menu-categorias">
+
+
+                    @foreach($pages as $page)
+                        <a href="{{ route('auth.pages', [$page->slug]) }}" class="dropdown-item">{{ $page->description }}</a>
+                    @endforeach
+                </div>
+            </li>
+          @endif
         </li>
         <li class="item_usuario">
           <li class="nav-item active">

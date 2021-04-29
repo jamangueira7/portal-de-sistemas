@@ -12,10 +12,9 @@ class FreeController extends Controller
     {
 
         try {
-            $pages = $repository->getAll();
-
+            $pages = $repository->PagasByGroupWithUser('6e9c211f-b63b-4e8e-b935-6e65fa771afd');
             return view('home.index', [
-                'pages' => $pages
+                'pages' => $pages ?? []
             ]);
         } catch (\Exception $err) {
             return view('home.index');

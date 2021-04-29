@@ -50,6 +50,7 @@ class LoginRepository {
         $res['body'] = [
             'tokenId' => $res['tokenId'],
             'userName' => $user['name'],
+            'userID' => $user['id'],
             'userAccess' => $repositoryGroup->isAdmin($userData['memberOf'])
         ];
 

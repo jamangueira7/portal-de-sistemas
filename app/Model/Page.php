@@ -15,7 +15,7 @@ class Page extends Model
     public $incrementing = false;
     protected $guarded = [];
 
-    protected $fillable = ['description'];
+    protected $fillable = ['description', 'slug'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
 
