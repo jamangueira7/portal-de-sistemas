@@ -21,6 +21,7 @@ Route::post('/authenticate', 'FreeController@authenticate')->name('free.authenti
 
 Route::get('/pages/{page}/{item?}', 'AuthPageController@index')->name('auth.pages')->middleware('login');
 
+
 //ROTAS DO ADMINISTRATIVO
 
 //Items
@@ -32,8 +33,10 @@ Route::post('/admin/items-menu', 'Admin\ItemController@create')->name('admin.ite
 Route::get('/admin/items-menu/delete/{id}', 'Admin\ItemController@destroy')->name('admin.items.delete')->middleware('login');
 
 //groups
+
 Route::get('/admin/groups', 'Admin\GroupController@list')->name('admin.groups.list')->middleware('login');
 Route::get('/admin/groups/details/{id}', 'Admin\GroupController@details')->name('admin.groups.details')->middleware('login');
+
 
 //Users
 Route::get('/admin/users', 'Admin\UserController@list')->name('admin.users.list')->middleware('login');

@@ -55,5 +55,6 @@ class LoginRepository {
         ];
 
         return $res;
+
     }
 }

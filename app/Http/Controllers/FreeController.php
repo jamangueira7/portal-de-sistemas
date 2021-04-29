@@ -48,6 +48,7 @@ class FreeController extends Controller
             session(['userAccess' => $res['body']['userAccess']]);
 
             return redirect()->route('free.index');
+
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,

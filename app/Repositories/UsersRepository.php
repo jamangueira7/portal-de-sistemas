@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\model\User;
 use App\model\UserGroup;
 
+
 class UsersRepository {
     public function getAll()
     {

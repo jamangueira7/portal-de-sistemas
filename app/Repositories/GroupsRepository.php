@@ -16,6 +16,7 @@ class GroupsRepository {
         return Group::paginate(10);
     }
 
+
     public function getById($id)
     {
         return Group::find($id);
