@@ -55,4 +55,9 @@ class ItemsRepository {
 
         return $response;
     }
+
+    public function ItemBySlug($slug)
+    {
+        return Item::where('slug', $slug)->first();
+    }
 }

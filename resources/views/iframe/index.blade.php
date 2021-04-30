@@ -6,12 +6,8 @@
     <div class="col-md-9">
 
         <a href="{{ route('auth.pages', [$page['page']['slug']]) }}" class="badge badge-primary">--> {{ $page['page']['description'] }}</a>
-        <div class="ml-3">
-            @foreach($page['fathers'] as $items)
 
-                <a href="" class="badge badge-primary">--> {{$items['father']['title']}}</a><br>
-            @endforeach
-        </div>
+        {{\App\Helpers\Helper::gerarFilhos($page, $page['page']['slug'])}}
         <br>
       <article>
         <iframe src="http://sistemas-devdmzz.tokiomarine.com.br/portais/ui/plano-estrategico/"

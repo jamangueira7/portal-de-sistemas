@@ -26,9 +26,9 @@ class PagesRepository {
         $res['page'] = $page;
         $fathers = Item::where('page_id', $page['id'])->whereNull('father')->get();
 
-        foreach ($fathers as $father) {
+        foreach ($fathers as $key=>$father) {
             $res['fathers'][$father['id']]['father'] = $father;
-            $res['fathers'][$father['id']]['childrens'] = $this->findChildrens($father['id']);
+            $res['fathers'][$father['id']]['father']['childrens'] = $this->findChildrens($father['id']);
         }
 
         return $res;
@@ -40,11 +40,11 @@ class PagesRepository {
        $child = [];
 
         $items = Item::where('father', $father)->get();
-        foreach ($items as $item) {
-            $child[] = $item;
+        foreach ($items as $key=>$item) {
+            $child[$key] = $item;
             $sons = $this->findChildrens($item['id']);
             if($sons) {
-                $child['children'] = $sons;
+                $child[$key]['childrens'] = $sons;
             }
         }
         return $child;

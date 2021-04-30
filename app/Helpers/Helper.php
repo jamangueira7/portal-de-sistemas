@@ -93,4 +93,39 @@ class Helper
 
         return $string;
     }
+
+    public static function gerarFilhos($page, $slug, $rec = false)
+    {
+        $memento = !$rec ? $page["fathers"] : $page;
+
+
+        $print = '<div class="ml-3">';
+
+        foreach($memento as $items) {
+            $tes[] = $memento;
+            if(!$rec) {
+                $print .= '<a href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" class="badge badge-primary">--> ' . $items["father"]["title"] . '</a><br>';
+                $sons = $items["father"]["childrens"];
+
+            } else {
+                $print .= '<a href="' . route('auth.pages', [$slug, $items["slug"]]) .'" class="badge badge-primary">--> ' . $items["title"] . '</a><br>';
+                $sons = $items["childrens"];
+                $tes[] = $items;
+            }
+
+            if(!empty($sons)) {
+                $print .= self::gerarFilhos($sons, $slug, true);
+            }
+        }
+
+        $print .= '</div>';
+
+        if(!$rec) {
+            echo $print;
+        } else {
+            return $print;
+        }
+
+
+    }
 }
