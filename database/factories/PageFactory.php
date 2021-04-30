@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model\Page;
+use App\model\Page;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -17,11 +17,13 @@ use Illuminate\Support\Str;
 |
 */
 
-
+use App\Helpers\Helper;
 
 $factory->define(Page::class, function (Faker $faker) {
 
+    $name = $faker->streetName;
     return [
-        'description' => $faker->streetName,
+        'description' => $name,
+        'slug' => Helper::slugify($name)
     ];
 });
