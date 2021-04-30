@@ -8,7 +8,7 @@ use App\Repositories\ItemsRepository;
 
 class AuthPageController extends Controller
 {
-    public function index($page, $item, PagesRepository $repository, ItemsRepository $Itemsrepository)
+    public function index($page, $item=null, PagesRepository $repository, ItemsRepository $Itemsrepository)
     {
         try {
             $pagesBygroup = $repository->PagesByGroupWithUser('6e9c211f-b63b-4e8e-b935-6e65fa771afd');
