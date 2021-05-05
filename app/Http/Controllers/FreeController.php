@@ -11,7 +11,11 @@ class FreeController extends Controller
     public function index(PagesRepository $repository)
     {
         try {
-            $pages = $repository->PagesByGroupWithUser('6e9c211f-b63b-4e8e-b935-6e65fa771afd');
+            $user_id = session('userID');
+            if(!$user_id) {
+                $pages = $repository->PagesByGroupWithUser($user_id);
+            }
+
             return view('home.index', [
                 'pages' => $pages ?? []
             ]);
@@ -45,6 +49,7 @@ class FreeController extends Controller
 
             session([$res['key'] => $res['body']['tokenId']]);
             session(['userName' => $res['body']['userName']]);
+            session(['userID' => $res['body']['userID']]);
             session(['userAccess' => $res['body']['userAccess']]);
 
             return redirect()->route('free.index');

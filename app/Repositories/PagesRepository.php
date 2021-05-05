@@ -14,7 +14,13 @@ class PagesRepository {
         return Page::paginate(10);
     }
 
-    public function PagesBySlug($slug)
+    public function pagesBySlug($slug)
+    {
+        return Page::where('slug', $slug)->first();
+    }
+
+
+    public function pagesBySlugWithChildrens($slug)
     {
         $res = [];
         $page = Page::where('slug', $slug)->first();

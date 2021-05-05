@@ -10,16 +10,16 @@
             <table class="table table-striped">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Descrição</th>
+                    <th scope="col">Registro</th>
                     <th scope="col">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($pages as $page)
                         <tr>
-                            <th scope="row">{{$page->id}}</th>
                             <td>{{$page->description}}</td>
+                            <td>{{\App\Helpers\Helper::formateDate($page->created_at)}}</td>
                             <td>
                                 <a href="{{route('admin.pages.details', [$page->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
                                 <button onclick="deleteRegister('{{$page->id}}')" type="button" class="btn btn-outline-danger">Deletar</button>

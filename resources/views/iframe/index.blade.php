@@ -9,10 +9,14 @@
 
         {{\App\Helpers\Helper::gerarFilhos($page, $page['page']['slug'])}}
         <br>
-      <article>
-        <iframe src="http://sistemas-devdmzz.tokiomarine.com.br/portais/ui/plano-estrategico/"
-        id="iframe_funcionalidade" name="iframe_funcionalidade" frameborder="0" style="width: 100%; height: 80vh" scrolling="auto"></iframe>
-      </article>
+
+        @if(!empty($current))
+            <article>
+                <iframe src="{{ $current['url'] }}"
+                        id="iframe_funcionalidade" name="iframe_funcionalidade" frameborder="0" style="width: 100%; height: 80vh" scrolling="auto"></iframe>
+            </article>
+        @endif
+
     </div>
 
     <div class="col-md-3">

@@ -5,16 +5,16 @@
             <table class="table table-striped">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Descrição</th>
+                    <th scope="col">Registro</th>
                     <th scope="col">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($groups as $group)
                         <tr>
-                            <th scope="row">{{$group->id}}</th>
-                            <td>{{$group->description}}</td>
+                            <td class="align-bottom">{{$group->description}}</td>
+                            <td>{{\App\Helpers\Helper::formateDate($group->created_at)}}</td>
                             <td>
                                 <a href="{{route('admin.groups.details', [$group->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
                             </td>

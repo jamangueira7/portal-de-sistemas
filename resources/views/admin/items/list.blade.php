@@ -10,18 +10,18 @@
             <table class="table table-striped">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Titulo</th>
                     <th scope="col">Registrado</th>
+                    <th scope="col">Pagina</th>
                     <th scope="col">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($items as $item)
                         <tr>
-                            <th scope="row">{{$item->id}}</th>
                             <td>{{$item->title}}</td>
-                            <td>{{$item->created_at}}</td>
+                            <td>{{\App\Helpers\Helper::formateDate($item->created_at)}}</td>
+                            <td>{{$item->page->description}}</td>
                             <td>
                                 <a href="{{route('admin.items.details', [$item->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
 

@@ -27,7 +27,7 @@
             <label for="groups">Grupos:</label>
             <div class="form-group row">
                 @foreach($groups as $group)
-                    <div class="form-check col-3">
+                    <div class="form-check col-4">
                         <input
                             class="form-check-input"
                             type="checkbox"

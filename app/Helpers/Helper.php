@@ -4,6 +4,12 @@ namespace App\Helpers;
 
 class Helper
 {
+    public static function formateDate(string $data)
+    {
+        $date = new \DateTime($data);
+        return $date->format('d-m-Y H:i:s');
+    }
+
     public static function slugify(string $string)
     {
         $string = preg_replace('/[\t\n]/', ' ', $string);

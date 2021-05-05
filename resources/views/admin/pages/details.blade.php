@@ -1,7 +1,7 @@
 @extends('template.admin.master')
 @section('conteudo-view')
     <div class="container col-md-10">
-        <h2 class="mb-5">Alterar Item de menu</h2>
+        <h2 class="mb-5">Alterar página</h2>
         <form method="POST" action="{{route('admin.pages.update', [$page->id])}}">
             @csrf
             @method('PUT')
