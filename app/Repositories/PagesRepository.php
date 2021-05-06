@@ -31,6 +31,13 @@ class PagesRepository {
         return $result;
     }
 
+    public function getGroupsPage($id)
+    {
+        $data = PageGroup::where('page_id', $id)->get();
+
+        return $data;
+    }
+
 
     public function pagesBySlugWithChildrens($slug)
     {

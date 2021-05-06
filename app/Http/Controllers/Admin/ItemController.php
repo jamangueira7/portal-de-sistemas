@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\GroupsRepository;
 use App\Repositories\ItemsRepository;
 use App\Repositories\PagesRepository;
 use Illuminate\Http\Request;
@@ -35,10 +36,15 @@ class ItemController extends Controller
             $item = $repository->getById($id);
             $pages = $pagesRepository->getAll();
             $items = $repository->getAll();
+            $groups = $pagesRepository->getGroupsPage($item['page_id']);
+            $item_groups  = $repository->getAllGroupsIDByItem($id);
+
             return view('admin.items.details', [
                 'item' => $item,
                 'pages' => $pages,
                 'items' => $items,
+                'groups' => $groups,
+                'item_groups' => $item_groups,
             ]);
 
         } catch (\Exception $err) {
