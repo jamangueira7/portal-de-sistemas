@@ -38,6 +38,7 @@ class UsersRepository {
             'name' => $data['name']
         ]);
 
+
         if($response) {
             $this->saveGroupByUser($data['groups'], $id);
         }

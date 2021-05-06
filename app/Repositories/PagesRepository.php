@@ -19,6 +19,18 @@ class PagesRepository {
         return Page::where('slug', $slug)->first();
     }
 
+    public function getAllGroupsIDByPage($id)
+    {
+        $data = PageGroup::where('page_id', $id)->get();
+        $result = [];
+
+        foreach ($data as $page) {
+            array_push($result, $page->group_id);
+        }
+
+        return $result;
+    }
+
 
     public function pagesBySlugWithChildrens($slug)
     {
@@ -93,7 +105,23 @@ class PagesRepository {
             'slug' => Helper::slugify($data['description']),
         ]);
 
+        if($response) {
+            $this->saveGroupPage($data['groups'], $id);
+        }
+
         return $response;
+    }
+
+    private function saveGroupPage($groups, $page_id)
+    {
+        $response = PageGroup::where('page_id', $page_id)->forceDelete();
+
+        foreach ($groups as $group) {
+            PageGroup::create([
+                'page_id' => $page_id,
+                'group_id' => $group,
+            ]);
+        }
     }
 
     public function create($data)

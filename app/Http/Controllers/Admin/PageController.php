@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\GroupsRepository;
 use App\Repositories\PagesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -13,6 +14,7 @@ class PageController extends Controller
     {
         try {
             $val = $repository->getAll();
+
             return view('admin.pages.list', [
                 'pages' => $val
             ]);
@@ -28,12 +30,17 @@ class PageController extends Controller
 
     }
 
-    public function details($id, PagesRepository $repository)
+    public function details($id, PagesRepository $repository, GroupsRepository $groupsRepository)
     {
         try {
             $val = $repository->getById($id);
+            $page_groups = $repository->getAllGroupsIDByPage($id);
+            $groups = $groupsRepository->getAll();
+
             return view('admin.pages.details', [
-                'page' => $val
+                'groups' => $groups,
+                'page' => $val,
+                'page_groups' => $page_groups,
             ]);
 
         } catch (\Exception $err) {
@@ -49,7 +56,7 @@ class PageController extends Controller
     public function update(Request $request, $id, PagesRepository $repository)
     {
         try {
-            $item = $repository->update($id, $request->all());
+            $page = $repository->update($id, $request->all());
 
             session()->flash('success', [
                 'success' => true,
