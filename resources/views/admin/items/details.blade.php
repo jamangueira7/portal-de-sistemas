@@ -1,4 +1,7 @@
 @extends('template.admin.master')
+@section('conteudo-css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('conteudo-view')
 
     <div class="container col-md-10">
@@ -43,23 +46,12 @@
                 </select>
             </div>
 
-            <label for="groups">Grupos da página escolhida:</label>
-            <div class="form-group row">
 
-                @foreach($page->groups as $group)
-                    <div class="form-check col-4">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="check-{{$group->id}}"
-                            name="groups[]"
-                            value="{{$group->id}}"
-                            {{in_array($group->id, $item_groups) ? 'checked' : ''}}
-                        >
-                        <label class="form-check-label" for="check-{{$group->id}}">{{$group->description}}</label>
-                    </div>
-                @endforeach
-            </div>
+            @include('suport.selectListGroups', [
+                'model' => $page->groups,
+                'model_groups' => $item_groups,
+                'label' => 'Grupos da página escolhida:',
+            ])
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Alterar</button>
@@ -67,5 +59,37 @@
         </form>
     </div>
 @stop
+@section('js-view')
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $( "#page" ).change(function() {
 
+                var url = "{{ route('admin.ajax.groups.page') }}";
+                console.log('888888888888888888')
+                $.ajax({
+                    type:'POST',
+                    url: url,
+                    data:{ codigo: 'fasdfds'},
+
+                    success:function(data){
+                        alert('funcinou')
+                    },
+
+                    error:function(data){
+                        alert(data.responseText)
+                    },
+
+                });
+
+
+            });
+        });
+    </script>
+@stop
 

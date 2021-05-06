@@ -30,6 +30,21 @@ class ItemController extends Controller
 
     }
 
+    public function ajaxGroupByPage(Request $request, PagesRepository $pagesRepository)
+    {
+        try {
+            //$page = $pagesRepository->getById($id);
+
+            return ['page' => 'teste' ];
+
+        } catch (\Exception $err) {
+            //$page = $pagesRepository->getById($id);
+
+            return ['msg' => $err->getMessage() ];
+        }
+
+    }
+
     public function details($id, ItemsRepository $repository, PagesRepository $pagesRepository)
     {
         try {
