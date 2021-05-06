@@ -45,7 +45,23 @@ class ItemsRepository {
             'page_id' => $data['page'],
         ]);
 
+        if($response) {
+            $this->saveGroupByItem($data['groups'], $id);
+        }
+
         return $response;
+    }
+
+    private function saveGroupByItem($groups, $item_id)
+    {
+        $response = ItemGroup::where('item_id', $item_id)->forceDelete();
+
+        foreach ($groups as $group) {
+            ItemGroup::create([
+                'item_id' => $item_id,
+                'group_id' => $group,
+            ]);
+        }
     }
 
     public function create($data)

@@ -43,10 +43,10 @@
                 </select>
             </div>
 
-            <label for="groups">Grupos:</label>
+            <label for="groups">Grupos da página escolhida:</label>
             <div class="form-group row">
 
-                @foreach($groups as $group)
+                @foreach($page->groups as $group)
                     <div class="form-check col-4">
                         <input
                             class="form-check-input"

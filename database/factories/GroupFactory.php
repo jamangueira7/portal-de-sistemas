@@ -22,6 +22,6 @@ use Illuminate\Support\Str;
 $factory->define(Group::class, function (Faker $faker) {
 
     return [
-        'description' => $faker->title,
+        'description' => $faker->lastName,
     ];
 });

@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         $items_model = Item::all();
         $pages_model = Page::all();
 
-        for($i = 0; $i <= 1000; $i++) {
+        for($i = 0; $i <= 250; $i++) {
             $rand_user = rand(0, $users_model->count() - 1);
             $rand_group = rand(0, $groups_model->count() - 1);
             $rand_item = rand(0, $items_model->count() - 1);

@@ -35,15 +35,15 @@ class ItemController extends Controller
         try {
             $item = $repository->getById($id);
             $pages = $pagesRepository->getAll();
+            $page = $pagesRepository->getById($item['page_id']);
             $items = $repository->getAll();
-            $groups = $pagesRepository->getGroupsPage($item['page_id']);
             $item_groups  = $repository->getAllGroupsIDByItem($id);
 
             return view('admin.items.details', [
                 'item' => $item,
                 'pages' => $pages,
+                'page' => $page,
                 'items' => $items,
-                'groups' => $groups,
                 'item_groups' => $item_groups,
             ]);
 
