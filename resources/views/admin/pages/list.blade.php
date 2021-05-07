@@ -7,7 +7,7 @@
             <a href="{{route('admin.pages.new')}}" type="button" class="btn btn-outline-success btn-block">Novo</a>
         </div>
         @if($pages)
-            <table class="table table-striped">
+            <table class="table table-striped" id="table">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">Descrição</th>
@@ -54,7 +54,10 @@
 
 @stop
 @section('js-view')
+    @include('suport.dataTable')
+
     <script >
+
         let idDeelte = '';
         function deleteRegister(id) {
             idDeelte = id;

@@ -2,7 +2,7 @@
 @section('conteudo-view')
     <div class="container">
         @if($groups)
-            <table class="table table-striped">
+            <table class="table table-striped" id="table">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">Descrição</th>
@@ -31,5 +31,10 @@
 
     </div>
 
+@stop
+
+@section('js-view')
+    @include('suport.dataTable')
+    
 @stop
 

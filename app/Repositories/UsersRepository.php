@@ -9,7 +9,7 @@ use App\model\UserGroup;
 class UsersRepository {
     public function getAll()
     {
-        return User::paginate(10);
+        return User::paginate(1000);
     }
 
     public function getById($id)

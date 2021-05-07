@@ -7,7 +7,7 @@
         </div>
 
         @if($items)
-            <table class="table table-striped">
+            <table class="table table-striped" id="table">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">Titulo</th>
@@ -58,8 +58,10 @@
 
 @stop
 @section('js-view')
+    @include('suport.dataTable')
+
     <script >
-        let idDeelte = '';
+                let idDeelte = '';
         function deleteRegister(id) {
             idDeelte = id;
             $("#mi-modal").modal('show');
@@ -76,7 +78,7 @@
                 callback(false);
                 $("#mi-modal").modal('hide');
             });
-        };
+        };ff
 
         modalConfirm(function(confirm){
             if(confirm){

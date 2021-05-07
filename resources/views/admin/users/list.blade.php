@@ -2,7 +2,7 @@
 @section('conteudo-view')
     <div class="container">
         @if($users)
-            <table class="table table-striped">
+            <table class="table table-striped" id="table">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">Nome</th>
@@ -51,7 +51,10 @@
 
 @stop
 @section('js-view')
+    @include('suport.dataTable')
+
     <script >
+
         let idDeelte = '';
         function deleteRegister(id) {
             idDeelte = id;

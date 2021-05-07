@@ -11,7 +11,7 @@ use App\model\UserGroup;
 class PagesRepository {
     public function getAll()
     {
-        return Page::paginate(10);
+        return Page::paginate(1000);
     }
 
     public function pagesBySlug($slug)
