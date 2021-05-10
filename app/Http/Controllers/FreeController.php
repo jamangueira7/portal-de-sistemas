@@ -40,17 +40,22 @@ class FreeController extends Controller
     public function authenticate(Request $request, LoginRepository $repository)
     {
         try {
-            $res = $repository->login($request->all());
+            //$res = $repository->login($request->all());
 
             session()->flash('success', [
                 'success' => true,
                 'messages' => "Você está logado.",
             ]);
 
-            session([$res['key'] => $res['body']['tokenId']]);
+            /*session([$res['key'] => $res['body']['tokenId']]);
             session(['userName' => $res['body']['userName']]);
             session(['userID' => $res['body']['userID']]);
-            session(['userAccess' => $res['body']['userAccess']]);
+            session(['userAccess' => $res['body']['userAccess']]);*/
+
+            session(['iPlanetDirectoryPro' => 'adafds']);
+            session(['userName' => 'Elmer Mohr IV' ]);
+            session(['userID' => '2d243bf2-b28e-45dc-b686-6cb6e240500a' ]);
+            session(['userAccess' => true ]);
 
             return redirect()->route('free.index');
 
@@ -66,7 +71,7 @@ class FreeController extends Controller
 
     public function logout()
     {
-        session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess']);
+        session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess', 'userID']);
 
         return redirect()->route('free.index');
     }

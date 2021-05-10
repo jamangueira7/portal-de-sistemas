@@ -24,7 +24,7 @@
               <a class="nav-link" href="{{ session('userName') ? route('free.logout') : route('free.login') }}">{{ session('userName') ? 'SAIR' : 'ACESSAR' }}</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">{{ session('userName') ? session('userName') : '' }}</a>
+              <a class="nav-link" href="{{route('admin.users.list')}}">{{ session('userName') ? session('userName') : '' }}</a>
           </li>
         </li>
       </ul>
