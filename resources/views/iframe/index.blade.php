@@ -1,9 +1,607 @@
 @extends('template.master')
+@section('conteudo-css')
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+
+    <style>
+        #menu-items {
+            list-style: url({{asset('img/right-arrow.svg')}});
+            background-color: #6c757d;
+            border-radius: 3%;
+        }
+        .dropdown-menu-right {
+            width:400px;
+        }
+    </style>
+@stop
 @section('conteudo-view')
+
 <div class="container">
   <div class="row">
       <br><br><br>
-    <div class="col-md-9">
+    <div class="col-md-10">
+
+        <div id="menu-items" class="form-group row">
+            <div class="col-3">
+                <span>Menu 1</span>
+                <ul class="">
+                    <li class="">Item 1</li>
+                    <li class="">Item 2</li>
+                    <li class="">Item 3</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 4</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 2</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 5</li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <span>Menu 1</span>
+                <ul class="">
+                    <li class="">Item 1</li>
+                    <li class="">Item 2</li>
+                    <li class="">Item 3</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 4</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 2</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 5</li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <span>Menu 1</span>
+                <ul class="">
+                    <li class="">Item 1</li>
+                    <li class="">Item 2</li>
+                    <li class="">Item 3</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 4</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 2</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 5</li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <span>Menu 1</span>
+                <ul class="">
+                    <li class="">Item 1</li>
+                    <li class="">Item 2</li>
+                    <li class="">Item 3</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 4</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 2</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 5</li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <span>Menu 1</span>
+                <ul class="">
+                    <li class="">Item 1</li>
+                    <li class="">Item 2</li>
+                    <li class="">Item 3</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 4</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 2</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 5</li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <span>Menu 1</span>
+                <ul class="">
+                    <li class="">Item 1</li>
+                    <li class="">Item 2</li>
+                    <li class="">Item 3</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 4</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 2</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 5</li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <span>Menu 1</span>
+                <ul class="">
+                    <li class="">Item 1</li>
+                    <li class="">Item 2</li>
+                    <li class="">Item 3</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 4</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 2</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 5</li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <span>Menu 1</span>
+                <ul class="">
+                    <li class="">Item 1</li>
+                    <li class="">Item 2</li>
+                    <li class="">Item 3</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 4</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 2</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 5</li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <span>Menu 1</span>
+                <ul class="">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 1</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1666</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 266</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">
+                                                Item 5
+                                                <ul class="">
+                                                    <li class="">Item 1</li>
+                                                    <li class="">
+                                                        Item 2
+                                                        <ul class="">
+                                                            <li class="">Item 1</li>
+                                                            <li class="">Item 2</li>
+                                                            <li class="">Item 3</li>
+                                                            <li class="">Item 4</li>
+                                                            <li class="">Item 5</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="">Item 3</li>
+                                                    <li class="">Item 4</li>
+                                                    <li class="">Item 5</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 2</li>
+                    <li class="">Item 3</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Item 4</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="">Item 1</li>
+                            <li class="nav-item dropdown">
+                                <a class="" href="#" >Item 2</a>
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">Item 2</li>
+                                    <li class="">Item 3</li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Item 3</a></li>
+                            <li class="">Item 4</li>
+                            <li class="">
+                                Item 5
+                                <ul class="">
+                                    <li class="">Item 1</li>
+                                    <li class="">
+                                        Item 2
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">Item 5</li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 3
+                                        <ul class="">
+                                            <li class="">Item 1</li>
+                                            <li class="">Item 2</li>
+                                            <li class="">Item 3</li>
+                                            <li class="">Item 4</li>
+                                            <li class="">
+                                                Item 5
+                                                <ul class="">
+                                                    <li class="">Item 1</li>
+                                                    <li class="">
+                                                        Item 2
+                                                        <ul class="">
+                                                            <li class="">Item 1</li>
+                                                            <li class="">Item 2</li>
+                                                            <li class="">Item 3</li>
+                                                            <li class="">Item 4</li>
+                                                            <li class="">Item 5</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="">Item 3</li>
+                                                    <li class="">Item 4</li>
+                                                    <li class="">Item 5</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="">Item 4</li>
+                                    <li class="">Item 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">Item 5</li>
+                </ul>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
         <a href="{{ route('auth.pages', [$page['page']['slug']]) }}" class="badge badge-primary">--> {{ $page['page']['description'] }}</a>
 
@@ -19,7 +617,7 @@
 
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
         <a href="https://www.youtube.com/watch?v=ACuh9eP0WRM" target="_blank" class="btn-video btn btn-gradient my-3">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18">
             <g id="play" transform="translate(16) rotate(90)" fill="none">

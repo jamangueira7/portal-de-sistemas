@@ -12,7 +12,8 @@ class FreeController extends Controller
     {
         try {
             $user_id = session('userID');
-            if(!$user_id) {
+
+            if($user_id) {
                 $pages = $repository->PagesByGroupWithUser($user_id);
             }
 

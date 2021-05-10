@@ -3,6 +3,7 @@
     <div class="container text-right">
       <ul class="mb-0 py-2 menu-sites">
         <li class="menu_topo">
+
           @if($pages)
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

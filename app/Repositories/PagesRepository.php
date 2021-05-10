@@ -39,7 +39,7 @@ class PagesRepository {
     }
 
 
-    public function pagesBySlugWithChildrens($slug)
+    public function pagesBySlugWithChildrens($slug, $user_id)
     {
         $res = [];
         $page = Page::where('slug', $slug)->first();
@@ -49,28 +49,59 @@ class PagesRepository {
         }
 
         $res['page'] = $page;
+        $IDsGroups = $this->IDsGroupsByPage($page->groups);
+
         $fathers = Item::where('page_id', $page['id'])->whereNull('father')->get();
 
         foreach ($fathers as $key=>$father) {
-            $res['fathers'][$father['id']]['father'] = $father;
-            $res['fathers'][$father['id']]['father']['childrens'] = $this->findChildrens($father['id']);
+            if($this->CheckGroupList($father->groups, $IDsGroups)) {
+                $res['fathers'][$father['id']]['father'] = $father;
+                $res['fathers'][$father['id']]['father']['childrens'] = $this->findChildrens($father['id'], $IDsGroups, $page['id']);
+            }
         }
 
         return $res;
 
     }
 
-    public function findChildrens($father)
+    private function CheckGroupList($ItemGroups,$IDsGroupsPage)
+    {
+        foreach ($ItemGroups as $group) {
+            if(in_array($group['id'], $IDsGroupsPage)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function IDsGroupsByPage($groups)
+    {
+        $ids = [];
+
+        foreach ($groups as $group) {
+
+            if(!in_array($group['id'], $ids)) {
+                array_push($ids, $group['id']);
+            }
+        }
+        return $ids;
+    }
+
+    public function findChildrens($father, $IDsGroups, $page_id)
     {
        $child = [];
 
-        $items = Item::where('father', $father)->get();
+        $items = Item::where('father', $father)->where('page_id', $page_id)->get();
         foreach ($items as $key=>$item) {
-            $child[$key] = $item;
-            $sons = $this->findChildrens($item['id']);
-            if($sons) {
-                $child[$key]['childrens'] = $sons;
+            if($this->CheckGroupList($item->groups, $IDsGroups)) {
+                $child[$key] = $item;
+                $sons = $this->findChildrens($item['id'], $IDsGroups, $page_id);
+                if($sons) {
+                    $child[$key]['childrens'] = $sons;
+                }
             }
+
         }
         return $child;
     }

@@ -17,7 +17,7 @@ class AuthPageController extends Controller
             }
 
             $pagesBygroup = $repository->PagesByGroupWithUser($user_id);
-            $pageBySlug = $repository->PagesBySlugWithChildrens($page);
+            $pageBySlug = $repository->PagesBySlugWithChildrens($page, $user_id);
 
             if(isset($item)) {
                 $current = $Itemsrepository->ItemBySlug($item);
