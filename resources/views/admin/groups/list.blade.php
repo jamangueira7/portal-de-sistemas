@@ -35,6 +35,5 @@
 
 @section('js-view')
     @include('suport.dataTable')
-
 @stop
 
