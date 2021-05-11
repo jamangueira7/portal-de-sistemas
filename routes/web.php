@@ -19,7 +19,7 @@ Route::get('/logout', 'FreeController@logout')->name('free.logout')->middleware(
 Route::post('/authenticate', 'FreeController@authenticate')->name('free.authenticate')->middleware('login');
 
 
-Route::get('/pages/{page}/{item?}', 'AuthPageController@index')->name('auth.pages')->middleware('login');
+Route::get('/portal/{page}/{item?}', 'AuthPageController@index')->name('auth.pages')->middleware('login');
 
 
 //ROTAS DO ADMINISTRATIVO
