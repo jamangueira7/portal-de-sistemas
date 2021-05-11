@@ -9,7 +9,6 @@
                 <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Blog
                 </a>
-
                 <div class="dropdown-menu" aria-labelledby="menu-categorias">
 
 

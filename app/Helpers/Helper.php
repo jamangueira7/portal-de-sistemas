@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 class Helper
 {
+
     public static function formateDate(string $data)
     {
         $date = new \DateTime($data);
@@ -114,6 +115,7 @@ class Helper
         foreach($memento as $items) {
             $tes[] = $memento;
             if(!$rec) {
+
                 $print .= '<div class="col-3">
                         <span>
                             <a class="" href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" >'. $items["father"]["title"].'</a>
@@ -150,13 +152,10 @@ class Helper
             $print .= '</div>';
         }
 
-
         if(!$rec) {
             echo $print;
         } else {
             return $print;
         }
-
-
     }
 }

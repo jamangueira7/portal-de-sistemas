@@ -41,7 +41,9 @@ class FreeController extends Controller
     public function authenticate(Request $request, LoginRepository $repository)
     {
         try {
-            //$res = $repository->login($request->all());
+
+            $res = $repository->login($request->all());
+
 
             session()->flash('success', [
                 'success' => true,
@@ -57,6 +59,7 @@ class FreeController extends Controller
             session(['userName' => 'Elmer Mohr IV' ]);
             session(['userID' => '2d243bf2-b28e-45dc-b686-6cb6e240500a' ]);
             session(['userAccess' => true ]);
+
 
             return redirect()->route('free.index');
 

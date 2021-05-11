@@ -58,6 +58,7 @@ class PagesRepository {
                 $res['fathers'][$father['id']]['father'] = $father;
                 $res['fathers'][$father['id']]['father']['childrens'] = $this->findChildrens($father['id'], $IDsGroups, $page['id']);
             }
+
         }
 
         return $res;

@@ -15,6 +15,7 @@
                 Você está logado, escolha uma pagina no topo da página.
             </div>
         @endif
+
     </div>
 
     <div class="col-md-3">
