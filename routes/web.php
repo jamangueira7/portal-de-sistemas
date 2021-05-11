@@ -36,7 +36,7 @@ Route::get('/admin/items-menu/delete/{id}', 'Admin\ItemController@destroy')->nam
 
 Route::get('/admin/groups', 'Admin\GroupController@list')->name('admin.groups.list')->middleware('login');
 Route::get('/admin/groups/details/{id}', 'Admin\GroupController@details')->name('admin.groups.details')->middleware('login');
-
+Route::post('/groupsbypage', 'Admin\ItemController@ajaxGroupByPage')->name('admin.ajax.groups.page')->middleware('login');
 
 //Users
 Route::get('/admin/users', 'Admin\UserController@list')->name('admin.users.list')->middleware('login');

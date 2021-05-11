@@ -27,4 +27,9 @@ class Group extends Model
     {
         return $this->hasMany(Page::class);
     }
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'items_groups', 'group_id','item_id');
+    }
 }

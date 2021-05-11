@@ -8,6 +8,7 @@
     <!-- <style link="{{asset('css/style.css')}}"></style> -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    @yield('conteudo-css')
 </head>
 <body>
     @include('template.header')

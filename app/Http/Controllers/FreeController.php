@@ -11,7 +11,12 @@ class FreeController extends Controller
     public function index(PagesRepository $repository)
     {
         try {
-            $pages = $repository->PagesByGroupWithUser('6e9c211f-b63b-4e8e-b935-6e65fa771afd');
+            $user_id = session('userID');
+
+            if($user_id) {
+                $pages = $repository->PagesByGroupWithUser($user_id);
+            }
+
             return view('home.index', [
                 'pages' => $pages ?? []
             ]);
@@ -36,16 +41,25 @@ class FreeController extends Controller
     public function authenticate(Request $request, LoginRepository $repository)
     {
         try {
+
             $res = $repository->login($request->all());
+
 
             session()->flash('success', [
                 'success' => true,
                 'messages' => "Você está logado.",
             ]);
 
-            session([$res['key'] => $res['body']['tokenId']]);
+            /*session([$res['key'] => $res['body']['tokenId']]);
             session(['userName' => $res['body']['userName']]);
-            session(['userAccess' => $res['body']['userAccess']]);
+            session(['userID' => $res['body']['userID']]);
+            session(['userAccess' => $res['body']['userAccess']]);*/
+
+            session(['iPlanetDirectoryPro' => 'adafds']);
+            session(['userName' => 'Elmer Mohr IV' ]);
+            session(['userID' => '2d243bf2-b28e-45dc-b686-6cb6e240500a' ]);
+            session(['userAccess' => true ]);
+
 
             return redirect()->route('free.index');
 
@@ -61,7 +75,7 @@ class FreeController extends Controller
 
     public function logout()
     {
-        session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess']);
+        session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess', 'userID']);
 
         return redirect()->route('free.index');
     }

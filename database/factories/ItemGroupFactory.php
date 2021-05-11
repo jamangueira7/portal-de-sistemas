@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\model\Group;
+use App\model\ItemGroup;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -19,9 +19,7 @@ use Illuminate\Support\Str;
 
 
 
-$factory->define(Group::class, function (Faker $faker) {
+$factory->define(ItemGroup::class, function (Faker $faker) {
 
-    return [
-        'description' => $faker->lastName,
-    ];
+    return [];
 });

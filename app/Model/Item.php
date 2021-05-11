@@ -22,4 +22,9 @@ class Item extends Model
     {
         return $this->belongsTo(Page::class);
     }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'items_groups', 'item_id', 'group_id');
+    }
 }

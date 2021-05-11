@@ -26,6 +26,14 @@ class EnsureLogin
 
             return redirect()->route('free.index');
         }*/
+        if($router[0] == 'login' && isset(session('COOKIE_NAME_OPENAM')['tokenId']) && session('userAccess')) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => 'Você já está logado.',
+            ]);
+
+            return redirect()->route('free.index');
+        }
 
         return $next($request);
     }
