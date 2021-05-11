@@ -116,7 +116,7 @@ class PagesRepository {
             foreach ($groupsByUser as $group) {
                 $pagesGroup = PageGroup::where('group_id', $group['group_id'])->first();
 
-                if(!in_array($pagesGroup['page_id'], $pages)) {
+                if(!in_array($pagesGroup['page_id'], $pages) && !empty($pagesGroup['page_id'])) {
                     array_push($pages, $pagesGroup['page_id']);
                 }
 

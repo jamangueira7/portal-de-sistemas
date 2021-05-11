@@ -18,14 +18,15 @@ class EnsureLogin
     {
         $router = explode("/", Route::getCurrentRoute()->uri);
 
-        /*if($router[0] == 'admin' && !isset(session('COOKIE_NAME_OPENAM')['tokenId']) && !session('userAccess')) {
+        if($router[0] == 'admin' && !isset(session('COOKIE_NAME_OPENAM')['tokenId']) && !session('userAccess')) {
             session()->flash('error', [
                 'error' => true,
                 'messages' => 'Você não tem permissão para acessar essa area.',
             ]);
 
             return redirect()->route('free.index');
-        }*/
+        }
+
         if($router[0] == 'login' && isset(session('COOKIE_NAME_OPENAM')['tokenId']) && session('userAccess')) {
             session()->flash('error', [
                 'error' => true,
