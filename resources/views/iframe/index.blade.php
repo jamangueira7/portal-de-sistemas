@@ -1,21 +1,69 @@
 @extends('template.master')
+@section('conteudo-css')
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+
+    <style>
+        #menu-items {
+            list-style: url({{asset('img/right-arrow.svg')}});
+            background-color: #6c757d;
+            border-radius: 5px;
+        }
+
+        #menu-items a:link {
+            color: white;
+            text-decoration:none;
+        }
+
+        /* visited link */
+        #menu-items  a:visited {
+            color: white;
+        }
+
+        /* mouse over link */
+        #menu-items  a:hover {
+            color: #0b2e13;
+        }
+
+        /* selected link */
+        #menu-items  a:active {
+            color: white;
+        }
+
+        .dropdown-menu-right {
+            min-width:500px;
+            background-color: #6c757d;
+            list-style: url({{asset('img/right-arrow.svg')}});
+            padding-left: 20px;
+            border-radius: 5px;
+        }
+
+        #title-page {
+            font-size: 25px;
+        }
+    </style>
+@stop
 @section('conteudo-view')
+
 <div class="container">
   <div class="row">
       <br><br><br>
-    <div class="col-md-9">
-
-        <a href="{{ route('auth.pages', [$page['page']['slug']]) }}" class="badge badge-primary">--> {{ $page['page']['description'] }}</a>
+    <div class="col-md-10">
 
         {{\App\Helpers\Helper::gerarFilhos($page, $page['page']['slug'])}}
         <br>
-      <article>
-        <iframe src="http://sistemas-devdmzz.tokiomarine.com.br/portais/ui/plano-estrategico/"
-        id="iframe_funcionalidade" name="iframe_funcionalidade" frameborder="0" style="width: 100%; height: 80vh" scrolling="auto"></iframe>
-      </article>
+
+        @if(!empty($current))
+            <article>
+                <iframe src="{{ $current['url'] }}"
+                        id="iframe_funcionalidade" name="iframe_funcionalidade" frameborder="0" style="width: 100%; height: 80vh" scrolling="auto"></iframe>
+            </article>
+        @endif
+
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
         <a href="https://www.youtube.com/watch?v=ACuh9eP0WRM" target="_blank" class="btn-video btn btn-gradient my-3">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18">
             <g id="play" transform="translate(16) rotate(90)" fill="none">

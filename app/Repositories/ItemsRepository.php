@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Helpers\Helper;
 use App\model\Item;
+use App\model\ItemGroup;
 
 class ItemsRepository {
     public function getAll()
@@ -13,12 +14,24 @@ class ItemsRepository {
 
     public function getAllWith()
     {
-        return Item::paginate(10);
+        return Item::paginate(1000);
     }
 
     public function getById($id)
     {
         return Item::find($id);
+    }
+
+    public function getAllGroupsIDByItem($id)
+    {
+        $data = ItemGroup::where('item_id', $id)->get();
+        $result = [];
+
+        foreach ($data as $item) {
+            array_push($result, $item->group_id);
+        }
+
+        return $result;
     }
 
     public function update($id, $data)
@@ -32,7 +45,23 @@ class ItemsRepository {
             'page_id' => $data['page'],
         ]);
 
+        if($response) {
+            $this->saveGroupByItem($data['groups'], $id);
+        }
+
         return $response;
+    }
+
+    private function saveGroupByItem($groups, $item_id)
+    {
+        $response = ItemGroup::where('item_id', $item_id)->forceDelete();
+
+        foreach ($groups as $group) {
+            ItemGroup::create([
+                'item_id' => $item_id,
+                'group_id' => $group,
+            ]);
+        }
     }
 
     public function create($data)

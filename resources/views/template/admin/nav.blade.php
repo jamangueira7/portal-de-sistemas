@@ -16,16 +16,17 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.pages.list')}}">
+                    <i class="fas fa-file-alt"></i> Paginas
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.items.list')}}">
                     <i class="fas fa-sitemap"></i> Itens do menu
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.pages.list')}}">
-                    <i class="fas fa-file-alt"></i> Paginas
-                </a>
-            </li>
         </ul>
     </div>
 </nav>

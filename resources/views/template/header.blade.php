@@ -3,12 +3,12 @@
     <div class="container text-right">
       <ul class="mb-0 py-2 menu-sites">
         <li class="menu_topo">
+
           @if($pages)
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Blog
                 </a>
-
                 <div class="dropdown-menu" aria-labelledby="menu-categorias">
 
 
@@ -24,7 +24,7 @@
               <a class="nav-link" href="{{ session('userName') ? route('free.logout') : route('free.login') }}">{{ session('userName') ? 'SAIR' : 'ACESSAR' }}</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">{{ session('userName') ? session('userName') : '' }}</a>
+              <a class="nav-link" href="{{route('admin.users.list')}}">{{ session('userName') ? session('userName') : '' }}</a>
           </li>
         </li>
       </ul>

@@ -10,7 +10,7 @@
                     <label for="login">Login</label>
                     <input type="text" name="login">
                     <label for="password">Senha</label>
-                    <input type="text" name="password">
+                    <input type="password" name="password">
                     <button class="btn" type="submit">Acessar</button>
                 </form>
             </div>

@@ -11,22 +11,30 @@ class AuthPageController extends Controller
     public function index($page, $item=null, PagesRepository $repository, ItemsRepository $Itemsrepository)
     {
         try {
-            $pagesBygroup = $repository->PagesByGroupWithUser('6e9c211f-b63b-4e8e-b935-6e65fa771afd');
-            $pageBySlug = $repository->PagesBySlug($page);
+            $user_id = session('userID');
+            if(!$user_id) {
+                throw new \Exception('Você não está logado.');
+            }
+
+            $pagesBygroup = $repository->PagesByGroupWithUser($user_id);
+            $pageBySlug = $repository->PagesBySlugWithChildrens($page, $user_id);
 
             if(isset($item)) {
                 $current = $Itemsrepository->ItemBySlug($item);
-            } else {
-                $current = $pageBySlug;
             }
 
             return view('iframe.index', [
                 'page' => $pageBySlug,
                 'pages' => $pagesBygroup,
-                'current' => $current,
+                'current' => $current ?? null,
             ]);
 
         } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => $err->getMessage(),
+            ]);
+
             return view('home.index');
         }
     }

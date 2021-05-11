@@ -13,7 +13,7 @@ class GroupsRepository {
 
     public function getAllWith()
     {
-        return Group::paginate(10);
+        return Group::paginate(1000);
     }
 
 

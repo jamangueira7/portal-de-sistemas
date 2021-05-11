@@ -4,10 +4,18 @@
   <div class="row">
     <div class="col-md-9">
 
-      <article>
-        <iframe src="http://sistemas-devdmzz.tokiomarine.com.br/portais/ui/plano-estrategico/"
-        id="iframe_funcionalidade" name="iframe_funcionalidade" frameborder="0" style="width: 100%; height: 80vh" scrolling="auto"></iframe>
-      </article>
+        @if(empty($page))
+            <br><br><br><br>
+            <div class="alert alert-info" role="alert">
+                Você ainda não está logado. Faça o login e escolha uma página no topo dessa pagina.
+            </div>
+        @else
+            <br><br><br><br>
+            <div class="alert alert-success" role="alert">
+                Você está logado, escolha uma pagina no topo da página.
+            </div>
+        @endif
+
     </div>
 
     <div class="col-md-3">
