@@ -100,31 +100,56 @@ class Helper
         return $string;
     }
 
-    public static function gerarFilhos($page, $slug, $rec = false)
+    public static function gerarFilhos($page, $slug, $rec = false, $cont = 0)
     {
         $memento = !$rec ? $page["fathers"] : $page;
-
-
-        $print = '<div class="ml-3">';
+        $print = '';
+        if(!$rec) {
+            $print .= '<div id="menu-items" class="form-group row">
+                        <span id="title-page">
+                            <a class="" href="' . route('auth.pages', [$page['page']['slug']]) .'" >'. $page['page']['description'].'</a>
+                        </span><br><br>';
+        }
 
         foreach($memento as $items) {
             $tes[] = $memento;
             if(!$rec) {
-                $print .= '<a href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" class="badge badge-primary">--> ' . $items["father"]["title"] . '</a><br>';
+                $print .= '<div class="col-3">
+                        <span>
+                            <a class="" href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" >'. $items["father"]["title"].'</a>
+                        </span>
+                                <ul class="">';
+
+                $print .= '<li class="nav-item dropdown"><a href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">' . $items["father"]["title"] . '</a>';
                 $sons = $items["father"]["childrens"];
+                $cont = 1;
 
             } else {
-                $print .= '<a href="' . route('auth.pages', [$slug, $items["slug"]]) .'" class="badge badge-primary">--> ' . $items["title"] . '</a><br>';
+                $print .= '<li><a href="' . route('auth.pages', [$slug, $items["slug"]]) .'" class="">' . $items["title"] . '</a></li>';
                 $sons = $items["childrens"];
                 $tes[] = $items;
+                $cont = 2;
             }
 
             if(!empty($sons)) {
-                $print .= self::gerarFilhos($sons, $slug, true);
+                if($cont <= 1) {
+                    $print .= '<ul class="dropdown-menu dropdown-menu-right">';
+                } else {
+                    $print .= '<ul class="">';
+                }
+                $print .= self::gerarFilhos($sons, $slug, true, $cont++);
+                $print .= '</ul>';
+                $print .= '</li>';
+            }
+
+            if(!$rec) {
+                $print .= '</ul></div>';
             }
         }
+        if(!$rec) {
+            $print .= '</div>';
+        }
 
-        $print .= '</div>';
 
         if(!$rec) {
             echo $print;
