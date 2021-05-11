@@ -26,6 +26,7 @@ class AuthPageController extends Controller
 
             if(!isset($pageBySlug['page']['fathers'])) {
                 throw new \Exception('Você não deu permissões aos itens dessa pagina ou não tem itens cadastrados.');
+
             }
 
             return view('iframe.index', [
@@ -40,7 +41,11 @@ class AuthPageController extends Controller
                 'messages' => $err->getMessage(),
             ]);
 
+<<<<<<< HEAD
             return redirect()->route('free.index');
+=======
+            return view('home.index');
+>>>>>>> master
         }
     }
 }
