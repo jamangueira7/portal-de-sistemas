@@ -2,7 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Model\Item;
+use App\Helpers\Helper;
+use App\model\Item;
 
 class ItemsRepository {
     public function getAll()
@@ -25,6 +26,7 @@ class ItemsRepository {
 
         $response = Item::find($id)->update([
             'title' => $data['title'],
+            'slug' => Helper::slugify($data['title']),
             'father' => $data['father'] == -1 ? null : $data['father'],
             'url' => $data['url'],
             'page_id' => $data['page'],
@@ -38,6 +40,7 @@ class ItemsRepository {
 
         $response = Item::create([
             'title' => $data['title'],
+            'slug' => Helper::slugify($data['title']),
             'father' => null,
             'url' => $data['url'],
             'page_id' => $data['page'],
@@ -51,5 +54,10 @@ class ItemsRepository {
         $response = Item::find($id)->delete();
 
         return $response;
+    }
+
+    public function ItemBySlug($slug)
+    {
+        return Item::where('slug', $slug)->first();
     }
 }

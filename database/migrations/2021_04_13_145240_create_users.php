@@ -18,7 +18,6 @@ class CreateUsers extends Migration
             $table->string('nickname');
             $table->string('email');
             $table->string('name');
-            $table->string('password');
             $table->string('login');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);

@@ -2,8 +2,13 @@
 @section('conteudo-view')
 <div class="container">
   <div class="row">
+      <br><br><br>
     <div class="col-md-9">
 
+        <a href="{{ route('auth.pages', [$page['page']['slug']]) }}" class="badge badge-primary">--> {{ $page['page']['description'] }}</a>
+
+        {{\App\Helpers\Helper::gerarFilhos($page, $page['page']['slug'])}}
+        <br>
       <article>
         <iframe src="http://sistemas-devdmzz.tokiomarine.com.br/portais/ui/plano-estrategico/"
         id="iframe_funcionalidade" name="iframe_funcionalidade" frameborder="0" style="width: 100%; height: 80vh" scrolling="auto"></iframe>

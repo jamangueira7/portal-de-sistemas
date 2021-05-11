@@ -2,8 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Model\User;
-use App\Model\UserGroup;
+use App\model\User;
+use App\model\UserGroup;
+
 
 class UsersRepository {
     public function getAll()
@@ -62,11 +63,12 @@ class UsersRepository {
     public function create($data)
     {
 
-        $response = Item::create([
-            'title' => $data['title'],
-            'father' => null,
-            'url' => $data['url'],
-            'page_id' => $data['page'],
+        $response = User::create([
+            'nickname' => $data['nickname'],
+            'email' => $data['email'],
+            'name' => $data['name'],
+            'login' => $data['login'],
+            'password' => $data['password'],
         ]);
 
         return $response;

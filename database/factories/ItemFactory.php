@@ -2,10 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model\Item;
+use App\Helpers\Helper;
+use App\model\Item;
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
-
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -21,8 +20,10 @@ use Illuminate\Support\Str;
 
 $factory->define(Item::class, function (Faker $faker) {
 
+    $title = $faker->title;
     return [
-        'title' => $faker->title,
+        'title' => $title,
         'url' => $faker->url,
+        'slug' => Helper::slugify($title),
     ];
 });

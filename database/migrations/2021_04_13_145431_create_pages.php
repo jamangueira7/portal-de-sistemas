@@ -16,6 +16,7 @@ class CreatePages extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('description');
+            $table->text('slug');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });

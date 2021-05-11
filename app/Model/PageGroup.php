@@ -2,14 +2,13 @@
 
 namespace App\model;
 
-
 use Illuminate\Database\Eloquent\Model;
 
-class UserGroup extends Model
+class PageGroup extends Model
 {
-    protected $table = 'users_groups';
+    protected $table = 'pages_groups';
 
 
-    protected $fillable = ['user_id', 'group_id'];
+    protected $fillable = ['page_id', 'group_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 }

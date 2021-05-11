@@ -10,12 +10,10 @@ class FreeController extends Controller
 {
     public function index(PagesRepository $repository)
     {
-
         try {
-            $pages = $repository->getAll();
-
+            $pages = $repository->PagesByGroupWithUser('6e9c211f-b63b-4e8e-b935-6e65fa771afd');
             return view('home.index', [
-                'pages' => $pages
+                'pages' => $pages ?? []
             ]);
         } catch (\Exception $err) {
             return view('home.index');
@@ -38,11 +36,19 @@ class FreeController extends Controller
     public function authenticate(Request $request, LoginRepository $repository)
     {
         try {
-            $auth = $repository->login($request->all());
+            $res = $repository->login($request->all());
 
-            return view('home.tela-login', [
-                'pages' => $auth
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Você está logado.",
             ]);
+
+            session([$res['key'] => $res['body']['tokenId']]);
+            session(['userName' => $res['body']['userName']]);
+            session(['userAccess' => $res['body']['userAccess']]);
+
+            return redirect()->route('free.index');
+
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
@@ -55,6 +61,8 @@ class FreeController extends Controller
 
     public function logout()
     {
-        return view('home.tela-login');
+        session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess']);
+
+        return redirect()->route('free.index');
     }
 }
