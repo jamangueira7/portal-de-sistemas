@@ -46,6 +46,46 @@ class GroupController extends Controller
             ]);
             return view('admin.groups.list');
         }
+    }
+
+    public function new()
+    {
+        try {
+            return view('admin.groups.create');
+
+        } catch (\Exception $err) {
+
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema ao mostrar pagina de cadastro do Grupos.",
+            ]);
+            return redirect()->route('admin.groups.list');
+        }
+
+    }
+
+    public function create(Request $request, GroupsRepository $repository)
+    {
+        try {
+
+            $repository->create($request->all());
+
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Grupo cadastrado com sucesso.",
+            ]);
+
+            return redirect()->route('admin.groups.list');
+
+        } catch (\Exception $err) {
+
+            session()->flash('error', [
+                'error' => true,
+                'messages' => $err->getMessage(),
+            ]);
+
+            return redirect()->route('admin.groups.list');
+        }
 
     }
 }

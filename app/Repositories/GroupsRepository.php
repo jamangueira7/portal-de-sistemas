@@ -68,4 +68,20 @@ class GroupsRepository {
 
         return false;
     }
+
+    public function create($data)
+    {
+        $groupExists = Group::where('description', $data['description'])->first();
+
+        if(!empty($groupExists)) {
+            throw new \Exception('Esse grupo já existe.');
+        }
+
+
+        $response = Group::create([
+            'description' => $data['description'],
+        ]);
+
+        return $response;
+    }
 }

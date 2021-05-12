@@ -23,8 +23,7 @@ class AuthPageController extends Controller
                 $current = $Itemsrepository->ItemBySlug($item);
             }
 
-
-            if(!isset($pageBySlug['page']['fathers'])) {
+            if(!isset($pageBySlug['fathers'])) {
                 throw new \Exception('Você não deu permissões aos itens dessa pagina ou não tem itens cadastrados.');
 
             }
@@ -41,11 +40,7 @@ class AuthPageController extends Controller
                 'messages' => $err->getMessage(),
             ]);
 
-<<<<<<< HEAD
             return redirect()->route('free.index');
-=======
-            return view('home.index');
->>>>>>> master
         }
     }
 }

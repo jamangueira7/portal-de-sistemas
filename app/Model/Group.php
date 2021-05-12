@@ -33,8 +33,4 @@ class Group extends Model
         return $this->belongsToMany(Item::class, 'items_groups', 'group_id','item_id');
     }
 
-    public function items()
-    {
-        return $this->belongsToMany(Item::class, 'items_groups', 'group_id','item_id');
-    }
 }
