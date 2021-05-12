@@ -112,7 +112,7 @@ class PagesRepository {
         $groupsByUser = UserGroup::where('user_id', $user_id)->get();
 
         $pages = [];
-        $response = [];
+
         if(!empty($groupsByUser)) {
             foreach ($groupsByUser as $group) {
                 $pagesGroup = PageGroup::where('group_id', $group['group_id'])->get();
@@ -122,15 +122,9 @@ class PagesRepository {
                         array_push($pages, $pg['page_id']);
                     }
                 }
-
-            }
-
-            foreach ($pages as $page) {
-                $response[] = Page::where('id', $page)->first();
             }
         }
-        return $response;
-
+        return Page::whereIn('id', $pages)->orderBy('description', 'asc')->get();
     }
 
     public function getById($id)
