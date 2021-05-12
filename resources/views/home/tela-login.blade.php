@@ -4,14 +4,14 @@
     <div class="row">
         <div class="col">
             <div class="conteudo-login">
-                <img src="img/logo-login.png">
-                <form method="POST" action="{{route('free.authenticate')}}" class="class-form">
+                <img src="">
+                <form method="POST" action="{{route('free.authenticate')}}" class="class-form shadow border-0">
                     @csrf
-                    <label for="login">Login</label>
-                    <input type="text" name="login">
+                    <label for="login">Usuário</label>
+                    <input class="form-control" type="text" placeholder="Digite seu usuário de rede" name="login">
                     <label for="password">Senha</label>
-                    <input type="password" name="password">
-                    <button class="btn" type="submit">Acessar</button>
+                    <input class="form-control" type="password" placeholder="Digite sua senha de rede" name="password">
+                    <button class="mt-3 btn tokio-gradient btn-lg" type="submit">Acessar</button>
                 </form>
             </div>
         </div>

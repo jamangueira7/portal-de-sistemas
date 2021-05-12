@@ -11,9 +11,9 @@
             </div>
         @else
             <br>
-            <div class="alert alert-success" role="alert">
+            <!-- <div class="alert alert-success" role="alert">
                 Você está logado, escolha uma pagina no topo da página.
-            </div>
+            </div> -->
         @endif
 
             <article>

@@ -7,7 +7,7 @@
           @if($pages)
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Portais
+                    Meus Portais
                 </a>
                 <div class="dropdown-menu" aria-labelledby="menu-categorias">
                     @foreach($pages as $page)
