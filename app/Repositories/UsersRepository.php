@@ -69,7 +69,6 @@ class UsersRepository {
             'email' => $data['email'],
             'name' => $data['name'],
             'login' => $data['login'],
-            'password' => $data['password'],
         ]);
 
         return $response;

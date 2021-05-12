@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-9">
 
-        @if(empty($page))
+        @if(empty(session('userName')))
             <br><br><br><br>
             <div class="alert alert-info" role="alert">
                 Você ainda não está logado. Faça o login e escolha uma página no topo dessa pagina.

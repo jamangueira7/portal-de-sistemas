@@ -1,6 +1,11 @@
 @extends('template.admin.master')
 @section('conteudo-view')
     <div class="container">
+        <div class="row justify-content-end row-cols-md-4 mb-2 mr-1">
+
+            <a href="{{route('admin.groups.new')}}" type="button" class="btn btn-outline-success btn-block">Novo</a>
+        </div>
+
         @if($groups)
             <table class="table table-striped" id="table">
                 <thead class="thead-dark">
