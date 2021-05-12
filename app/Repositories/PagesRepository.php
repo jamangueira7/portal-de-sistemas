@@ -125,6 +125,7 @@ class PagesRepository {
             }
         }
         return Page::whereIn('id', $pages)->orderBy('description', 'asc')->get();
+
     }
 
     public function getById($id)
