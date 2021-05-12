@@ -75,11 +75,16 @@ class PageController extends Controller
 
     }
 
-    public function new(PagesRepository $repository)
+    public function new(PagesRepository $repository, GroupsRepository $groupsRepository)
     {
+
         try {
             $pages = $repository->getAll();
+            $page_groups = [];
+            $groups = $groupsRepository->getAll();
             return view('admin.pages.create', [
+                'groups' => $groups,
+                'page_groups' => $page_groups,
                 'pages' => $pages
             ]);
 

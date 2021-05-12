@@ -110,14 +110,17 @@ class PagesRepository {
     public function PagesByGroupWithUser($user_id)
     {
         $groupsByUser = UserGroup::where('user_id', $user_id)->get();
+
         $pages = [];
         $response = [];
         if(!empty($groupsByUser)) {
             foreach ($groupsByUser as $group) {
-                $pagesGroup = PageGroup::where('group_id', $group['group_id'])->first();
+                $pagesGroup = PageGroup::where('group_id', $group['group_id'])->get();
 
-                if(!in_array($pagesGroup['page_id'], $pages)) {
-                    array_push($pages, $pagesGroup['page_id']);
+                foreach ($pagesGroup as $pg) {
+                    if(!in_array($pg['page_id'], $pages) && !empty($pg['page_id'])) {
+                        array_push($pages, $pg['page_id']);
+                    }
                 }
 
             }
@@ -126,7 +129,6 @@ class PagesRepository {
                 $response[] = Page::where('id', $page)->first();
             }
         }
-
         return $response;
 
     }
@@ -165,11 +167,14 @@ class PagesRepository {
 
     public function create($data)
     {
-
         $response = Page::create([
             'description' => $data['description'],
             'slug' => Helper::slugify($data['description']),
         ]);
+
+        if($response) {
+            $this->saveGroupPage($data['groups'], $response['id']);
+        }
 
         return $response;
     }

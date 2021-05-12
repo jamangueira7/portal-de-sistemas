@@ -25,11 +25,12 @@ class Group extends Model
 
     public function pages()
     {
-        return $this->hasMany(Page::class);
+        return $this->belongsToMany(Page::class, 'pages_groups', 'group_id', 'page_id');
     }
 
     public function items()
     {
         return $this->belongsToMany(Item::class, 'items_groups', 'group_id','item_id');
     }
+
 }
