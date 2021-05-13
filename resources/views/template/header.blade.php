@@ -1,7 +1,7 @@
 <header>
     <div class="container-fluid gradient">
       <div class="container text-right">
-      
+
         <ul class="mb-0 py-2 menu-sites">
           <li class="menu_topo">
 
@@ -35,10 +35,8 @@
     <div class="row">
       <div class="col-2 logo">
         <a href="#">
-          <img src="/img/cropped-logo-160x60-1.png" class="pl-2">
+          <img src="{{ asset('/img/cropped-logo-160x60-1.png') }}" class="pl-2">
         </a>
-      </div>
- 
-      
+      </div>      
     </div>
 </div>

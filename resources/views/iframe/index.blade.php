@@ -65,6 +65,24 @@
       </div>
     </div>
 </div>
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-6">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-3 bg-light">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">library</a></li>
+        </ol>
+      </nav>
+    </div> <br>
+    <div class="col-6 text-right">
+      <a href="#" class="btn btn-lg btn-gradient">Favoritar Página</a>
+      <a href="#" class="btn btn-lg btn-secondary">Remover dos Favoritos</a>
+    </div>
+  </div>
+</div>
         <div class="container-fluid">
           <br>
 
