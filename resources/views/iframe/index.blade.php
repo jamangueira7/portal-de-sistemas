@@ -65,7 +65,7 @@
       </div>
     </div>
 </div>
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3 d-none">
   <div class="row">
     <div class="col-6">
       <nav aria-label="breadcrumb">
