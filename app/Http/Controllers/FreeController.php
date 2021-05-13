@@ -16,7 +16,7 @@ class FreeController extends Controller
             if($user_id) {
                 $pages = $repository->PagesByGroupWithUser($user_id);
             }
-            
+
 
             return view('home.index', [
                 'pages' => $pages ?? []
@@ -58,7 +58,7 @@ class FreeController extends Controller
 
            session(['iPlanetDirectoryPro' => 'adafds']);
             session(['userName' => 'Elmer Mohr IV' ]);
-            session(['userID' => 'a0bafc7e-b36d-11eb-8889-002170f7987a' ]);
+            session(['userID' => '2d243bf2-b28e-45dc-b686-6cb6e240500a' ]);
             session(['userAccess' => true ]);
 
 

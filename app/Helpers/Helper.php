@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\model\Item;
+
 class Helper
 {
 
@@ -120,8 +122,8 @@ class Helper
                 $print .= '<li class="nav-item dropdown megamenu ">
                 <a id="megamneu" href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle font-weight-bold text-uppercase">'. $items["father"]["title"].' </a>
                   <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
-                   
-                        
+
+
                                 <ul class="container 1 "> <li class="row bg-white"> ';
 
                 // $print .= '<li class="nav-item dropdown"><a href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">' . $items["father"]["title"] . '</a>';
@@ -144,10 +146,10 @@ class Helper
                 $print .= self::gerarFilhos($sons, $slug, true, $cont++);
 
                 $print .= '
-                
+
                         </ul>
-                      
-                
+
+
                 ';
                 $print .= '';
             }
@@ -159,7 +161,7 @@ class Helper
             }
         }
         if(!$rec) {
-            
+
             $print .= '</ul>';
         }
 
@@ -168,5 +170,40 @@ class Helper
         } else {
             return $print;
         }
+    }
+
+    public static function generaRising($title, $slug, $father, $page_slug, $rec=false)
+    {
+        $html = "";
+        if(!empty($father)){
+            $item = Item::where('id', $father)->first();
+            $html .= self::generaRising($item['title'], $item['slug'], $item['father'], $item["slug"], true);
+            $html .= '<li class="breadcrumb-item">'. $item['title'] . '</li>';
+
+        }
+
+        if(!$rec) {
+            $html .= '<li class="breadcrumb-item"><a href="' . route('auth.pages', [$page_slug, $slug]) .'">'. $title . '</a></li>';
+        }
+
+        return $html;
+    }
+
+    public static function generateBreadcrumb($page, $current=null)
+    {
+        //dd($current);
+       $html = '<nav aria-label="breadcrumb">
+                   <ol class="breadcrumb p-3 bg-light">';
+       $html .= '<li class="breadcrumb-item"><a href="' . route('auth.pages', [$page["page"]["slug"]]) .'">'. $page["page"]["description"] . '</a></li>';
+
+       if(!empty($current)) {
+           $html .= self::generaRising($current['title'], $current['slug'], $current['father'], $page["page"]["slug"]);
+       }
+
+
+       $html .= '</ol>
+                </nav>';
+
+       echo $html;
     }
 }
