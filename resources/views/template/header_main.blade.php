@@ -1,7 +1,6 @@
 <header>
     <div class="container-fluid gradient">
       <div class="container text-right">
-      
         <ul class="mb-0 py-2 menu-sites">
           <li class="menu_topo">
 
@@ -28,17 +27,5 @@
           </li>
         </ul>
       </div>
-    </div> 
-
+    </div>   
   </header>
-  <div class="container-fluid bg-white bg-white py-3 shadow-sm">
-    <div class="row">
-      <div class="col-2 logo">
-        <a href="#">
-          <img src="/img/cropped-logo-160x60-1.png" class="pl-2">
-        </a>
-      </div>
- 
-      
-    </div>
-</div>
