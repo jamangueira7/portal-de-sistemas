@@ -58,17 +58,20 @@ class FreeController extends Controller
                 'messages' => "Você está logado.",
             ]);
 
+
             session([$res['key'] => $res['body']['tokenId']]);
             session(['userName' => $res['body']['userName']]);
             session(['userID' => $res['body']['userID']]);
             session(['userAccess' => $res['body']['userAccess']]);
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);
 
+
             /*session(['iPlanetDirectoryPro' => 'adafds']);
             session(['userName' => 'Elmer Mohr IV' ]);
             session(['userID' => 'c9f48a76-6834-4585-97a6-f0e4f5007de2' ]);
             session(['userAccess' => true ]);
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
+
 
 
             return redirect()->route('free.index');

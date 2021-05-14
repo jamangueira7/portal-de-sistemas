@@ -21,7 +21,7 @@
                                     {{$user->name}}
 
                                     <a href="{{route('admin.users.details', $user->id)}}" title="Acessar usuário">
-                                        <i class="ml-5 far fa-eye fa-2x"></i>
+                                        <i class="ml-5 far fa-eye "></i>
                                     </a>
                                 </button>
                             </h5>
