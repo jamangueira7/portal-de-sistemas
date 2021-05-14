@@ -199,7 +199,7 @@ class Helper
     {
         //dd($current);
        $html = '<nav aria-label="breadcrumb">
-                   <ol class="breadcrumb p-3 bg-light">';
+                   <ol class="breadcrumb p-3 pb-0 bg-light">';
        $html .= '<li class="breadcrumb-item"><a href="' . route('auth.pages', [$page["page"]["slug"]]) .'">'. $page["page"]["description"] . '</a></li>';
 
        if(!empty($current)) {
