@@ -36,18 +36,21 @@ class FreeController extends Controller
             $pages = $repository->getAll();
 
             return view('home.tela-login', [
-                'pages' => $pages
+                'pages' => $pages ?? []
             ]);
         } catch (\Exception $err) {
-            return redirect('free.index');
+            session()->flash('error', [
+                'error' => true,
+                'messages' => $err->getMessage(),
+            ]);
+
+            return redirect()->route('free.index');
         }
     }
 
     public function authenticate(Request $request, LoginRepository $repository)
     {
         try {
-
-
             $res = $repository->login($request->all());
 
             session()->flash('success', [

@@ -15,8 +15,9 @@ class GroupController extends Controller
 
         try {
             $val = $repository->getAllWith();
+
             return view('admin.groups.list', [
-                'groups' => $val
+                'groups' => $val ?? []
             ]);
 
         } catch (\Exception $err) {
