@@ -33,5 +33,7 @@
     @yield('conteudo-view')
 
     @include('template.footer')
+
+    @yield('js-view')
 </body>
 </html>

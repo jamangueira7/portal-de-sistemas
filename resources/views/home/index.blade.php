@@ -47,6 +47,10 @@
         </a>
       <div class="lista_favoritos ">
         <p>favoritos</p>
+          @foreach($favorites as $favorite)
+              <a href="{{ route('auth.pages', [$favorite['slug_page'], $favorite['slug_item']]) }}" >{{ $favorite['description'] }}</a>
+          @endforeach
+
       </div>
     </div>
   </div>

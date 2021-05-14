@@ -15,16 +15,11 @@ class Favorite extends Model
     public $incrementing = false;
     protected $guarded = [];
 
-    protected $fillable = ['user_id', 'page_id'];
+    protected $fillable = ['description', 'user_id', 'slug_page', 'slug_item', 'favorite'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function users()
     {
         return $this->hasMany(User::class, 'user_id');
-    }
-
-    public function pages()
-    {
-        return $this->hasMany(Page::class, 'page_id');
     }
 }
