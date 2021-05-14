@@ -131,7 +131,13 @@ class Helper
                 $cont = 1;
 
             } else {
-                $print .= '<li class="nav-item "><a href="' . route('auth.pages', [$slug, $items["slug"]]) .'" class=" nav-link text-small pb-0">' . $items["title"] . '</a></li>';
+                if(!empty($items["childrens"])) {
+                    $print .= '<li class="nav-item ">' . $items["title"] . '</li>';
+
+                } else {
+                    $print .= '<li class="nav-item "><a href="' . route('auth.pages', [$slug, $items["slug"]]) .'" class=" nav-link text-small pb-0">' . $items["title"] . '</a></li>';
+
+                }
                 $sons = $items["childrens"];
                 $tes[] = $items;
                 $cont = 2;
