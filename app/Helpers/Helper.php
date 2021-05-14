@@ -109,11 +109,9 @@ class Helper
         $print = '';
         if(!$rec) {
             $print .= '
-            <ul class="navbar-nav mx-auto">
-                        <span id="title-page " class="d-none">
-                            <a class="" href="' . route('auth.pages', [$page['page']['slug']]) .'" >'. $page['page']['description'].'</a>
-                        </span><br><br>';
+            <ul class="navbar-nav mx-auto">';
         }
+
 
         foreach($memento as $items) {
             $tes[] = $memento;
@@ -122,10 +120,16 @@ class Helper
                 $print .= '<li class="nav-item dropdown megamenu ">
                 <a id="megamneu" href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle font-weight-bold text-uppercase">'. $items["father"]["title"].' </a>
                   <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
+                    <ul class="container 1 ">
+                        <li class="row bg-white">';
 
-
-                                <ul class="container 1 "> <li class="row bg-white"> ';
-
+                if(empty($items['father']["childrens"])) {
+                    if($items["father"]['new_tab']) {
+                        $print .= '<a  target="_blank" href="'. $items["father"]["url"].'" class="nav-link dropdown-toggle font-weight-bold">'. $items["father"]["title"].' </a>';
+                    } else {
+                        $print .= '<a href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" class="nav-link dropdown-toggle font-weight-bold">'. $items["father"]["title"].' </a>';
+                    }
+                }
                 // $print .= '<li class="nav-item dropdown"><a href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">' . $items["father"]["title"] . '</a>';
                 $sons = $items["father"]["childrens"];
                 $cont = 1;
@@ -135,8 +139,12 @@ class Helper
                     $print .= '<li class="nav-item ">' . $items["title"] . '</li>';
 
                 } else {
-                    $print .= '<li class="nav-item "><a href="' . route('auth.pages', [$slug, $items["slug"]]) .'" class=" nav-link text-small pb-0">' . $items["title"] . '</a></li>';
+                    if($items['new_tab']) {
+                        $print .= '<li class="nav-item "><a target="_blank" href="' . $items["url"] .'" class=" nav-link text-small pb-0">' . $items["title"] . '</a></li>';
 
+                    } else {
+                        $print .= '<li class="nav-item "><a href="' . route('auth.pages', [$slug, $items["slug"]]) .'" class=" nav-link text-small pb-0">' . $items["title"] . '</a></li>';
+                    }
                 }
                 $sons = $items["childrens"];
                 $tes[] = $items;
@@ -152,10 +160,7 @@ class Helper
                 $print .= self::gerarFilhos($sons, $slug, true, $cont++);
 
                 $print .= '
-
                         </ul>
-
-
                 ';
                 $print .= '';
             }

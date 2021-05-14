@@ -15,7 +15,7 @@ class Item extends Model
     public $incrementing = false;
     protected $guarded = [];
 
-    protected $fillable = ['title', 'father', 'url', 'page_id', 'slug'];
+    protected $fillable = ['title', 'father', 'url', 'page_id', 'slug', 'new_tab'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function page()
