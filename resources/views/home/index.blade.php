@@ -5,18 +5,26 @@
     <div class="col-md-9">
 
         @if(empty(session('userName')))
-            <br><br><br><br>
+            <br>
             <div class="alert alert-info" role="alert">
                 Você ainda não está logado. Faça o login e escolha uma página no topo dessa pagina.
             </div>
         @else
-            <br><br><br><br>
+            <br>
             <div class="alert alert-success" role="alert">
                 Você está logado, escolha uma pagina no topo da página.
             </div>
         @endif
 
+            <article>
+                <iframe src="http://sistemas-dmz.tokiomarine.com.br/portais/ui/plano-estrategico/"
+                        id="iframe_funcionalidade" name="iframe_funcionalidade" frameborder="0" style="width: 100%; height: 80vh" scrolling="auto"></iframe>
+            </article>
+
     </div>
+
+
+
 
     <div class="col-md-3">
         <a href="https://www.youtube.com/watch?v=ACuh9eP0WRM" target="_blank" class="btn-video btn btn-gradient my-3">
