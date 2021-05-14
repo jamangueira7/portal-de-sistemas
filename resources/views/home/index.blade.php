@@ -3,7 +3,7 @@
     <div class="container-fluid bg-white bg-white py-2 shadow-sm">
         <div class="row">
             <div class="col-2 logo">
-                <a href="#">
+                <a href="{{ route('free.index')}}">
                     <img src="{{ asset('/img/cropped-logo-160x60-1.png') }}" class="pl-2">
                 </a>
             </div>
