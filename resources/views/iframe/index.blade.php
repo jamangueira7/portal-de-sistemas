@@ -55,7 +55,7 @@
             data-title="Clique para colocar nos favoritos"
             style="display: {!! $favorite ? 'none' : 'block' !!};"
         >
-            <i class="far fa-star fa-2x"></i>
+            <i class="far fa-star"></i>
         </a>
     </div>
   </div>
