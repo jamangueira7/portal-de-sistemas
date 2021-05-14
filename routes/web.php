@@ -18,8 +18,12 @@ Route::get('/login', 'FreeController@login')->name('free.login')->middleware('lo
 Route::get('/logout', 'FreeController@logout')->name('free.logout')->middleware('login');
 Route::post('/authenticate', 'FreeController@authenticate')->name('free.authenticate')->middleware('login');
 
-
+//PORTAL
 Route::get('/portal/{page}/{item?}', 'AuthPageController@index')->name('auth.pages')->middleware('login');
+
+//AJAX
+Route::post('/favorite/alter', 'Admin\FavoriteController@ajaxAlterFavorite')->name('portal.ajax.favorite.alter')->middleware('login');
+Route::post('/groupsbypage', 'Admin\ItemController@ajaxGroupByPage')->name('admin.ajax.groups.page')->middleware('login');
 
 
 //ROTAS DO ADMINISTRATIVO
@@ -38,8 +42,6 @@ Route::get('/admin/groups', 'Admin\GroupController@list')->name('admin.groups.li
 Route::get('/admin/groups/details/{id}', 'Admin\GroupController@details')->name('admin.groups.details')->middleware('login');
 Route::get('/admin/groups/new', 'Admin\GroupController@new')->name('admin.groups.new')->middleware('login');
 Route::post('/admin/groups', 'Admin\GroupController@create')->name('admin.groups.create')->middleware('login');
-
-Route::post('/groupsbypage', 'Admin\ItemController@ajaxGroupByPage')->name('admin.ajax.groups.page')->middleware('login');
 
 //Users
 Route::get('/admin/users', 'Admin\UserController@list')->name('admin.users.list')->middleware('login');

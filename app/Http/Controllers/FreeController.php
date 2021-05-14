@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\model\Favorite;
+use App\Repositories\FavoriteRepository;
 use Illuminate\Http\Request;
 use App\Repositories\PagesRepository;
 use App\Repositories\LoginRepository;
 
 class FreeController extends Controller
 {
-    public function index(PagesRepository $repository)
+    public function index(PagesRepository $repository, FavoriteRepository $favoriteRepository)
     {
         try {
             $user_id = session('userID');
 
             if($user_id) {
                 $pages = $repository->PagesByGroupWithUser($user_id);
+                $favorites = $favoriteRepository->getFavoritesByUser($user_id);
             }
 
             return view('home.index', [
-                'pages' => $pages ?? []
+                'pages' => $pages ?? [],
+                'favorites' => $favorites ?? [],
+
             ]);
         } catch (\Exception $err) {
             return view('home.index');

@@ -1,5 +1,14 @@
 @extends('template.master')
 @section('conteudo-view')
+    <div class="container-fluid bg-white bg-white py-2 shadow-sm">
+        <div class="row">
+            <div class="col-2 logo">
+                <a href="#">
+                    <img src="{{ asset('/img/cropped-logo-160x60-1.png') }}" class="pl-2">
+                </a>
+            </div>
+        </div>
+    </div>
 <div class="container">
   <div class="row">
     <div class="col-md-9">
@@ -11,9 +20,9 @@
             </div>
         @else
             <br>
-            <div class="alert alert-success" role="alert">
+            <!-- <div class="alert alert-success" role="alert">
                 Você está logado, escolha uma pagina no topo da página.
-            </div>
+            </div> -->
         @endif
 
             <article>
@@ -38,6 +47,10 @@
         </a>
       <div class="lista_favoritos ">
         <p>favoritos</p>
+          @foreach($favorites as $favorite)
+              <a href="{{ route('auth.pages', [$favorite['slug_page'], $favorite['slug_item']]) }}" >{{ $favorite['description'] }}</a><br>
+          @endforeach
+
       </div>
     </div>
   </div>

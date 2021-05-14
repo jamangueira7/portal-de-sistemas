@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\FavoriteRepository;
 use Illuminate\Http\Request;
 use App\Repositories\PagesRepository;
 use App\Repositories\ItemsRepository;
 
 class AuthPageController extends Controller
 {
-    public function index($page, $item=null, PagesRepository $repository, ItemsRepository $Itemsrepository)
+    public function index($page, $item=null, PagesRepository $repository, ItemsRepository $Itemsrepository, FavoriteRepository $favoriteRepository)
     {
         try {
             $user_id = session('userID');
@@ -19,8 +20,12 @@ class AuthPageController extends Controller
             $pagesBygroup = $repository->PagesByGroupWithUser($user_id);
             $pageBySlug = $repository->PagesBySlugWithChildrens($page, $user_id);
 
+
             if(isset($item)) {
                 $current = $Itemsrepository->ItemBySlug($item);
+                $favorite = $favoriteRepository->getAllFavoriteByUser($user_id, $current['slug']);
+            } else {
+                $favorite = $favoriteRepository->getAllFavoriteByUser($user_id, $pageBySlug['page']['slug']);
             }
 
             if(!isset($pageBySlug['fathers'])) {
@@ -32,6 +37,7 @@ class AuthPageController extends Controller
                 'page' => $pageBySlug,
                 'pages' => $pagesBygroup,
                 'current' => $current ?? null,
+                'favorite' => $favorite,
             ]);
 
         } catch (\Exception $err) {

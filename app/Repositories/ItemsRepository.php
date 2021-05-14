@@ -14,7 +14,7 @@ class ItemsRepository {
 
     public function getAllWith()
     {
-        return Item::paginate(1000);
+        return Item::paginate(1500);
     }
 
     public function getById($id)
