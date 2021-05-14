@@ -20,7 +20,6 @@ class FreeController extends Controller
                 $favorites = $favoriteRepository->getFavoritesByUser($user_id);
             }
 
-
             return view('home.index', [
                 'pages' => $pages ?? [],
                 'favorites' => $favorites ?? [],

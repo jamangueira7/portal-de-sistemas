@@ -66,7 +66,7 @@ class FavoriteRepository {
 
 
         $favorite = Favorite::create([
-            'description' => $data['slug_type'] == 'item' ? $val['title'] : $val['description'],
+            'description' => $data['slug_type'] == 'item' ? $item['title'] : $val['description'],
             'slug_page' => Helper::slugify($val['slug']),
             'slug_item' => !empty($item) ? Helper::slugify($item['slug']) : null,
             'user_id' => $user_id,
