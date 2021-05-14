@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-9">
 
@@ -26,7 +26,7 @@
         @endif
 
             <article>
-                <iframe src="http://sistemas-dmz.tokiomarine.com.br/portais/ui/plano-estrategico/"
+                <iframe src="https://app.powerbi.com/reportEmbed?reportId=3e9d785a-82e2-4219-9d1d-81b09654cde5&groupId=325e2ff7-8c87-480f-beec-f0f9e605d68f&autoAuth=true&ctid=8b7cb950-a7e7-4897-9382-00f1b86d3871&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWNlbnRyYWwtdXMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D%22"
                         id="iframe_funcionalidade" name="iframe_funcionalidade" frameborder="0" style="width: 100%; height: 80vh" scrolling="auto"></iframe>
             </article>
 
