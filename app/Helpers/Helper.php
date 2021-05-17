@@ -6,7 +6,6 @@ use App\model\Item;
 
 class Helper
 {
-
     public static function formateDate(string $data)
     {
         $date = new \DateTime($data);
