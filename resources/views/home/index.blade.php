@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-2 logo">
                 <a href="{{ route('free.index')}}">
+
                     <img src="{{ asset('/img/cropped-logo-160x60-1.png') }}" class="pl-2">
                 </a>
             </div>

@@ -25,5 +25,6 @@ $factory->define(Item::class, function (Faker $faker) {
         'title' => $title,
         'url' => $faker->url,
         'slug' => Helper::slugify($title),
+        'new_tab' => random_int(0,1),
     ];
 });

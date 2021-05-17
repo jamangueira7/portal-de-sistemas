@@ -51,22 +51,31 @@ class FreeController extends Controller
     public function authenticate(Request $request, LoginRepository $repository)
     {
         try {
-            // $res = $repository->login($request->all());
+            $res = $repository->login($request->all());
 
             session()->flash('success', [
                 'success' => true,
                 'messages' => "Você está logado.",
             ]);
 
-            // session([$res['key'] => $res['body']['tokenId']]);
-            // session(['userName' => $res['body']['userName']]);
-            // session(['userID' => $res['body']['userID']]);
-            // session(['userAccess' => $res['body']['userAccess']]);
 
-            session(['iPlanetDirectoryPro' => 'adafds']);
+            session([$res['key'] => $res['body']['tokenId']]);
+            session(['userName' => $res['body']['userName']]);
+            session(['userID' => $res['body']['userID']]);
+            session(['userAccess' => $res['body']['userAccess']]);
+            session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);
+
+
+            /*session(['iPlanetDirectoryPro' => 'adafds']);
             session(['userName' => 'Elmer Mohr IV' ]);
+<<<<<<< HEAD
             session(['userID' => 'a0bafc7e-b36d-11eb-8889-002170f7987a' ]);
+=======
+            session(['userID' => 'c9f48a76-6834-4585-97a6-f0e4f5007de2' ]);
+>>>>>>> b1a4e3bec5acd72d8f7315d0a292434404402cbb
             session(['userAccess' => true ]);
+            session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
+
 
 
             return redirect()->route('free.index');
@@ -83,7 +92,7 @@ class FreeController extends Controller
 
     public function logout()
     {
-        session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess', 'userID']);
+        session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess', 'userID', 'PORTAL_COOKIE']);
 
         return redirect()->route('free.index');
     }
