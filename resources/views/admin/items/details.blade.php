@@ -46,6 +46,11 @@
                 </select>
             </div>
 
+            <div class="form-group form-check">
+                <input type="checkbox" {{$item->new_tab ? 'checked' : ''}} class="form-check-input" id="new_tab" name="new_tab">
+                <label class="form-check-label" for="new_tab" >Abrir em nova aba</label>
+            </div>
+
             <div id="grupos_change">
                 @include('suport.selectListGroups', [
                 'model' => $page->groups,
@@ -53,7 +58,6 @@
                 'label' => 'Grupos da página escolhida:',
             ])
             </div>
-
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Alterar</button>
