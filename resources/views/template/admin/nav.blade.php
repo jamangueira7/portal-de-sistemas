@@ -1,4 +1,4 @@
-<nav class="col-md-2 d-none d-md-block bg-dark sidebar"
+<nav class="col-md-2 d-none d-md-block sidebar"
      style="height: 100% !important; overflow-y: hidden;"
 >
     <div class="sidebar-sticky mt-5">

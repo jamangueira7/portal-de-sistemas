@@ -29,8 +29,4 @@ class Page extends Model
         return $this->hasMany(Item::class);
     }
 
-    public function favorites()
-    {
-        return $this->belongsToMany(Favorite::class, 'favorites', 'page_id');
-    }
 }

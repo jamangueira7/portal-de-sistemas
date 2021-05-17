@@ -113,6 +113,14 @@ ul.menu-sites li {
 }
 .conteudo-login input{border-radius: 5px; border-color: #c3c4c7;}
 .conteudo-login .btn{margin: 8px 0; background: #239c56!important;border-color: #1b302c;}
+.btn.tokio-gradient{
+  background:transparent linear-gradient(256deg, #23C5AE 0%, #19A38F 100%) 0% 0% no-repeat padding-box!important;
+  color:#fff;
+  border: 0;
+}
+.btn.tokio-gradient:hover {
+color:#fff;
+}
 .conteudo-login label {
   margin-top: 8px;
   margin-bottom: 0px;

@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\model\Favorite;
+use App\Repositories\FavoriteRepository;
 use Illuminate\Http\Request;
 use App\Repositories\PagesRepository;
 use App\Repositories\LoginRepository;
 
 class FreeController extends Controller
 {
-    public function index(PagesRepository $repository)
+    public function index(PagesRepository $repository, FavoriteRepository $favoriteRepository)
     {
         try {
             $user_id = session('userID');
 
             if($user_id) {
                 $pages = $repository->PagesByGroupWithUser($user_id);
+                $favorites = $favoriteRepository->getFavoritesByUser($user_id);
             }
 
             return view('home.index', [
-                'pages' => $pages ?? []
+                'pages' => $pages ?? [],
+                'favorites' => $favorites ?? [],
+
             ]);
         } catch (\Exception $err) {
             return view('home.index');
@@ -31,18 +36,21 @@ class FreeController extends Controller
             $pages = $repository->getAll();
 
             return view('home.tela-login', [
-                'pages' => $pages
+                'pages' => $pages ?? []
             ]);
         } catch (\Exception $err) {
-            return redirect('free.index');
+            session()->flash('error', [
+                'error' => true,
+                'messages' => $err->getMessage(),
+            ]);
+
+            return redirect()->route('free.index');
         }
     }
 
     public function authenticate(Request $request, LoginRepository $repository)
     {
         try {
-
-
             $res = $repository->login($request->all());
 
             session()->flash('success', [

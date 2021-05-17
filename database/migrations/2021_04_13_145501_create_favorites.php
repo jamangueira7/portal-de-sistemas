@@ -15,11 +15,12 @@ class CreateFavorites extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('slug_page');
+            $table->string('slug_item');
+            $table->string('description');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-
             $table->foreignUuid('user_id')->references('id')->on('users');
-            $table->foreignUuid('page_id')->references('id')->on('pages');
         });
     }
 
