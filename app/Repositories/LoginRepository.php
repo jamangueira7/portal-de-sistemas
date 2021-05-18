@@ -20,13 +20,14 @@ class LoginRepository {
             throw new \Exception('Usuario não encontrado.');
         }
 
-
         //Trazer dados do usuario no banco
         $user = User::where('login', $dados['login'])->withTrashed()->first();
 
         //Trazer dados do usuario da Tokio
         $userData = Http::withHeaders([
             'iPlanetDirectoryPro' => $res['tokenId'],
+            'Content-Type'     => 'application/json',
+            'Accept-API-Version' => 'resource=1.2',
         ])->get(env('URL_USERDATA_OPENAM').$dados['login'])->json();
 
         if(empty($user)) {
