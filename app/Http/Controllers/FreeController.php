@@ -67,11 +67,7 @@ class FreeController extends Controller
 
             /*session(['iPlanetDirectoryPro' => 'adafds']);
             session(['userName' => 'Elmer Mohr IV' ]);
-<<<<<<< HEAD
             session(['userID' => 'a0bafc7e-b36d-11eb-8889-002170f7987a' ]);
-=======
-            session(['userID' => 'c9f48a76-6834-4585-97a6-f0e4f5007de2' ]);
->>>>>>> b1a4e3bec5acd72d8f7315d0a292434404402cbb
             session(['userAccess' => true ]);
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
 
@@ -99,7 +95,7 @@ class FreeController extends Controller
         unset( $_COOKIE[env('COOKIE_NAME_OPENAM')] );
         unset( $_COOKIE['AUTH_COOKIE'] );
         unset( $_COOKIE['PORTAL_COOKIE'] );
-        
+
         return redirect()->route('free.index');
     }
 }
