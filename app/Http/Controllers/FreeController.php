@@ -68,11 +68,16 @@ class FreeController extends Controller
 
             /*session(['iPlanetDirectoryPro' => 'adafds']);
             session(['userName' => 'Elmer Mohr IV' ]);
-            session(['userID' => 'c9f48a76-6834-4585-97a6-f0e4f5007de2' ]);
+            session(['userID' => 'a0bafc7e-b36d-11eb-8889-002170f7987a' ]);
             session(['userAccess' => true ]);
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
 
+            $expiration_date = time() + 60 * 60 * 2;
 
+
+            setcookie('iPlanetDirectoryPro', trim($res['body']['tokenId'], '"'), $expiration_date, "/", ".tokiomarine.com.br", true, true);
+            setcookie('PORTAL_COOKIE', 'SITEORIGEM=42144|TIPOSITE=SISTEMAS|', $expiration_date, "/", ".tokiomarine.com.br", true, true);
+            setcookie('AUTH_COOKIE', $res['body']['userID'], $expiration_date, "/", ".tokiomarine.com.br", true, true);
 
             return redirect()->route('free.index');
 
@@ -89,6 +94,9 @@ class FreeController extends Controller
     public function logout()
     {
         session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess', 'userID', 'PORTAL_COOKIE']);
+        unset( $_COOKIE[env('COOKIE_NAME_OPENAM')] );
+        unset( $_COOKIE['AUTH_COOKIE'] );
+        unset( $_COOKIE['PORTAL_COOKIE'] );
 
         return redirect()->route('free.index');
     }

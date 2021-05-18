@@ -57,3 +57,14 @@ DB_PASSWORD=docker
 ## Licença
 
 O framework Laravel e esse projeto usam a linceça [MIT license](https://opensource.org/licenses/MIT).
+
+## Atualização em Produção
+
+Executar os passos a seguir no servidor srvwpint01 e srvwpint02 de produção do site
+Portal de sistemas
+
+Servidor: srvwpint01 e srvwpint02
+1 - Fazer Backup da pasta 'portal-de-sistemas' no caminho:
+/var/tms/prod/html/
+2 - Extrair o conteudo da pasta em anexo para a pasta "portal-de-sistemas"
+/var/tms/prod/html/portal-de-sistemas
