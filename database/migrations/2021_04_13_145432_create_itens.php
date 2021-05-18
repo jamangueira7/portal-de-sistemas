@@ -19,6 +19,7 @@ class CreateItens extends Migration
             $table->string('father')->nullable();
             $table->text('url');
             $table->text('slug');
+            $table->boolean('new_tab');
 
             $table->foreignUuid('page_id')
                 ->references('id')

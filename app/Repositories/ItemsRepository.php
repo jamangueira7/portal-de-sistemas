@@ -43,9 +43,11 @@ class ItemsRepository {
             'father' => $data['father'] == -1 ? null : $data['father'],
             'url' => $data['url'],
             'page_id' => $data['page'],
+            'new_tab' => isset($data['new_tab']) ? true : false,
         ]);
 
         if($response) {
+            $data['groups'] = isset($data['groups']) ? $data['groups'] : [];
             $this->saveGroupByItem($data['groups'], $id);
         }
 
@@ -56,12 +58,15 @@ class ItemsRepository {
     {
         $response = ItemGroup::where('item_id', $item_id)->forceDelete();
 
-        foreach ($groups as $group) {
-            ItemGroup::create([
-                'item_id' => $item_id,
-                'group_id' => $group,
-            ]);
+        if(!empty($groups)) {
+            foreach ($groups as $group) {
+                ItemGroup::create([
+                    'item_id' => $item_id,
+                    'group_id' => $group,
+                ]);
+            }
         }
+
     }
 
     public function create($data)
@@ -73,7 +78,14 @@ class ItemsRepository {
             'father' => null,
             'url' => $data['url'],
             'page_id' => $data['page'],
+            'new_tab' => isset($data['new_tab']) ? true : false,
         ]);
+
+        if($response) {
+            $data['groups'] = isset($data['groups']) ? $data['groups'] : [];
+            $this->saveGroupByItem($data['groups'], $response['id']);
+        }
+
 
         return $response;
     }
