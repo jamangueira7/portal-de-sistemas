@@ -92,7 +92,10 @@ class FreeController extends Controller
     public function logout()
     {
         session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess', 'userID', 'PORTAL_COOKIE']);
-
+        unset( $_COOKIE[env('COOKIE_NAME_OPENAM')] );
+        unset( $_COOKIE['AUTH_COOKIE'] );
+        unset( $_COOKIE['PORTAL_COOKIE'] );
+        
         return redirect()->route('free.index');
     }
 }
