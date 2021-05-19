@@ -9,6 +9,7 @@ use App\model\PageGroup;
 use App\model\UserGroup;
 
 class PagesRepository {
+
     public function getAll()
     {
         return Page::paginate(1000);

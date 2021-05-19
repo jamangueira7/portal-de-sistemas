@@ -65,7 +65,6 @@
         }
 
         var modalConfirm = function(callback){
-
             $("#modal-btn-yes").on("click", function(){
                 callback(true);
                 $("#mi-modal").modal('hide');

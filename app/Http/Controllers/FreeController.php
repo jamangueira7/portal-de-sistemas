@@ -26,7 +26,12 @@ class FreeController extends Controller
 
             ]);
         } catch (\Exception $err) {
-            return view('home.index');
+            session()->flash('error', [
+                'error' => true,
+                'messages' => $err->getMessage(),
+            ]);
+
+            return redirect()->route('free.index');
         }
     }
 
@@ -39,6 +44,7 @@ class FreeController extends Controller
                 'pages' => $pages ?? []
             ]);
         } catch (\Exception $err) {
+
             session()->flash('error', [
                 'error' => true,
                 'messages' => $err->getMessage(),
@@ -58,6 +64,7 @@ class FreeController extends Controller
                 'messages' => "Você está logado.",
             ]);
 
+            $expiration_date = time() + 60 * 60 * 2;
 
             session([$res['key'] => $res['body']['tokenId']]);
             session(['userName' => $res['body']['userName']]);
@@ -66,18 +73,19 @@ class FreeController extends Controller
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);
 
 
-            /*session(['iPlanetDirectoryPro' => 'adafds']);
-            session(['userName' => 'Elmer Mohr IV' ]);
-            session(['userID' => 'a0bafc7e-b36d-11eb-8889-002170f7987a' ]);
-            session(['userAccess' => true ]);
-            session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
-
-            $expiration_date = time() + 60 * 60 * 2;
-
-
             setcookie('iPlanetDirectoryPro', trim($res['body']['tokenId'], '"'), $expiration_date, "/", ".tokiomarine.com.br", true, true);
             setcookie('PORTAL_COOKIE', 'SITEORIGEM=42144|TIPOSITE=SISTEMAS|', $expiration_date, "/", ".tokiomarine.com.br", true, true);
             setcookie('AUTH_COOKIE', $res['body']['userID'], $expiration_date, "/", ".tokiomarine.com.br", true, true);
+
+            /*session(['iPlanetDirectoryPro' => 'adafds']);
+            session(['userName' => 'Elmer Mohr IV' ]);
+            session(['userID' => 'c9f48a76-6834-4585-97a6-f0e4f5007de2' ]);
+            session(['userAccess' => true ]);
+            session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);
+
+            setcookie('iPlanetDirectoryPro', trim("fasd", '"'), $expiration_date, "/", ".tokiomarine.com.br", true, true);
+            setcookie('PORTAL_COOKIE', 'SITEORIGEM=42144|TIPOSITE=SISTEMAS|', $expiration_date, "/", ".tokiomarine.com.br", true, true);
+            setcookie('AUTH_COOKIE', 'c9f48a76-6834-4585-97a6-f0e4f5007de2', $expiration_date, "/", ".tokiomarine.com.br", true, true);*/
 
             return redirect()->route('free.index');
 
