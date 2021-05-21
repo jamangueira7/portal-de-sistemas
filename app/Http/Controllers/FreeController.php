@@ -58,6 +58,8 @@ class FreeController extends Controller
                 'messages' => "Você está logado.",
             ]);
 
+            $expiration_date = time() + 60 * 60 * 2;
+
 
             session([$res['key'] => $res['body']['tokenId']]);
             session(['userName' => $res['body']['userName']]);
@@ -71,8 +73,6 @@ class FreeController extends Controller
             session(['userID' => 'a0bafc7e-b36d-11eb-8889-002170f7987a' ]);
             session(['userAccess' => true ]);
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
-
-            $expiration_date = time() + 60 * 60 * 2;
 
 
             setcookie('iPlanetDirectoryPro', trim($res['body']['tokenId'], '"'), $expiration_date, "/", ".tokiomarine.com.br", true, true);
