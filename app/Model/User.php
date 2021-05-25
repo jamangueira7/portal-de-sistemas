@@ -25,7 +25,7 @@ class User extends Model
 
     public function favorites()
     {
-        return $this->belongsTo(Favorite::class, 'user_id')->withTimestamps();
+        return $this->belongsToMany(Favorite::class, 'favorites', 'user_id')->withTimestamps();
     }
 
 }

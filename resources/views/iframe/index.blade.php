@@ -31,6 +31,7 @@
     </div>
 </div>
 <div class="container-fluid mt-3">
+
   <div class="row">
     <div class="col-11">
       <nav aria-label="breadcrumb">
@@ -39,7 +40,7 @@
     </div> <br>
     <div class="col-1">
         <input id="slug-type" type="hidden" value="{{ !empty($current) ? 'item' : 'page' }}">
-        <input id="slug-current" type="hidden" value="{{ !empty($current) ? $current['slug'] : $page['page']['slug'] }}">
+        <input id="id-current" type="hidden" value="{{ !empty($current) ? $current['id'] : $page['page']['id'] }}">
 
         <a
             href="#"
@@ -99,7 +100,7 @@
                     url: url,
                     data:{
                         slug_type:  $("#slug-type").val(),
-                        slug_current:  $("#slug-current").val(),
+                        id_current:  $("#id-current").val(),
                         delete:  'delete',
                     },
 
@@ -125,7 +126,7 @@
                     url: url,
                     data:{
                         slug_type:  $("#slug-type").val(),
-                        slug_current:  $("#slug-current").val(),
+                        id_current:  $("#id-current").val(),
                         delete:  'include',
                     },
 

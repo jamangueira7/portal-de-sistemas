@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Helpers\Helper;
 use App\model\Item;
 use App\model\ItemGroup;
+use App\model\Page;
 
 class ItemsRepository {
     public function getAll()
@@ -97,8 +98,14 @@ class ItemsRepository {
         return $response;
     }
 
-    public function ItemBySlug($slug)
+    public function ItemBySlug($page, $slug)
     {
-        return Item::where('slug', $slug)->first();
+        $pages = Page::where('slug', $page)->get();
+        foreach ($pages as $page) {
+            $item = Item::where('slug', $slug)->where('page_id', $page['id'])->first();
+            if(!empty($item)) {
+                return $item;
+            }
+        }
     }
 }

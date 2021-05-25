@@ -19,9 +19,11 @@ class FavoriteRepository {
 
     public function getAllFavoriteByUser($user_id, $slug, $item=false)
     {
-
         if($item) {
-            $val = Favorite::where('user_id', $user_id)->where('slug_item', $slug)->first();
+            $val = Favorite::where('user_id', $user_id)
+                ->where('slug_page', $slug)
+                ->where('slug_item', $item)
+                ->first();
         } else {
             $val = Favorite::where('user_id', $user_id)->where('slug_page', $slug)->first();
         }
@@ -37,10 +39,9 @@ class FavoriteRepository {
 
         if($data['slug_type'] == 'item') {
 
-            $val = Item::where('slug', $data['slug_current'])->first();
+            $val = Item::where('id', $data['id_current'])->first();
             $item = $val;
             $val = Page::where('id', $item['page_id'])->first();
-
 
             $exist = Favorite::where('slug_page', Helper::slugify($val['slug']))
                 ->where('slug_item', Helper::slugify($item['slug']) )
@@ -52,7 +53,7 @@ class FavoriteRepository {
             }
 
         } else {
-            $val = Page::where('slug', $data['slug_current'])->first();
+            $val = Page::where('id', $data['id_current'])->first();
 
             $exist = Favorite::where('slug_page', Helper::slugify($val['slug']))
                 ->whereNull('slug_item')
@@ -68,7 +69,7 @@ class FavoriteRepository {
         $favorite = Favorite::create([
             'description' => $data['slug_type'] == 'item' ? $item['title'] : $val['description'],
             'slug_page' => Helper::slugify($val['slug']),
-            'slug_item' => !empty($item) ? Helper::slugify($item['slug']) : null,
+            'slug_item' => !empty($item) ? Helper::slugify($item['slug']) : 'fadssf',
             'user_id' => $user_id,
         ]);
 

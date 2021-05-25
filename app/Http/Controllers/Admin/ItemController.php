@@ -137,7 +137,7 @@ class ItemController extends Controller
 
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao cadastrar o Item.",
+                'messages' => "Aconteceu algum problema ao cadastrar o Item.".$err->getMessage(),
             ]);
 
             return redirect()->route('admin.items.list');

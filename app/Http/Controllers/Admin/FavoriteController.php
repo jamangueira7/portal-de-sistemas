@@ -15,7 +15,6 @@ class FavoriteController extends Controller
     {
         try {
             if($request->get('delete') == 'delete') {
-
                 $favorites = $repository->getFavoriteDeleteBySlug($request->all());
             } else {
                 $favorites = $repository->getFavoriteBySlug($request->all());

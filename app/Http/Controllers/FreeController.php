@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\model\Favorite;
 use App\Repositories\FavoriteRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 use App\Repositories\PagesRepository;
 use App\Repositories\LoginRepository;
 
@@ -30,13 +32,12 @@ class FreeController extends Controller
         }
     }
 
-    public function login(PagesRepository $repository)
+    public function login()
     {
         try {
-            $pages = $repository->getAll();
 
             return view('home.tela-login', [
-                'pages' => $pages ?? []
+                'pages' =>  []
             ]);
         } catch (\Exception $err) {
             session()->flash('error', [
@@ -48,36 +49,31 @@ class FreeController extends Controller
         }
     }
 
-    public function authenticate(Request $request, LoginRepository $repository)
+    public function authenticate(Request $request, Response $response, LoginRepository $repository)
     {
         try {
-            $res = $repository->login($request->all());
+            //$res = $repository->login($request->all());
 
             session()->flash('success', [
                 'success' => true,
                 'messages' => "Você está logado.",
             ]);
 
-            $expiration_date = time() + 60 * 60 * 2;
 
-
-            session([$res['key'] => $res['body']['tokenId']]);
+            /*session(['iPlanetDirectoryPro' => trim($res['body']['tokenId'], '"')]);
             session(['userName' => $res['body']['userName']]);
             session(['userID' => $res['body']['userID']]);
-            session(['userAccess' => $res['body']['userAccess']]);
+            session(['userAccess' => $res['body']['userAccess']]);*/
+
+
+
+            session(['iPlanetDirectoryPro' => 'adafds']);
+            session(['userName' => 'Elmer Mohr IV' ]);
+            session(['userID' => 'c9f48a76-6834-4585-97a6-f0e4f5007de2' ]);
+            session(['userAccess' => true ]);
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);
 
 
-            /*session(['iPlanetDirectoryPro' => 'adafds']);
-            session(['userName' => 'Elmer Mohr IV' ]);
-            session(['userID' => 'a0bafc7e-b36d-11eb-8889-002170f7987a' ]);
-            session(['userAccess' => true ]);
-            session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
-
-
-            setcookie('iPlanetDirectoryPro', trim($res['body']['tokenId'], '"'), $expiration_date, "/", ".tokiomarine.com.br", true, true);
-            setcookie('PORTAL_COOKIE', 'SITEORIGEM=42144|TIPOSITE=SISTEMAS|', $expiration_date, "/", ".tokiomarine.com.br", true, true);
-            setcookie('AUTH_COOKIE', $res['body']['userID'], $expiration_date, "/", ".tokiomarine.com.br", true, true);
 
             return redirect()->route('free.index');
 
@@ -91,12 +87,14 @@ class FreeController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(LoginRepository $repository)
     {
-        session()->forget([env('COOKIE_NAME_OPENAM'), 'userName', 'userAccess', 'userID', 'PORTAL_COOKIE']);
-        unset( $_COOKIE[env('COOKIE_NAME_OPENAM')] );
-        unset( $_COOKIE['AUTH_COOKIE'] );
-        unset( $_COOKIE['PORTAL_COOKIE'] );
+        session()->forget([env('COOKIE_NAME_OPENAM')]);
+        session()->forget(['userName']);
+        session()->forget(['userAccess']);
+        session()->forget(['userID']);
+
+        $repository->logout();
 
         return redirect()->route('free.index');
     }

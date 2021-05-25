@@ -28,5 +28,4 @@ class Page extends Model
     {
         return $this->hasMany(Item::class);
     }
-
 }

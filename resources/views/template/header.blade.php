@@ -18,9 +18,18 @@
               </li>
             @endif
           </li>
+
           <li class="item_usuario">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.users.list')}}">{{ session('userName') ? session('userName') : '' }}</a>
+                @if(session('userName'))
+                    @if(session('userAccess'))
+                        <a class="nav-link" href="{{ route('admin.users.list') }}">{{ session('userName') }}</a>
+                    @else
+                            <a class="nav-link">{{ session('userName') }}</a>
+                    @endif
+                @else
+                        <a class="nav-link" href="{{ route('free.index') }}">HOME</a>
+                @endif
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ session('userName') ? route('free.logout') : route('free.login') }}">{{ session('userName') ? 'SAIR' : 'ACESSAR' }}</a>

@@ -22,8 +22,8 @@ class AuthPageController extends Controller
 
 
             if(isset($item)) {
-                $current = $Itemsrepository->ItemBySlug($item);
-                $favorite = $favoriteRepository->getAllFavoriteByUser($user_id, $current['slug']);
+                $current = $Itemsrepository->ItemBySlug($page, $item);
+                $favorite = $favoriteRepository->getAllFavoriteByUser($user_id, $page, $current['slug']);
             } else {
                 $favorite = $favoriteRepository->getAllFavoriteByUser($user_id, $pageBySlug['page']['slug']);
             }

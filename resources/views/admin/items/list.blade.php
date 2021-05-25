@@ -78,7 +78,7 @@
                 callback(false);
                 $("#mi-modal").modal('hide');
             });
-        };ff
+        };
 
         modalConfirm(function(confirm){
             if(confirm){

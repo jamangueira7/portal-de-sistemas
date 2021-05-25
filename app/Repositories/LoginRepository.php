@@ -20,15 +20,19 @@ class LoginRepository {
             throw new \Exception('Usuario não encontrado.');
         }
 
+
         //Trazer dados do usuario no banco
         $user = User::where('login', $dados['login'])->withTrashed()->first();
+
 
         //Trazer dados do usuario da Tokio
         $userData = Http::withHeaders([
             'iPlanetDirectoryPro' => $res['tokenId'],
             'Content-Type'     => 'application/json',
             'Accept-API-Version' => 'resource=1.2',
-        ])->get(env('URL_USERDATA_OPENAM').$dados['login'])->json();
+        ])->get( env('URL_USERDATA_OPENAM').$dados['login'])->json();
+
+
 
         if(empty($user)) {
             $repository = new UsersRepository();
@@ -47,7 +51,6 @@ class LoginRepository {
         $repositoryGroup = new GroupsRepository();
         $repositoryGroup->saveGroupsByUser($user['id'], $userData['memberOf']);
 
-        $res['key'] = env('COOKIE_NAME_OPENAM');
         $res['body'] = [
             'tokenId' => $res['tokenId'],
             'userName' => $user['name'],
@@ -55,7 +58,21 @@ class LoginRepository {
             'userAccess' => $repositoryGroup->isAdmin($userData['memberOf'])
         ];
 
+        $expiration_date = time() + 60 * 60 * 2;
+
+        setrawcookie('PORTAL_COOKIE','"SITEORIGEM=42144|TIPOSITE=SISTEMAS|"', $expiration_date, '/', '.tokiomarine.com.br', false, true);
+        setrawcookie('AUTH_COOKIE', trim($res['body']['tokenId'], '"'), $expiration_date, '/', '.tokiomarine.com.br', false, true);
+        setrawcookie('iPlanetDirectoryPro', $res['tokenId'], $expiration_date, '/', '.tokiomarine.com.br', false, true);
+
         return $res;
+
+    }
+
+    public function logout()
+    {
+        setrawcookie('PORTAL_COOKIE', '', time() - 3600, '/', '.tokiomarine.com.br', false, true);
+        setrawcookie('AUTH_COOKIE', '', time() - 3600, '/', '.tokiomarine.com.br', false, true);
+        setrawcookie('iPlanetDirectoryPro', '', time() - 3600, '/', '.tokiomarine.com.br', false, true);
 
     }
 }
