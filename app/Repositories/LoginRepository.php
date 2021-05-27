@@ -21,18 +21,31 @@ class LoginRepository {
         }
 
 
-        //Trazer dados do usuario no banco
-        $user = User::where('login', $dados['login'])->withTrashed()->first();
+        return $userData = $this->toCreateSession($res['tokenId'], $dados['login']);
+    }
 
+    public function checkLogin($tokek)
+    {
+        $data = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Accept-API-Version' => 'resource=1.0, protocol=1.0'
+        ])->post( env('URL_CHECK_LOGIN').$tokek."?_action=validate")->json();
+
+
+        return $data;
+    }
+
+    public function toCreateSession($tokenId, $login)
+    {
+        //Trazer dados do usuario no banco
+        $user = User::where('login', $login)->withTrashed()->first();
 
         //Trazer dados do usuario da Tokio
         $userData = Http::withHeaders([
-            'iPlanetDirectoryPro' => $res['tokenId'],
+            'iPlanetDirectoryPro' => $tokenId,
             'Content-Type'     => 'application/json',
             'Accept-API-Version' => 'resource=1.2',
-        ])->get( env('URL_USERDATA_OPENAM').$dados['login'])->json();
-
-
+        ])->get( env('URL_USERDATA_OPENAM').$login)->json();
 
         if(empty($user)) {
             $repository = new UsersRepository();
@@ -51,8 +64,9 @@ class LoginRepository {
         $repositoryGroup = new GroupsRepository();
         $repositoryGroup->saveGroupsByUser($user['id'], $userData['memberOf']);
 
+
         $res['body'] = [
-            'tokenId' => $res['tokenId'],
+            'tokenId' => $tokenId,
             'userName' => $user['name'],
             'userID' => $user['id'],
             'userAccess' => $repositoryGroup->isAdmin($userData['memberOf'])
@@ -62,11 +76,12 @@ class LoginRepository {
 
         setrawcookie('PORTAL_COOKIE','"SITEORIGEM=42144|TIPOSITE=SISTEMAS|"', $expiration_date, '/', '.tokiomarine.com.br', false, true);
         setrawcookie('AUTH_COOKIE', trim($res['body']['tokenId'], '"'), $expiration_date, '/', '.tokiomarine.com.br', false, true);
-        setrawcookie('iPlanetDirectoryPro', $res['tokenId'], $expiration_date, '/', '.tokiomarine.com.br', false, true);
+        setrawcookie('iPlanetDirectoryPro', $res['body']['tokenId'], $expiration_date, '/', '.tokiomarine.com.br', false, true);
 
         return $res;
-
     }
+
+
 
     public function logout()
     {

@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Repositories\LoginRepository;
 use Closure;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 class EnsureLogin
 {
@@ -17,6 +19,32 @@ class EnsureLogin
     public function handle($request, Closure $next)
     {
         $router = explode("/", Route::getCurrentRoute()->uri);
+
+        if(isset($_COOKIE['iPlanetDirectoryPro']) && !session('userAccess')) {
+            $respostitory = new LoginRepository();
+
+            $data = $respostitory->checkLogin($_COOKIE['iPlanetDirectoryPro']);
+
+            if(!isset($data['uid'])) {
+                session()->flash('error', [
+                    'error' => true,
+                    'messages' => 'Não conseguimos fazer seu login automatico.',
+                ]);
+            } else {
+                $res = $respostitory->toCreateSession($_COOKIE['iPlanetDirectoryPro'], $data['uid']);
+
+                session()->flash('success', [
+                    'success' => true,
+                    'messages' => "Você está logado.",
+                ]);
+
+
+                session(['iPlanetDirectoryPro' => trim($res['body']['tokenId'], '"')]);
+                session(['userName' => $res['body']['userName']]);
+                session(['userID' => $res['body']['userID']]);
+                session(['userAccess' => $res['body']['userAccess']]);
+            }
+        }
 
         if($router[0] == 'admin' && !isset(session('COOKIE_NAME_OPENAM')['tokenId']) && !session('userAccess')) {
             session()->flash('error', [

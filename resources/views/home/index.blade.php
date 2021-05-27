@@ -22,7 +22,7 @@
         @endif
 
             <article>
-                <iframe src="https://portalparceiros.tokiomarine.com.br/portais/api/v1/power-bi/mobile/relatorio/1ee33b1f-a3a8-4ac4-84e6-69763d71f679/bf6514c8-5449-4135-94b2-3c3e3ba86d7e"
+                <iframe src="https://portalparceiros.tokiomarine.com.br/portais/api/v1/power-bi/mobile/relatorio/16b366c5-85a0-47da-ab04-de71e1927ec3/bf6514c8-5449-4135-94b2-3c3e3ba86d7e"
                         id="iframe_funcionalidade" name="iframe_funcionalidade" frameborder="0" style="width: 100%; height: 80vh" scrolling="auto"></iframe>
             </article>
 
