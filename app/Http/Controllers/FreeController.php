@@ -73,7 +73,6 @@ class FreeController extends Controller
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
 
 
-
             return redirect()->route('free.index');
 
         } catch (\Exception $err) {

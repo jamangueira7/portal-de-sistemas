@@ -21,29 +21,44 @@ class EnsureLogin
         $router = explode("/", Route::getCurrentRoute()->uri);
 
         if(isset($_COOKIE['iPlanetDirectoryPro']) && !session('userAccess')) {
-            $respostitory = new LoginRepository();
+            try {
+                $respostitory = new LoginRepository();
 
-            $data = $respostitory->checkLogin($_COOKIE['iPlanetDirectoryPro']);
+                $token = $_COOKIE['iPlanetDirectoryPro'];
 
-            if(!isset($data['uid'])) {
+                $respostitory->logout();
+                $data = $respostitory->checkLogin($token);
+
+                if(!isset($data['uid'])) {
+                    session()->flash('error', [
+                        'error' => true,
+                        'messages' => 'Não conseguimos fazer seu login automatico.',
+                    ]);
+                } else {
+                    $res = $respostitory->toCreateSession($token, $data['uid']);
+
+                    session()->flash('success', [
+                        'success' => true,
+                        'messages' => "Você está logado.",
+                    ]);
+
+
+                    session(['iPlanetDirectoryPro' => trim($res['body']['tokenId'], '"')]);
+                    session(['userName' => $res['body']['userName']]);
+                    session(['userID' => $res['body']['userID']]);
+                    session(['userAccess' => $res['body']['userAccess']]);
+                }
+            } catch (\Exception $err) {
+
+                $respostitory = new LoginRepository();
+                $respostitory->logout();
+
                 session()->flash('error', [
                     'error' => true,
                     'messages' => 'Não conseguimos fazer seu login automatico.',
                 ]);
-            } else {
-                $res = $respostitory->toCreateSession($_COOKIE['iPlanetDirectoryPro'], $data['uid']);
-
-                session()->flash('success', [
-                    'success' => true,
-                    'messages' => "Você está logado.",
-                ]);
-
-
-                session(['iPlanetDirectoryPro' => trim($res['body']['tokenId'], '"')]);
-                session(['userName' => $res['body']['userName']]);
-                session(['userID' => $res['body']['userID']]);
-                session(['userAccess' => $res['body']['userAccess']]);
             }
+
         }
 
         if($router[0] == 'admin' && !isset(session('COOKIE_NAME_OPENAM')['tokenId']) && !session('userAccess')) {

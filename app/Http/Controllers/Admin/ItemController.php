@@ -98,14 +98,16 @@ class ItemController extends Controller
 
     }
 
-    public function new(PagesRepository $repository, GroupsRepository $groupsRepository)
+    public function new(PagesRepository $repository, ItemsRepository $itemsRepository)
     {
         try {
 
             $pages = $repository->getAll();
+            $items = $itemsRepository->getAll();
 
             return view('admin.items.create', [
                 'pages' => $pages,
+                'items' => $items,
                 'item_groups' => [],
             ]);
 

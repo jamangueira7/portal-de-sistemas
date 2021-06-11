@@ -26,4 +26,16 @@ class FavoriteController extends Controller
             return ['msg' => $err->getMessage() ];
         }
     }
+
+    public function ajaxUpdateFavorite(Request $request, FavoriteRepository $repository)
+    {
+        try {
+            $favorites = $repository->updateFavorite($request->all());
+
+            return ['favorites' => $favorites ];
+
+        } catch (\Exception $err) {
+            return ['msg' => $err->getMessage() ];
+        }
+    }
 }

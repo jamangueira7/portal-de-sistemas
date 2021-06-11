@@ -76,7 +76,7 @@ class ItemsRepository {
         $response = Item::create([
             'title' => $data['title'],
             'slug' => Helper::slugify($data['title']),
-            'father' => null,
+            'father' => $data['father'] == -1 ? null : $data['father'],
             'url' => $data['url'],
             'page_id' => $data['page'],
             'new_tab' => isset($data['new_tab']) ? true : false,

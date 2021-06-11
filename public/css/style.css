@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    width: 100%;
 }
 
 body{
@@ -32,6 +33,29 @@ header li a {color: #fff;}
 button.simplefavorite-button {
     float: right;
 }
+
+.lista_favoritos {
+    font-size: 13px;
+}
+
+.lista_favoritos button{
+    float: right;
+    line-height: 20px;
+    margin-top: 0;
+}
+
+.lista_favoritos a.nav-link {
+    padding: 0;
+    line-height: 34px;
+    color: #5b5b5b;
+    font-weight: 500;
+}
+
+.lista_favoritos li.list-group-item.active.gradient {
+    border: 0;
+}
+
+
 ul{margin: 0;}
 ul.primeiro_menu {
     display: flex;
@@ -197,6 +221,7 @@ color:#fff;
   transform: rotate(45deg);
 }
 
+
 @media (max-height: 1250px) {
     #container-main {
         height: 990px;
@@ -217,5 +242,7 @@ color:#fff;
         overflow-y: scroll;
     }
 }
+
+
 
 

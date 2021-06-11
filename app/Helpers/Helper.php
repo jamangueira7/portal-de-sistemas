@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\model\Item;
+use phpDocumentor\Reflection\Element;
 
 class Helper
 {
@@ -107,68 +108,68 @@ class Helper
         $memento = !$rec ? $page["fathers"] : $page;
         $print = '';
         if(!$rec) {
-            $print .= '
-            <ul class="navbar-nav mx-auto">';
+            $print .= '<ul class="navbar-nav">';
         }
 
 
         foreach($memento as $items) {
-            $tes[] = $memento;
             if(!$rec) {
 
-                $print .= '<li class="nav-item dropdown megamenu ">
-                <a id="megamneu" href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle font-weight-bold text-uppercase">'. $items["father"]["title"].' </a>
-                  <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
-                    <ul class="container 1 ">
-                        <li class="row bg-white">';
-
-                if(empty($items['father']["childrens"])) {
-                    if($items["father"]['new_tab']) {
-                        $print .= '<a  target="_blank" href="'. $items["father"]["url"].'" class="nav-link dropdown-toggle font-weight-bold">'. $items["father"]["title"].' </a>';
-                    } else {
-                        $print .= '<a href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" class="nav-link dropdown-toggle font-weight-bold">'. $items["father"]["title"].' </a>';
-                    }
+                $print .= '<li class="nav-item dropdown has-megamenu" >
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">'. $items["father"]["title"].'</a>
+                <div class="dropdown-menu megamenu" role="menu">
+                            <div class="row g-3">';
+                foreach($items as $firstChildrens) {
+                    $print .= self::gerarFilhos($firstChildrens['childrens'], $slug, true, 0);
                 }
-                // $print .= '<li class="nav-item dropdown"><a href="' . route('auth.pages', [$slug, $items["father"]["slug"]]) .'" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">' . $items["father"]["title"] . '</a>';
-                $sons = $items["father"]["childrens"];
-                $cont = 1;
+                $print .= '</div></div></li>';
 
             } else {
-                if(!empty($items["childrens"])) {
-                    $print .= '<li class="nav-item ">' . $items["title"] . '</li>';
+                if($cont === 0 ) {
+                    $print .= '<div class="col-lg-4 col-6">
+                                    <div class="col-megamenu">
+                                    <h6 class="title">'.$items['title'].'</h6>
+                                        <ul>';
 
-                } else {
-                    if($items['new_tab']) {
-                        $print .= '<li class="nav-item "><a target="_blank" href="' . $items["url"] .'" class=" nav-link text-small pb-0">' . $items["title"] . '</a></li>';
+                    if(!empty($items["childrens"])) {
+                        $print .= '<li>' . $items["title"];
+                        $print .= '<ul>';
+                        $print .= self::gerarFilhos($items['childrens'], $slug, true, 2);
+                        $print .= '</ul></li>';
 
                     } else {
-                        $print .= '<li class="nav-item "><a href="' . route('auth.pages', [$slug, $items["slug"]]) .'" class=" nav-link text-small pb-0">' . $items["title"] . '</a></li>';
+
+                        if($items['new_tab']) {
+                            $print .= '<li><a target="_blank" href="' . $items["url"] .'">' . $items["title"] . '</a></li>';
+
+                        } else {
+
+                            $print .= '<li><a href="' . route('auth.pages', [$slug, $items["slug"]]) .'">' . $items["title"] . '</a></li>';
+                        }
+                    }
+
+
+                    $print .= '</ul>
+                            </div>  <!-- col-megamenu.// -->
+                        </div><!-- end col-4 -->';
+                } else {
+
+                    if(!empty($items["childrens"])) {
+                        $print .= '<li>' . $items["title"];
+                        $print .= '<ul>';
+                        $print .= self::gerarFilhos($items['childrens'], $slug, true, 2);
+                        $print .= '</ul></li>';
+                    } else {
+                        if($items['new_tab']) {
+                            $print .= '<li class="2"><a target="_blank" href="' . $items["url"] .'">' . $items["title"] . '</a></li>';
+
+                        } else {
+                            $print .= '<li><a class="1" href="' . route('auth.pages', [$slug, $items["slug"]]) .'">' . $items["title"] . '</a></li>';
+                        }
                     }
                 }
-                $sons = $items["childrens"];
-                $tes[] = $items;
-                $cont = 2;
             }
 
-            if(!empty($sons)) {
-                if($cont <= 1) {
-                    $print .= '<ul class="list-unstyled 2 col mb-4 ">';
-                } else {
-                    $print .= '<ul class="list-unstyled 3 pl-3">';
-                }
-                $print .= self::gerarFilhos($sons, $slug, true, $cont++);
-
-                $print .= '
-                        </ul>
-                ';
-                $print .= '';
-            }
-
-
-            if(!$rec) {
-                $print .= '</li></ul></div> </li>
-                <!-- fecha div -->';
-            }
         }
         if(!$rec) {
 
@@ -178,6 +179,7 @@ class Helper
         if(!$rec) {
             echo $print;
         } else {
+
             return $print;
         }
     }
@@ -203,8 +205,8 @@ class Helper
     {
         //dd($current);
        $html = '<nav aria-label="breadcrumb">
-                   <ol class="breadcrumb p-3 pb-0 bg-light">';
-       $html .= '<li class="breadcrumb-item"><a href="' . route('auth.pages', [$page["page"]["slug"]]) .'">'. $page["page"]["description"] . '</a></li>';
+                   <ol class="breadcrumb p-3 pb-0 bg-light small">';
+       $html .= '<li class="breadcrumb-item"><a href="' . route('auth.pages', [$page["page"]["slug"]]) .'" style="text-decoration:none" class="text-secondary">'. $page["page"]["description"] . '</a></li>';
 
        if(!empty($current)) {
            $html .= self::generaRising($current['title'], $current['slug'], $current['father'], $page["page"]["slug"]);

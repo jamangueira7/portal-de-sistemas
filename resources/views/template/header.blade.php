@@ -2,7 +2,7 @@
     <div class="container-fluid gradient">
       <div class="container text-right">
 
-        <ul class="mb-0 py-2 menu-sites">
+        <ul class="mb-0 menu-sites">
           <li class="menu_topo">
 
             @if($pages)

@@ -25,6 +25,18 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="father">Escolha um pai para esse item:</label>
+                <select class="custom-select" name="father" id="father">
+                    <option value="-1" selected>Sem pai</option>
+                    @foreach($items as $val)
+
+                        <option value="{{$val->id}}">{{$val->title}}</option>
+
+                    @endforeach
+                </select>
+            </div>
+
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="new_tab" name="new_tab">
                 <label class="form-check-label" for="new_tab">Abrir em nova aba</label>
