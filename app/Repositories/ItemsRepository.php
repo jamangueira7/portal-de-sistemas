@@ -18,6 +18,48 @@ class ItemsRepository {
         return Item::paginate(1500);
     }
 
+    public function getAllByIdPage($page_id)
+    {
+        $items = Item::where('page_id', $page_id)->get();
+        $res = [];
+
+        foreach ($items as $key =>$item) {
+            $res[$key]['id'] = $item['id'];
+            $res[$key]['title'] = $this->mountFree($item);
+        }
+
+        return json_decode(json_encode($res), FALSE);
+    }
+
+
+    private function mountFree($item, $rec=0)
+    {
+        $res = "";
+        if($rec == 0) {
+            $page = Page::where('id', $item['page_id'])->first();
+            $res .= $page['description'] . " / ";
+
+            $res .= $this->mountFree($item, 1);
+
+        } else {
+            if(!empty($item['father'])) {
+                $itemRec = Item::where('id', $item['father'])->first();
+
+                $val = $this->mountFree($itemRec, 1);
+
+                $res .= $val. " / ".$item['title'];
+            } else {
+                $res .= $item['title'];
+            }
+
+        }
+
+
+        return $res;
+    }
+
+
+
     public function getById($id)
     {
         return Item::find($id);

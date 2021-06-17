@@ -25,6 +25,7 @@ Route::get('/portal/{page}/{item?}', 'AuthPageController@index')->name('auth.pag
 Route::post('/favorite/alter', 'Admin\FavoriteController@ajaxAlterFavorite')->name('portal.ajax.favorite.alter')->middleware('login');
 Route::post('/favorite/update', 'Admin\FavoriteController@ajaxUpdateFavorite')->name('portal.ajax.favorite.update')->middleware('login');
 Route::post('/groupsbypage', 'Admin\ItemController@ajaxGroupByPage')->name('admin.ajax.groups.page')->middleware('login');
+Route::post('/itemsbypage', 'Admin\ItemController@ajaxItemsByPage')->name('admin.ajax.groups.items')->middleware('login');
 
 
 //ROTAS DO ADMINISTRATIVO

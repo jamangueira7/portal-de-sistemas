@@ -1,6 +1,8 @@
 @extends('template.admin.master')
 @section('conteudo-css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnpub.tokiomarine.com.br/portal_static/publico/padrao/3.3.4/addons/chosen-master/css/chosen.css">
 @endsection
 @section('conteudo-view')
     <div class="container col-md-10">
@@ -19,15 +21,17 @@
             <div class="form-group">
                 <label for="page">Pagina:</label>
                 <select class="custom-select" name="page" id="page">
+                    <option value="-1" selected>Escolha uma pagina</option>
                     @foreach($pages as $page)
                         <option value="{{$page->id}}">{{$page->description}}</option>
                     @endforeach
                 </select>
             </div>
 
-            <div class="form-group">
+
+            <div class="form-group" id="items_change">
                 <label for="father">Escolha um pai para esse item:</label>
-                <select class="custom-select" name="father" id="father">
+                <select name="father" id="father" data-placeholder="Escolha um pai para esse item" class="form-control chosen-select">
                     <option value="-1" selected>Sem pai</option>
                     @foreach($items as $val)
 
@@ -59,7 +63,11 @@
 
 @section('js-view')
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
+    <script src="https://cdnpub.tokiomarine.com.br/portal_static/publico/padrao/3.3.4/addons/chosen-master/js/chosen.jquery.js"></script>
     <script type="text/javascript">
+
+        $(".chosen-select").chosen();
+
         $(document).ready(function () {
 
             $.ajaxSetup({
@@ -69,7 +77,11 @@
             });
 
             $("#page").change(function() {
+               buscarGroups();
+               buscarItens();
+            });
 
+            function buscarGroups() {
                 var url = "{{ route('admin.ajax.groups.page') }}";
 
                 $.ajax({
@@ -94,9 +106,36 @@
                     },
 
                 });
+            }
 
+            function buscarItens() {
+                var url = "{{ route('admin.ajax.groups.items') }}";
 
-            });
+                $.ajax({
+                    type:'POST',
+                    url: url,
+                    data:{ codigo:  $("#page").val()},
+
+                    success:function(data){
+
+                        var html = '<label for="groups">Escolha um pai para esse item:</label>';
+                        html += '<select name="father" id="father" data-placeholder="Escolha um pai para esse item" class="form-control chosen-select">';
+                        html += '<option value="-1" selected>Sem pai</option>';
+                        for (var i = 0, l = data['items'].length; i < l; i++) {
+                            html += '<option value="'+ data['items'][i].id +'">'+ data['items'][i].title +'</option>';
+                        }
+                        html += '</select>';
+                        $("#items_change").html(html);
+                        $(".chosen-select").chosen();
+
+                    },
+
+                    error:function(data){
+                        console.log('Erro no Ajax!');
+                    },
+
+                });
+            }
         });
     </script>
 @stop

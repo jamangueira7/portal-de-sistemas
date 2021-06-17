@@ -117,11 +117,20 @@ class Helper
 
                 $print .= '<li class="nav-item dropdown has-megamenu" >
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">'. $items["father"]["title"].'</a>
-                <div class="dropdown-menu megamenu" role="menu">
+                <div class="dropdown-menu megamenu" role="menu" style="overflow-y: scroll; min-height: 500px; height: 100%;">
                             <div class="row g-3">';
-                foreach($items as $firstChildrens) {
-                    $print .= self::gerarFilhos($firstChildrens['childrens'], $slug, true, 0);
+
+
+                if(!empty($items["father"]['childrens'])) {
+                    foreach($items as $firstChildrens) {
+                        $print .= self::gerarFilhos($firstChildrens['childrens'], $slug, true, 0);
+                    }
+                } else {
+                    $target = $items["father"]["new_tab"] ? 'target="_blank"' : '';
+
+                    $print .= '<ul><li><a '. $target . ' href="' . $items["father"]["url"] .'">' . $items["father"]["title"] . '</a></li></ul>';
                 }
+
                 $print .= '</div></div></li>';
 
             } else {

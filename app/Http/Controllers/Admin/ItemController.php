@@ -46,6 +46,20 @@ class ItemController extends Controller
 
     }
 
+    public function ajaxItemsByPage(Request $request, ItemsRepository $repository)
+    {
+        try {
+            $items = $repository->getAllByIdPage($request->get('codigo'));
+
+            return ['items' => $items ];
+
+        } catch (\Exception $err) {
+            return ['msg' => $err->getMessage() ];
+        }
+
+    }
+
+
     public function details($id, ItemsRepository $repository, PagesRepository $pagesRepository)
     {
         try {
@@ -53,7 +67,7 @@ class ItemController extends Controller
             $item = $repository->getById($id);
             $pages = $pagesRepository->getAll();
             $page = $pagesRepository->getById($item['page_id']);
-            $items = $repository->getAll();
+            $items = $repository->getAllByIdPage($item['page_id']);
             $item_groups  = $repository->getAllGroupsIDByItem($id);
 
             return view('admin.items.details', [
@@ -78,7 +92,7 @@ class ItemController extends Controller
     {
         try {
 
-            $item = $repository->update($id, $request->all());
+            $repository->update($id, $request->all());
 
             session()->flash('success', [
                 'success' => true,
@@ -98,16 +112,15 @@ class ItemController extends Controller
 
     }
 
-    public function new(PagesRepository $repository, ItemsRepository $itemsRepository)
+    public function new(PagesRepository $repository)
     {
         try {
 
             $pages = $repository->getAll();
-            $items = $itemsRepository->getAll();
 
             return view('admin.items.create', [
                 'pages' => $pages,
-                'items' => $items,
+                'items' => [],
                 'item_groups' => [],
             ]);
 

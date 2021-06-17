@@ -243,6 +243,58 @@ color:#fff;
     }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+a.nav-link.dropdown-toggle.show {
+    border-bottom: 3px solid #22c0a9;
+    padding-bottom: 15px;
+}
+.dropdown-menu.megamenu.show {
+    border-bottom: 3px solid #22c0a9;
+    margin-top:2px;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    border:1px solid #eae6e6;
+    z-index: 1;
+}
+h6.title {
+    border-bottom: 1px solid #eae6e6;
+    padding-bottom: 6px;
+    color: #5b5b5b;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+.has-megamenu a.nav-link.dropdown-toggle{
+    color: #5b5b5b;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    padding: 18px 9px;
+}
+.col-megamenu > ul {
+    padding-left: 0!important;
+}
+.col-megamenu ul {
+    padding-left: 15px;
+}
+.col-megamenu ul li{
+    line-height: 25px;
+}
+.col-megamenu ul li,
+.col-megamenu ul li a,
+.megamenu a{
+    text-decoration: none;
+    font-size: 14px;
+    font-family: Roboto;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+}
 
+.col-10.d-flex,
+.col-10.d-flex .container,
+.col-10.d-flex .navbar,
+.col-10.d-flex .navbar .container-fluid{
+    padding: 0}
 
 
