@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Repositories\GroupsRepository;
 use App\Repositories\ItemsRepository;
 use App\Repositories\PagesRepository;
+use App\Repositories\UsersRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -60,7 +61,7 @@ class ItemController extends Controller
     }
 
 
-    public function details($id, ItemsRepository $repository, PagesRepository $pagesRepository)
+    public function details($id, ItemsRepository $repository, PagesRepository $pagesRepository, UsersRepository $usersRepository)
     {
         try {
 
@@ -69,6 +70,8 @@ class ItemController extends Controller
             $page = $pagesRepository->getById($item['page_id']);
             $items = $repository->getAllByIdPage($item['page_id']);
             $item_groups  = $repository->getAllGroupsIDByItem($id);
+            $item_users  = $repository->getAllUsersIdByItem($id);
+            $users = $usersRepository->getAll();
 
             return view('admin.items.details', [
                 'item' => $item,
@@ -76,6 +79,8 @@ class ItemController extends Controller
                 'page' => $page,
                 'items' => $items,
                 'item_groups' => $item_groups,
+                'item_users' => $item_users,
+                'users' => $users ?? [],
             ]);
 
         } catch (\Exception $err) {
@@ -112,14 +117,16 @@ class ItemController extends Controller
 
     }
 
-    public function new(PagesRepository $repository)
+    public function new(PagesRepository $repository, UsersRepository $usersRepository)
     {
         try {
 
             $pages = $repository->getAll();
+            $users = $usersRepository->getAll();
 
             return view('admin.items.create', [
                 'pages' => $pages,
+                'users' => $users ?? [],
                 'items' => [],
                 'item_groups' => [],
             ]);

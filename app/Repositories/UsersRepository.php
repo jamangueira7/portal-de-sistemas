@@ -7,9 +7,16 @@ use App\model\UserGroup;
 
 
 class UsersRepository {
-    public function getAll()
+
+
+    public function getAllPaginate()
     {
         return User::paginate(1000);
+    }
+
+    public function getAll()
+    {
+        return User::all();
     }
 
     public function getById($id)

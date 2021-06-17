@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label for="page">Pagina:</label>
                 <select class="custom-select" name="page" id="page">
-                    <option value="{{$item->page->id}}" selected>{{$item->page->description}}</option>
+                    <option value="{{$item->page->id ?? ''}}" selected>{{$item->page->description ?? ''}}</option>
                     @foreach($pages as $page_item)
                         <option value="{{$page_item->id}}">{{$page_item->description}}</option>
                     @endforeach
@@ -49,6 +49,17 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="users">Escolha um responsável:</label>
+                <select name="users[]" id="users" data-placeholder="Escolha um responsável" class="form-control chosen-select" multiple>
+                    @foreach($users as $user)
+                        <option {{in_array($user->id, $item_users) ? 'selected' : ''}}
+                                value="{{$user->id}}"
+                        >{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="form-group form-check">
                 <input type="checkbox" {{$item->new_tab ? 'checked' : ''}} class="form-check-input" id="new_tab" name="new_tab">
                 <label class="form-check-label" for="new_tab" >Abrir em nova aba</label>
@@ -56,7 +67,7 @@
 
             <div id="grupos_change">
                 @include('suport.selectListGroups', [
-                'model' => $page->groups,
+                'model' => $page->groups ?? [],
                 'model_groups' => $item_groups,
                 'label' => 'Grupos da página escolhida:',
             ])

@@ -41,6 +41,15 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="users">Escolha um responsável:</label>
+                <select name="users[]" id="users" data-placeholder="Escolha um responsável" class="form-control chosen-select" multiple>
+                    @foreach($users as $user)
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="new_tab" name="new_tab">
                 <label class="form-check-label" for="new_tab">Abrir em nova aba</label>

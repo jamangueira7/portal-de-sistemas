@@ -21,7 +21,7 @@
                         <tr>
                             <td>{{$item->title}}</td>
                             <td>{{\App\Helpers\Helper::formateDate($item->created_at)}}</td>
-                            <td>{{$item->page->description}}</td>
+                            <td>{{$item->page->description ?? ''}}</td>
                             <td>
                                 <a href="{{route('admin.items.details', [$item->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
 

@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Helpers\Helper;
 use App\model\Item;
 use App\model\ItemGroup;
+use App\model\ItemUser;
 use App\model\Page;
 
 class ItemsRepository {
@@ -77,6 +78,18 @@ class ItemsRepository {
         return $result;
     }
 
+    public function getAllUsersIdByItem($id)
+    {
+        $data = ItemUser::where('item_id', $id)->get();
+        $result = [];
+
+        foreach ($data as $item) {
+            array_push($result, $item->user_id);
+        }
+
+        return $result;
+    }
+
     public function update($id, $data)
     {
 
@@ -91,7 +104,10 @@ class ItemsRepository {
 
         if($response) {
             $data['groups'] = isset($data['groups']) ? $data['groups'] : [];
+            $data['users'] = isset($data['users']) ? $data['users'] : [];
+
             $this->saveGroupByItem($data['groups'], $id);
+            $this->saveUsersByItem($data['users'], $id);
         }
 
         return $response;
@@ -112,6 +128,21 @@ class ItemsRepository {
 
     }
 
+    private function saveUsersByItem($users, $item_id)
+    {
+        $response = ItemUser::where('item_id', $item_id)->forceDelete();
+
+        if(!empty($users)) {
+            foreach ($users as $users) {
+                ItemUser::create([
+                    'item_id' => $item_id,
+                    'user_id' => $users,
+                ]);
+            }
+        }
+
+    }
+
     public function create($data)
     {
 
@@ -126,8 +157,12 @@ class ItemsRepository {
 
         if($response) {
             $data['groups'] = isset($data['groups']) ? $data['groups'] : [];
+            $data['users'] = isset($data['users']) ? $data['users'] : [];
+
             $this->saveGroupByItem($data['groups'], $response['id']);
+            $this->saveUsersByItem($data['users'], $response['id']);
         }
+
 
 
         return $response;

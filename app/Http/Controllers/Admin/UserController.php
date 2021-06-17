@@ -15,7 +15,7 @@ class UserController extends Controller
     public function list(UsersRepository $repository)
     {
         try {
-            $val = $repository->getAll();
+            $val = $repository->getAllPaginate();
             return view('admin.users.list', [
                 'users' => $val
             ]);
