@@ -108,7 +108,7 @@ class Helper
         $memento = !$rec ? $page["fathers"] : $page;
         $print = '';
         if(!$rec) {
-            $print .= '<ul class="navbar-nav">';
+            $print .= '<ul id="stateList" class="navbar-nav">';
         }
 
 

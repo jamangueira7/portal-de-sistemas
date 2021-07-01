@@ -76,18 +76,65 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Alterar</button>
             </div>
+            <div class="form-group">
+                <button onclick="deleteRegister('{{$item->id}}')" type="button" class="btn btn-danger btn-lg btn-block">Deletar</button>
+            </div>
         </form>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h4 class="modal-title text-white" id="myModalLabel">Realmente deseja excluir esse registro?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-outline-danger" id="modal-btn-yes" style="width:150px">Sim</button>
+                    <button type="button" class="btn btn-lg btn-outline-primary" id="modal-btn-not" style="width:150px">Não</button>
+                </div>
+            </div>
+        </div>
     </div>
 @stop
 @section('js-view')
+
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
     <script src="https://cdnpub.tokiomarine.com.br/portal_static/publico/padrao/3.3.4/addons/chosen-master/js/chosen.jquery.js"></script>
 
     <script type="text/javascript">
 
+        let idDeelte = '';
+        function deleteRegister(id) {
+            idDeelte = id;
+            jQuery.noConflict();
+            $("#mi-modal").modal('show');
+        }
+
+        var modalConfirm = function(callback){
+
+            $("#modal-btn-yes").on("click", function(){
+                callback(true);
+                $("#mi-modal").modal('hide');
+            });
+
+            $("#modal-btn-not").on("click", function(){
+                callback(false);
+                $("#mi-modal").modal('hide');
+            });
+        };
+
+        modalConfirm(function(confirm){
+            if(confirm){
+                window.location = '/admin/items-menu/delete/'+idDeelte;
+            }else{
+                return;
+            }
+        });
+
         $(".chosen-select").chosen();
 
         $(document).ready(function () {
+
 
             $.ajaxSetup({
                 headers: {

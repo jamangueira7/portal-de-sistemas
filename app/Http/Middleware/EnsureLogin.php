@@ -42,11 +42,6 @@ class EnsureLogin
                         'messages' => "Você está logado.",
                     ]);
 
-
-                    session(['iPlanetDirectoryPro' => trim($res['body']['tokenId'], '"')]);
-                    session(['userName' => $res['body']['userName']]);
-                    session(['userID' => $res['body']['userID']]);
-                    session(['userAccess' => $res['body']['userAccess']]);
                 }
             } catch (\Exception $err) {
 

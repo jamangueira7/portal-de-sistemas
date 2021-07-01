@@ -48,19 +48,25 @@ class PagesRepository {
             throw new \Exception('Essa pagina não existe.');
         }
 
+        $user_groups = UserGroup::where('user_id', $user_id)->get();
+        $IDsPageGroups = $this->IDsGroupsByPage($page->groups);
+        $groupsEmComum = $this->CheckUserGroupWithPageGroups($user_groups, $IDsPageGroups);
+
+        if(empty($groupsEmComum)) {
+            throw new \Exception('Você não tem acesso a essa pagina.');
+        }
+
         $res['page'] = $page;
-        $IDsGroups = $this->IDsGroupsByPage($page->groups);
 
         $fathers = Item::where('page_id', $page['id'])->whereNull('father')->get();
 
         foreach ($fathers as $key=>$father) {
-            if($this->CheckGroupList($father->groups, $IDsGroups)) {
+            if($this->CheckGroupList($father->groups, $groupsEmComum)) {
                 $res['fathers'][$father['id']]['father'] = $father;
-                $res['fathers'][$father['id']]['father']['childrens'] = $this->findChildrens($father['id'], $IDsGroups, $page['id']);
+                $res['fathers'][$father['id']]['father']['childrens'] = $this->findChildrens($father['id'], $groupsEmComum, $page['id']);
             }
 
         }
-
         return $res;
 
     }
@@ -74,6 +80,18 @@ class PagesRepository {
         }
 
         return false;
+    }
+
+    private function CheckUserGroupWithPageGroups($user_groups,$IDsGroupsPage)
+    {
+        $comum = [];
+        foreach ($user_groups as $group) {
+            if(in_array($group['group_id'], $IDsGroupsPage)) {
+                array_push($comum, $group['group_id']);
+            }
+        }
+
+        return $comum;
     }
 
     private function IDsGroupsByPage($groups)
@@ -93,7 +111,8 @@ class PagesRepository {
     {
        $child = [];
 
-        $items = Item::where('father', $father)->where('page_id', $page_id)->get();
+        $items = Item::where('father', $father)->where('page_id', $page_id)->orderBy('title', 'asc')->get();
+
         foreach ($items as $key=>$item) {
             if($this->CheckGroupList($item->groups, $IDsGroups)) {
                 $child[$key] = $item;

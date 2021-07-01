@@ -61,7 +61,8 @@
     @include('suport.dataTable')
 
     <script >
-                let idDeelte = '';
+
+        let idDeelte = '';
         function deleteRegister(id) {
             idDeelte = id;
             $("#mi-modal").modal('show');

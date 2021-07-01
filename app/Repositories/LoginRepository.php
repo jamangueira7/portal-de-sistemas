@@ -24,13 +24,12 @@ class LoginRepository {
         return $userData = $this->toCreateSession($res['tokenId'], $dados['login']);
     }
 
-    public function checkLogin($tokek)
+    public function checkLogin($token)
     {
         $data = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Accept-API-Version' => 'resource=1.0, protocol=1.0'
-        ])->post( env('URL_CHECK_LOGIN').$tokek."?_action=validate")->json();
-
+        ])->post( env('URL_CHECK_LOGIN').$token."?_action=validate")->json();
 
         return $data;
     }
@@ -74,6 +73,11 @@ class LoginRepository {
 
         $expiration_date = time() + 60 * 60 * 2;
 
+        session(['iPlanetDirectoryPro' => trim($res['body']['tokenId'], '"')]);
+        session(['userName' => $res['body']['userName']]);
+        session(['userID' => $res['body']['userID']]);
+        session(['userAccess' => $res['body']['userAccess']]);
+
         setrawcookie('PORTAL_COOKIE','"SITEORIGEM=42144|TIPOSITE=SISTEMAS|"', $expiration_date, '/', '.tokiomarine.com.br', false, true);
         setrawcookie('AUTH_COOKIE', trim($res['body']['tokenId'], '"'), $expiration_date, '/', '.tokiomarine.com.br', false, true);
         setrawcookie('iPlanetDirectoryPro', $res['body']['tokenId'], $expiration_date, '/', '.tokiomarine.com.br', false, true);
@@ -81,10 +85,14 @@ class LoginRepository {
         return $res;
     }
 
-
-
     public function logout()
     {
+
+        session()->forget([env('COOKIE_NAME_OPENAM')]);
+        session()->forget(['userName']);
+        session()->forget(['userAccess']);
+        session()->forget(['userID']);
+
         setrawcookie('PORTAL_COOKIE', '', time() - 3600, '/', '.tokiomarine.com.br', false, true);
         setrawcookie('AUTH_COOKIE', '', time() - 3600, '/', '.tokiomarine.com.br', false, true);
         setrawcookie('iPlanetDirectoryPro', '', time() - 3600, '/', '.tokiomarine.com.br', false, true);

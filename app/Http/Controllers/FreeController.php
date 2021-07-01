@@ -12,7 +12,7 @@ use App\Repositories\LoginRepository;
 
 class FreeController extends Controller
 {
-    public function index(PagesRepository $repository, FavoriteRepository $favoriteRepository)
+    public function index(PagesRepository $repository, FavoriteRepository $favoriteRepository, LoginRepository $login)
     {
         try {
             $user_id = session('userID');
@@ -25,8 +25,8 @@ class FreeController extends Controller
             return view('home.index', [
                 'pages' => $pages ?? [],
                 'favorites' => $favorites ?? [],
-
             ]);
+
         } catch (\Exception $err) {
             return view('home.index');
         }
@@ -60,12 +60,6 @@ class FreeController extends Controller
             ]);
 
 
-            session(['iPlanetDirectoryPro' => trim($res['body']['tokenId'], '"')]);
-            session(['userName' => $res['body']['userName']]);
-            session(['userID' => $res['body']['userID']]);
-            session(['userAccess' => $res['body']['userAccess']]);
-
-
             /*session(['iPlanetDirectoryPro' => 'adafds']);
             session(['userName' => 'Elmer Mohr IV' ]);
             session(['userID' => 'c9f48a76-6834-4585-97a6-f0e4f5007de2' ]);
@@ -87,10 +81,6 @@ class FreeController extends Controller
 
     public function logout(LoginRepository $repository)
     {
-        session()->forget([env('COOKIE_NAME_OPENAM')]);
-        session()->forget(['userName']);
-        session()->forget(['userAccess']);
-        session()->forget(['userID']);
 
         $repository->logout();
 

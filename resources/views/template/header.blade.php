@@ -3,6 +3,9 @@
       <div class="container text-right">
 
         <ul class="mb-0 menu-sites">
+            <li>
+                @yield('menu-search')
+            </li>
           <li class="menu_topo">
 
             @if($pages)
