@@ -17,13 +17,19 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.pages.list')}}">
-                    <i class="fas fa-file-alt"></i> Paginas
+                    <i class="fas fa-file-alt"></i> Páginas
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.items.list')}}">
                     <i class="fas fa-sitemap"></i> Itens do menu
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.responsible.list')}}">
+                    <i class="fas fa-sitemap"></i> Usuarios com itens
                 </a>
             </li>
 

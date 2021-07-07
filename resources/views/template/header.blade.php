@@ -13,7 +13,7 @@
                   <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Meus Portais
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="menu-categorias">
+                  <div class="dropdown-menu" aria-labelledby="menu-categorias" id="menu_portais">
                       @foreach($pages as $page)
                           <a href="{{ route('auth.pages', [$page->slug]) }}" class="dropdown-item">{{ $page->description }}</a>
                       @endforeach

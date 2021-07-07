@@ -14,7 +14,7 @@
             </div>
 
             <div class="form-group">
-                <label for="page">Pagina:</label>
+                <label for="page">Página:</label>
                 <select class="custom-select" name="page" id="page">
                     @foreach($pages as $page)
                         <option value="{{$page->id}}">{{$page->description}}</option>

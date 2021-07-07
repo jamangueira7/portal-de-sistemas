@@ -45,7 +45,7 @@ class PagesRepository {
         $page = Page::where('slug', $slug)->first();
 
         if(!$page) {
-            throw new \Exception('Essa pagina não existe.');
+            throw new \Exception('Essa página não existe.');
         }
 
         $user_groups = UserGroup::where('user_id', $user_id)->get();
@@ -53,7 +53,7 @@ class PagesRepository {
         $groupsEmComum = $this->CheckUserGroupWithPageGroups($user_groups, $IDsPageGroups);
 
         if(empty($groupsEmComum)) {
-            throw new \Exception('Você não tem acesso a essa pagina.');
+            throw new \Exception('Você não tem acesso a essa página.');
         }
 
         $res['page'] = $page;

@@ -1,7 +1,7 @@
 @extends('template.admin.master')
 @section('conteudo-view')
     <div class="container col-md-10">
-        <h2 class="mb-5">Criar uma Pagina</h2>
+        <h2 class="mb-5">Criar uma Página</h2>
         <form method="POST" action="{{route('admin.pages.create')}}">
             @csrf
             <div class="form-group">

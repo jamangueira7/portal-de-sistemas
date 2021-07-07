@@ -58,7 +58,7 @@ class GroupController extends Controller
 
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao mostrar pagina de cadastro do Grupos.",
+                'messages' => "Aconteceu algum problema ao mostrar página de cadastro do Grupos.",
             ]);
             return redirect()->route('admin.groups.list');
         }

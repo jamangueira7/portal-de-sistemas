@@ -27,7 +27,7 @@
 
         @if(empty(session('userName')))
             <div class="alert alert-info" role="alert">
-                Você ainda não está logado. Faça o login e escolha uma página no topo dessa pagina.
+                Você ainda não está logado. Faça o login e escolha uma página no topo dessa página.
             </div>
         @endif
 

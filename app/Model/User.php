@@ -23,6 +23,11 @@ class User extends Model
         return $this->belongsToMany(Group::class, 'users_groups', 'user_id', 'group_id')->withTimestamps();
     }
 
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'items_users', 'user_id', 'item_id')->withTimestamps();
+    }
+
     public function favorites()
     {
         return $this->belongsToMany(Favorite::class, 'favorites', 'user_id')->withTimestamps();

@@ -19,9 +19,9 @@
             </div>
 
             <div class="form-group">
-                <label for="page">Pagina:</label>
+                <label for="page">Página:</label>
                 <select class="custom-select" name="page" id="page">
-                    <option value="-1" selected>Escolha uma pagina</option>
+                    <option value="-1" selected>Escolha uma página</option>
                     @foreach($pages as $page)
                         <option value="{{$page->id}}">{{$page->description}}</option>
                     @endforeach

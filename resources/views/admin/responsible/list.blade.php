@@ -1,39 +1,31 @@
 @extends('template.admin.master')
 @section('conteudo-view')
-
     <div class="container">
-        <div class="row  justify-content-end row-cols-md-4 mb-2 mr-1">
-            <a href="{{route('admin.items.new')}}" type="button" class="btn btn-outline-success btn-block">Novo</a>
-        </div>
-
-        @if($items)
+        @if($users)
             <table class="table table-striped" id="table">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Registrado</th>
-                    <th scope="col">Página</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Login</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($items as $item)
+                    @foreach($users as $user)
                         <tr>
-                            <td>{{$item->title}}</td>
-                            <td>{{\App\Helpers\Helper::formateDate($item->created_at)}}</td>
-                            <td>{{$item->page->description ?? ''}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->login}}</td>
+                            <td>{{$user->email}}</td>
                             <td>
-                                <a href="{{route('admin.items.details', [$item->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
-
-                                <button onclick="deleteRegister('{{$item->id}}')" type="button" class="btn btn-outline-danger">Deletar</button>
-
+                                <a href="{{route('admin.responsible.details', [$user->id])}}" type="button" class="btn btn-outline-warning">Lista de Itens</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="row justify-content-center">
-                {{ $items->links() }}
+                {{ $users->links() }}
             </div>
         @else
             <h3>Sem dados.</h3>
@@ -83,11 +75,10 @@
 
         modalConfirm(function(confirm){
             if(confirm){
-                window.location = '/admin/items-menu/delete/'+idDeelte;
+                window.location = '/admin/users/delete/'+idDeelte;
             }else{
                 return;
             }
         });
     </script>
 @stop
-

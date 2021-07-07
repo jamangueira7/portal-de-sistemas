@@ -14,6 +14,13 @@ class UsersRepository {
         return User::paginate(1000);
     }
 
+    public function getAllWithItemsResponsiblePaginate()
+    {
+        return  User::whereHas('items')->paginate(1000);
+    }
+
+
+
     public function getAll()
     {
         return User::all();

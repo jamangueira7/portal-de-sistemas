@@ -16,7 +16,16 @@ body{
 
 
 /* MENU TOPO */
-.menu_topo { display: flex;}
+.menu_topo {
+    display: flex;
+}
+
+#menu_portais {
+    font-size: 13px !important;
+    overflow-y: auto !important;
+    max-height: 350px !important;
+}
+
 #mega-menu-wrap-menu-administracao #mega-menu-menu-administracao > li.mega-menu-item > a.mega-menu-link{
   height: auto;
 }

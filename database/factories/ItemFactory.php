@@ -20,7 +20,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Item::class, function (Faker $faker) {
 
-    $title = $faker->title;
+    $title = $faker->userName;
     return [
         'title' => $title,
         'url' => $faker->url,

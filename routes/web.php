@@ -51,6 +51,10 @@ Route::get('/admin/users/details/{id}', 'Admin\UserController@details')->name('a
 Route::put('/admin/users/update/{id}', 'Admin\UserController@update')->name('admin.users.update')->middleware('login');
 Route::get('/admin/users/delete/{id}', 'Admin\UserController@destroy')->name('admin.users.delete')->middleware('login');
 
+//Responsible
+Route::get('/admin/responsible', 'Admin\ResponsibleController@list')->name('admin.responsible.list')->middleware('login');
+Route::get('/admin/responsible/details/{id}', 'Admin\ResponsibleController@details')->name('admin.responsible.details')->middleware('login');
+
 //pages
 Route::get('/admin/pages', 'Admin\PageController@list')->name('admin.pages.list')->middleware('login');
 Route::get('/admin/pages/details/{id}', 'Admin\PageController@details')->name('admin.pages.details')->middleware('login');

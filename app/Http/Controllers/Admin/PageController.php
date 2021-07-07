@@ -22,7 +22,7 @@ class PageController extends Controller
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao listar as Paginas.",
+                'messages' => "Aconteceu algum problema ao listar as Páginas.",
             ]);
 
             return view('admin.pages.list');
@@ -46,7 +46,7 @@ class PageController extends Controller
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao ver os detalhes do Pagina.",
+                'messages' => "Aconteceu algum problema ao ver os detalhes do Paágina.",
             ]);
             return view('admin.pages.list');
         }
@@ -60,7 +60,7 @@ class PageController extends Controller
 
             session()->flash('success', [
                 'success' => true,
-                'messages' => "Pagina alterada com sucesso.",
+                'messages' => "Página alterada com sucesso.",
             ]);
 
             return redirect()->route('admin.pages.list');
@@ -68,7 +68,7 @@ class PageController extends Controller
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao alterar a Pagina.",
+                'messages' => "Aconteceu algum problema ao alterar a Página.",
             ]);
             return redirect()->route('admin.pages.list');
         }
@@ -91,7 +91,7 @@ class PageController extends Controller
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao mostrar pagina de cadastro do Paginas.",
+                'messages' => "Aconteceu algum problema ao mostrar página de cadastro do Páginas.",
             ]);
             return redirect()->route('admin.pages.list');
         }
@@ -105,7 +105,7 @@ class PageController extends Controller
 
             session()->flash('success', [
                 'success' => true,
-                'messages' => "Pagina cadastrada com sucesso.",
+                'messages' => "Página cadastrada com sucesso.",
             ]);
 
             return redirect()->route('admin.pages.list');
@@ -113,7 +113,7 @@ class PageController extends Controller
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao cadastrar a Pagina.",
+                'messages' => "Aconteceu algum problema ao cadastrar a Página.",
             ]);
 
             return redirect()->route('admin.pages.list');
@@ -129,7 +129,7 @@ class PageController extends Controller
 
             session()->flash('success', [
                 'success' => true,
-                'messages' => "Pagina deletada com sucesso.",
+                'messages' => "Página deletada com sucesso.",
             ]);
 
             return redirect()->route('admin.pages.list');
@@ -137,7 +137,7 @@ class PageController extends Controller
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema ao excluir a pagina.",
+                'messages' => "Aconteceu algum problema ao excluir a página.",
             ]);
 
             return redirect()->route('admin.pages.list');

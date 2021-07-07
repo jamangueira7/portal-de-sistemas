@@ -29,7 +29,7 @@ class AuthPageController extends Controller
             }
 
             if(!isset($pageBySlug['fathers'])) {
-                throw new \Exception('Você não deu permissões aos itens dessa pagina ou não tem itens cadastrados.');
+                throw new \Exception('Você não deu permissões aos itens dessa página ou não tem itens cadastrados.');
 
             }
 
