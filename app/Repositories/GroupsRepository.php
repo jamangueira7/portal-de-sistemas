@@ -8,7 +8,7 @@ use App\model\UserGroup;
 class GroupsRepository {
     public function getAll()
     {
-        return Group::all();
+        return Group::orderBy('description', 'ASC')->get();
     }
 
     public function getAllWith()

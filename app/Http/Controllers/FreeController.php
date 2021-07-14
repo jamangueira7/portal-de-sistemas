@@ -63,7 +63,7 @@ class FreeController extends Controller
             session(['iPlanetDirectoryPro' => 'adafds']);
             session(['userName' => 'Elmer Mohr IV' ]);
             session(['userID' => '7ea49aea-6ca4-4f49-8e8c-3fd481436090' ]);
-            session(['userAccess' => false ]);
+            session(['userAccess' => true ]);
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);
 
 

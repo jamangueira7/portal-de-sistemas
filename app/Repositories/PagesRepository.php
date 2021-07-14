@@ -50,6 +50,7 @@ class PagesRepository {
 
         $user_groups = UserGroup::where('user_id', $user_id)->get();
         $IDsPageGroups = $this->IDsGroupsByPage($page->groups);
+
         $groupsEmComum = $this->CheckUserGroupWithPageGroups($user_groups, $IDsPageGroups);
 
         if(empty($groupsEmComum)) {
@@ -58,7 +59,7 @@ class PagesRepository {
 
         $res['page'] = $page;
 
-        $fathers = Item::where('page_id', $page['id'])->whereNull('father')->get();
+        $fathers = Item::where('page_id', $page['id'])->whereNull('father')->orderBy('title','ASC')->get();
 
         foreach ($fathers as $key=>$father) {
             if($this->CheckGroupList($father->groups, $groupsEmComum)) {

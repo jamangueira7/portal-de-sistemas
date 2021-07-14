@@ -11,6 +11,7 @@ class AuthPageController extends Controller
 {
     public function index($page, $item=null, PagesRepository $repository, ItemsRepository $Itemsrepository, FavoriteRepository $favoriteRepository)
     {
+
         try {
             $user_id = session('userID');
             if(!$user_id) {

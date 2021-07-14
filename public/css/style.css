@@ -306,4 +306,22 @@ h6.title {
 .col-10.d-flex .navbar .container-fluid{
     padding: 0}
 
+/* 404 */
 
+#container-404 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
+
+#container-404 span {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 30px;
+}
+
+#container-404 .erro404 {
+    font-size: 45px;
+}
