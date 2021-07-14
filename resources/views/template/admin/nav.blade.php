@@ -29,7 +29,13 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.responsible.list')}}">
-                    <i class="fas fa-sitemap"></i> Usuarios com itens
+                    <i class="fas fa-bezier-curve"></i> Usuarios com itens
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.database.details')}}">
+                    <i class="fas fa-database"></i> Administração do banco
                 </a>
             </li>
 

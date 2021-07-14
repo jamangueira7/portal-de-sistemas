@@ -62,3 +62,11 @@ Route::put('/admin/pages/update/{id}', 'Admin\PageController@update')->name('adm
 Route::get('/admin/pages/new', 'Admin\PageController@new')->name('admin.pages.new')->middleware('login');
 Route::post('/admin/pages', 'Admin\PageController@create')->name('admin.pages.create')->middleware('login');
 Route::get('/admin/pages/delete/{id}', 'Admin\PageController@destroy')->name('admin.pages.delete')->middleware('login');
+
+
+//adm banco
+Route::get('/admin/database', 'Admin\DataBaseController@index')->name('admin.database.details')->middleware('login');
+Route::post('/admin/database/use/{name}', 'Admin\DataBaseController@use')->name('admin.database.use')->middleware('login');
+Route::get('/admin/database/delete/{name}', 'Admin\DataBaseController@destroy')->name('admin.database.use')->middleware('login');
+Route::get('/admin/database/generate', 'Admin\DataBaseController@generate')->name('admin.database.generate')->middleware('login');
+Route::get('/admin/database/download/{name}', 'Admin\DataBaseController@download')->name('admin.database.download')->middleware('login');

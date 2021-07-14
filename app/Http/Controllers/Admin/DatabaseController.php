@@ -1,0 +1,125 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Repositories\DatabaseRepository;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
+
+class DatabaseController extends Controller
+{
+    public function index(DatabaseRepository $repository)
+    {
+        try {
+            $items = $repository->listDatabase();
+
+            return view('admin.database.details', [
+                'data' => $items
+            ]);
+
+        } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema na página de administração de banco de dados.",
+            ]);
+
+            return redirect()->route('admin.items.list');
+        }
+
+    }
+
+    public function use(Request $request, DatabaseRepository $repository)
+    {
+        try {
+            $items = $repository->listDatabase();
+
+            return view('admin.database.details', [
+                'data' => $items
+            ]);
+
+        } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema na página de administração de banco de dados.",
+            ]);
+
+            return redirect()->route('admin.items.list');
+        }
+
+    }
+
+
+    public function generate(DatabaseRepository $repository)
+    {
+        try {
+            $return = $repository->generate();
+
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Backup gerado com sucesso.",
+            ]);
+
+            return redirect()->route('admin.database.details');
+
+
+        } catch (\Exception $err) {
+
+            session()->flash('error', [
+                'error' => true,
+                'messages' => $err->getCode() == 1155 ? $err->getMessage() : "Aconteceu algum problema na página de administração de banco de dados.",
+            ]);
+
+            return redirect()->route('admin.items.list');
+        }
+
+    }
+
+
+    public function destroy(Request $request, $name, DatabaseRepository $repository)
+    {
+        try {
+            $items = $repository->destroy($name);
+
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Backup deletado com sucesso.",
+            ]);
+
+            return redirect()->route('admin.database.details');
+
+
+        } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema na página de administração de banco de dados.",
+            ]);
+
+            return redirect()->route('admin.items.list');
+        }
+
+    }
+
+    public function download(Request $request, $name, DatabaseRepository $repository)
+    {
+        try {
+
+            $destination = storage_path('app\backup\\');
+
+            $pathToFile = $destination.$name;
+
+            return response()->download($pathToFile,$name);
+
+        } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema na página de administração de banco de dados.",
+            ]);
+
+            return redirect()->route('admin.items.list');
+        }
+
+    }
+
+}
