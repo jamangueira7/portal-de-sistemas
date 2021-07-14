@@ -320,8 +320,16 @@ h6.title {
     font-size: 60px;
     font-weight: bold;
     margin: 30px;
+    color: #4e555b;
 }
 
 #container-404 .erro404 {
     font-size: 45px;
+}
+
+
+#btn-404 {
+    min-width: 250px;
+    min-height: 60px;
+    border-radius: 10px;
 }

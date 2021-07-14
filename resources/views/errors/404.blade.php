@@ -7,7 +7,7 @@ $pages = [];
             <span>Você está perdido?</span>
             <span class="erro404">404 - Página não encontrada.</span>
             <span>Volte para a homepage.</span>
-            <a class="btn btn-lg btn-info" href="{{route('free.index')}}">Home</a>
+            <a class="btn btn-info btn-info gradient btn-lg" id="btn-404" href="{{route('free.index')}}">Home</a>
     </div>
 @stop
 
