@@ -28,6 +28,19 @@ class DatabaseRepository {
         $path = Storage::disk('backup')->delete($name);
     }
 
+    public function reset()
+    {
+        UserGroup::truncate();
+        PageGroup::truncate();
+        ItemGroup::truncate();
+        ItemUser::truncate();
+        User::truncate();
+        Favorite::truncate();
+        Group::truncate();
+        Page::truncate();
+        Item::truncate();
+    }
+
 
     public function generate()
     {

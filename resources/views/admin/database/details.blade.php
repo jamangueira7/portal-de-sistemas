@@ -38,6 +38,7 @@
         <fieldset class="border-1 border-dark">
             <legend>Ações:</legend>
             <a href="{{route('admin.database.generate')}}" type="button" class="btn btn-primary btn-lg btn-block">Gerar backup</a>
+            <button onclick="reset()" type="button" class="btn btn-danger btn-lg btn-block">Apagar banco</button>
         </fieldset>
 
     </div>
@@ -70,6 +71,20 @@
         </div>
     </div>
 
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="reset">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h4 class="modal-title text-white">Realmente deseja apagar o banco? Gere um backup antes para garantir que os dados não serão perdidos.</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-outline-danger" id="modal-btn-yes-reset" style="width:150px">Sim</button>
+                    <button type="button" class="btn btn-lg btn-outline-primary" id="modal-btn-not-reset" style="width:150px">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 @section('js-view')
 
@@ -90,6 +105,11 @@
             fileName = name;
             jQuery.noConflict();
             $("#use-file").modal('show');
+        }
+
+        function reset() {
+            jQuery.noConflict();
+            $("#reset").modal('show');
         }
 
         var modalConfirm = function(callback){
@@ -118,10 +138,32 @@
             });
         };
 
+        var modalConfirmReset = function(callback){
+
+            $("#modal-btn-yes-reset").on("click", function(){
+                callback(true);
+                $("#reset").modal('hide');
+            });
+
+            $("#modal-btn-not-reset").on("click", function(){
+                callback(false);
+                $("#reset").modal('hide');
+            });
+        };
+
         modalConfirmUseFile(function(confirm){
 
             if(confirm){
                 window.location = '/admin/database/use/'+fileName;
+            }else{
+                return;
+            }
+        });
+
+        modalConfirmReset(function(confirm){
+
+            if(confirm){
+                window.location = '/admin/database/reset';
             }else{
                 return;
             }

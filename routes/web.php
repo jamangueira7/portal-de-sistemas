@@ -70,3 +70,4 @@ Route::get('/admin/database/use/{name}', 'Admin\DatabaseController@use')->name('
 Route::get('/admin/database/delete/{name}', 'Admin\DatabaseController@destroy')->name('admin.database.use')->middleware('login');
 Route::get('/admin/database/generate', 'Admin\DatabaseController@generate')->name('admin.database.generate')->middleware('login');
 Route::get('/admin/database/download/{name}', 'Admin\DatabaseController@download')->name('admin.database.download')->middleware('login');
+Route::get('/admin/database/reset', 'Admin\DatabaseController@reset')->name('admin.database.reset')->middleware('login');

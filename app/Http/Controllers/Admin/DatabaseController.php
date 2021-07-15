@@ -45,7 +45,7 @@ class DatabaseController extends Controller
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => $err->getCode() == 1156 ? $err->getMessage() :  "Alguem problema ocorreu no momento de usar o arquivo. ".$err->getMessage(),
+                'messages' => $err->getCode() == 1156 ? $err->getMessage() :  "Alguem problema ocorreu no momento de usar o arquivo. ",
             ]);
 
             return redirect()->route('admin.database.details');
@@ -124,6 +124,30 @@ class DatabaseController extends Controller
             ]);
 
             return redirect()->route('admin.items.list');
+        }
+
+    }
+
+    public function reset(DatabaseRepository $repository)
+    {
+        try {
+
+            $repository->reset();
+
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Banco zerado. Faço o login novamente para baixaramos seus dados",
+            ]);
+
+            return redirect()->route('free.logout');
+
+        } catch (\Exception $err) {
+            session()->flash('error', [
+                'error' => true,
+                'messages' => "Aconteceu algum problema." .$err->getMessage(),
+            ]);
+
+            return redirect()->route('admin.database.details');
         }
 
     }
