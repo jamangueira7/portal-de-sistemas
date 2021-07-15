@@ -23,9 +23,8 @@
                     <tr>
                         <td>{{$item}}</td>
                         <td>
-                            <a href="{{route('admin.database.use', [$item])}}" type="button" class="btn btn-outline-warning">Usar</a>
+                            <button onclick="useFile('{{$item}}')" type="button" class="btn btn-outline-warning">Usar</button>
                             <a href="{{route('admin.database.download', [$item])}}" type="button" class="btn btn-outline-info">Baixar</a>
-
                             <button onclick="deleteRegister('{{$item}}')" type="button" class="btn btn-outline-danger">Deletar</button>
 
                         </td>
@@ -57,6 +56,20 @@
         </div>
     </div>
 
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="use-file">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h4 class="modal-title text-white">Realmente deseja usar esse arquivo para gravar alterações no banco?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-outline-danger" id="modal-btn-yes-file" style="width:150px">Sim</button>
+                    <button type="button" class="btn btn-lg btn-outline-primary" id="modal-btn-not-file" style="width:150px">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 @section('js-view')
 
@@ -65,10 +78,18 @@
     <script type="text/javascript">
 
         let idDeelte = '';
+        let fileName = '';
+
         function deleteRegister(id) {
             idDeelte = id;
             jQuery.noConflict();
             $("#mi-modal").modal('show');
+        }
+
+        function useFile(name) {
+            fileName = name;
+            jQuery.noConflict();
+            $("#use-file").modal('show');
         }
 
         var modalConfirm = function(callback){
@@ -84,7 +105,30 @@
             });
         };
 
+        var modalConfirmUseFile = function(callback){
+
+            $("#modal-btn-yes-file").on("click", function(){
+                callback(true);
+                $("#use-file").modal('hide');
+            });
+
+            $("#modal-btn-not-file").on("click", function(){
+                callback(false);
+                $("#use-file").modal('hide');
+            });
+        };
+
+        modalConfirmUseFile(function(confirm){
+
+            if(confirm){
+                window.location = '/admin/database/use/'+fileName;
+            }else{
+                return;
+            }
+        });
+
         modalConfirm(function(confirm){
+
             if(confirm){
                 window.location = '/admin/database/delete/'+idDeelte;
             }else{

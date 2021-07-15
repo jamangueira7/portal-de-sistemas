@@ -30,22 +30,25 @@ class DatabaseController extends Controller
 
     }
 
-    public function use(Request $request, DatabaseRepository $repository)
+    public function use($name, DatabaseRepository $repository)
     {
         try {
-            $items = $repository->listDatabase();
+            $items = $repository->useFile($name);
 
-            return view('admin.database.details', [
-                'data' => $items
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Arquivo integrado ao banco de dados.",
             ]);
+
+            return redirect()->route('admin.database.details');
 
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema na página de administração de banco de dados.",
+                'messages' => $err->getCode() == 1156 ? $err->getMessage() :  "Alguem problema ocorreu no momento de usar o arquivo. ".$err->getMessage(),
             ]);
 
-            return redirect()->route('admin.items.list');
+            return redirect()->route('admin.database.details');
         }
 
     }
@@ -105,7 +108,10 @@ class DatabaseController extends Controller
     {
         try {
 
+            //widonws
             $destination = storage_path('app\backup\\');
+            //linux
+            //$destination = storage_path('app/backup/');
 
             $pathToFile = $destination.$name;
 

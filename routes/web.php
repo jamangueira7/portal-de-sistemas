@@ -65,8 +65,8 @@ Route::get('/admin/pages/delete/{id}', 'Admin\PageController@destroy')->name('ad
 
 
 //adm banco
-Route::get('/admin/database', 'Admin\DataBaseController@index')->name('admin.database.details')->middleware('login');
-Route::post('/admin/database/use/{name}', 'Admin\DataBaseController@use')->name('admin.database.use')->middleware('login');
-Route::get('/admin/database/delete/{name}', 'Admin\DataBaseController@destroy')->name('admin.database.use')->middleware('login');
-Route::get('/admin/database/generate', 'Admin\DataBaseController@generate')->name('admin.database.generate')->middleware('login');
-Route::get('/admin/database/download/{name}', 'Admin\DataBaseController@download')->name('admin.database.download')->middleware('login');
+Route::get('/admin/database', 'Admin\DatabaseController@index')->name('admin.database.details')->middleware('login');
+Route::get('/admin/database/use/{name}', 'Admin\DatabaseController@use')->name('admin.database.use')->middleware('login');
+Route::get('/admin/database/delete/{name}', 'Admin\DatabaseController@destroy')->name('admin.database.use')->middleware('login');
+Route::get('/admin/database/generate', 'Admin\DatabaseController@generate')->name('admin.database.generate')->middleware('login');
+Route::get('/admin/database/download/{name}', 'Admin\DatabaseController@download')->name('admin.database.download')->middleware('login');

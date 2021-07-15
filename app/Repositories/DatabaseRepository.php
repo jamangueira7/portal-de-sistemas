@@ -11,7 +11,7 @@ use App\model\ItemUser;
 use App\model\Page;
 use App\model\PageGroup;
 use App\model\UserGroup;
-use App\User;
+use App\model\User;
 use Illuminate\Support\Facades\Storage;
 
 class DatabaseRepository {
@@ -37,7 +37,6 @@ class DatabaseRepository {
 
         if($exists) {
             throw new \Exception('Já foi criado um backup do dia de hj. Procure o arquivo na lista e apague antes de gerar outro.', 1155);
-
         }
         $file = [];
 
@@ -57,5 +56,88 @@ class DatabaseRepository {
         return $path;
     }
 
+    public function useFile($name)
+    {
+        $pieces = explode(".", $name);
+
+        if($pieces[1] !== 'json'){
+            throw new \Exception('O arquivo precisa ser JSON', 1156);
+        }
+
+        $file = Storage::disk('backup')->get($name);
+        $fileArray = json_decode($file, true);
+
+        $fileTranslation = [];
+
+       //users
+        foreach ($fileArray['users'] as $user) {
+            $current  = User::create($user);
+            $fileTranslation['users'][$user['id']] = $current['id'];
+        }
+
+        //groups
+        foreach ($fileArray['groups'] as $group) {
+            $current  = Group::create($group);
+            $fileTranslation['groups'][$group['id']] = $current['id'];
+        }
+
+        //pages
+        foreach ($fileArray['pages'] as $page) {
+            $current  = Page::create($page);
+            $fileTranslation['pages'][$page['id']] = $current['id'];
+        }
+
+        //items
+        foreach ($fileArray['items'] as $item) {
+            $current  = Item::create([
+                'title' => $item['title'],
+                'slug' => $item['slug'],
+                'father' => $item['father'],
+                'url' => $item['url'],
+                'page_id' => $fileTranslation['pages'][$item['page_id']],
+                'new_tab' => $item['new_tab'],
+            ]);
+            $fileTranslation['items'][$item['id']] = $current['id'];
+        }
+
+
+        //favorites
+        foreach ($fileArray['favorites'] as $favorite) {
+            $current  = Favorite::create($favorite);
+            $fileTranslation['favorites'][$favorite['id']] = $current['id'];
+        }
+
+        //users_groups
+        foreach ($fileArray['users_groups'] as $user_group) {
+            $current  = UserGroup::create([
+                'user_id' => $fileTranslation['users'][$user_group['user_id']],
+                'group_id' => $fileTranslation['groups'][$user_group['group_id']],
+            ]);
+        }
+
+        //items_users
+        foreach ($fileArray['items_users'] as $item_user) {
+            $current  = ItemUser::create([
+                'item_id' => $fileTranslation['items'][$item_user['item_id']],
+                'user_id' => $fileTranslation['users'][$item_user['user_id']],
+            ]);
+        }
+
+        //items_groups
+        foreach ($fileArray['items_groups'] as $item_group) {
+            $current  = ItemGroup::create([
+                'item_id' => $fileTranslation['items'][$item_group['item_id']],
+                'group_id' => $fileTranslation['groups'][$item_group['group_id']],
+            ]);
+        }
+
+        //items_groups
+        foreach ($fileArray['pages_groups'] as $page_group) {
+            $current  = PageGroup::create([
+                'page_id' => $fileTranslation['pages'][$page_group['page_id']],
+                'group_id' => $fileTranslation['groups'][$page_group['group_id']],
+            ]);
+        }
+    }
 
 }
