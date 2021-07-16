@@ -26,6 +26,7 @@ Route::post('/favorite/alter', 'Admin\FavoriteController@ajaxAlterFavorite')->na
 Route::post('/favorite/update', 'Admin\FavoriteController@ajaxUpdateFavorite')->name('portal.ajax.favorite.update')->middleware('login');
 Route::post('/groupsbypage', 'Admin\ItemController@ajaxGroupByPage')->name('admin.ajax.groups.page')->middleware('login');
 Route::post('/itemsbypage', 'Admin\ItemController@ajaxItemsByPage')->name('admin.ajax.groups.items')->middleware('login');
+Route::post('/itemsbyfather', 'Admin\ItemController@ajaxItemsByFather')->name('admin.ajax.groups.father')->middleware('login');
 
 
 //ROTAS DO ADMINISTRATIVO
@@ -71,3 +72,4 @@ Route::get('/admin/database/delete/{name}', 'Admin\DatabaseController@destroy')-
 Route::get('/admin/database/generate', 'Admin\DatabaseController@generate')->name('admin.database.generate')->middleware('login');
 Route::get('/admin/database/download/{name}', 'Admin\DatabaseController@download')->name('admin.database.download')->middleware('login');
 Route::get('/admin/database/reset', 'Admin\DatabaseController@reset')->name('admin.database.reset')->middleware('login');
+Route::post('/admin/database/create', 'Admin\DatabaseController@create')->name('admin.database.create')->middleware('login');

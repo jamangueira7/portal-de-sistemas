@@ -60,6 +60,19 @@ class ItemController extends Controller
 
     }
 
+    public function ajaxItemsByFather(Request $request, ItemsRepository $repository)
+    {
+        try {
+            $items = $repository->getAllGroupsIDByItem($request->get('codigo'));
+
+            return ['items' => $items ];
+
+        } catch (\Exception $err) {
+            return ['msg' => $err->getMessage() ];
+        }
+
+    }
+
 
     public function details($id, ItemsRepository $repository, PagesRepository $pagesRepository, UsersRepository $usersRepository)
     {

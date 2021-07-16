@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Repositories\DatabaseRepository;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -20,6 +21,7 @@ class DatabaseController extends Controller
             ]);
 
         } catch (\Exception $err) {
+
             session()->flash('error', [
                 'error' => true,
                 'messages' => "Aconteceu algum problema na página de administração de banco de dados.",
@@ -27,7 +29,6 @@ class DatabaseController extends Controller
 
             return redirect()->route('admin.items.list');
         }
-
     }
 
     public function use($name, DatabaseRepository $repository)
@@ -43,6 +44,7 @@ class DatabaseController extends Controller
             return redirect()->route('admin.database.details');
 
         } catch (\Exception $err) {
+            Log::info($err);
             session()->flash('error', [
                 'error' => true,
                 'messages' => $err->getCode() == 1156 ? $err->getMessage() :  "Alguem problema ocorreu no momento de usar o arquivo. ",
@@ -75,6 +77,33 @@ class DatabaseController extends Controller
             ]);
 
             return redirect()->route('admin.items.list');
+        }
+
+    }
+
+    public function create(Request $request, DatabaseRepository $repository)
+    {
+
+        try {
+
+            $return = $repository->create($request->file('archive'));
+
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Arquivo de Backup subiu com sucesso.",
+            ]);
+
+            return redirect()->route('admin.database.details');
+
+
+        } catch (\Exception $err) {
+
+            session()->flash('error', [
+                'error' => true,
+                'messages' => $err->getCode() == 1155 ? $err->getMessage() : "Erro ao subir arquivo.",
+            ]);
+
+            return redirect()->route('admin.database.details');
         }
 
     }

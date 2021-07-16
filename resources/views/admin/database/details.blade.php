@@ -6,9 +6,21 @@
 @endsection
 @section('conteudo-view')
 
-    <div class="container col-md-10">
+    <div class="container col-md-10" style="height:99%;overflow-y: auto">
 
         <h2 class="mb-5">Administração do banco de dados</h2>
+
+        <div class="alert-warning" style="padding: 10px; border-radius: 10px;">
+            <span>Instruções:</span>
+            <ul>
+                <li>Antes de usar qualquer função faça um backup do banco.</li>
+                <li>A lista de backup aparecerão apenas o ultimos 5 backups por data.</li>
+                <li>Antes de usar um backup o ideal é apagar o banco para evitar que os grupos fiquem duplicados.</li>
+                <li>Após apagar o banco você será deslogado. Faça o login e apague os grupos. Depois use o backup.</li>
+            </ul>
+        </div>
+
+        <br>
 
         @if($data)
             <table class="table table-striped" id="table">
@@ -35,6 +47,18 @@
         @else
             <h3>Sem dados.</h3>
         @endif
+        <br>
+        <form method="POST" action="{{route('admin.database.create')}}" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <label for="archive">Carregar arquivo</label>
+                <input type="file" class="form-control-file" id="archiveT" name="archive">
+            </div>
+            <button type="submit" id="test" class="btn btn-primary">Enviar arquivo</button>
+        </form>
+        <br>
+        <br>
+
         <fieldset class="border-1 border-dark">
             <legend>Ações:</legend>
             <a href="{{route('admin.database.generate')}}" type="button" class="btn btn-primary btn-lg btn-block">Gerar backup</a>

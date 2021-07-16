@@ -12,6 +12,7 @@ use App\model\Page;
 use App\model\PageGroup;
 use App\model\UserGroup;
 use App\model\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class DatabaseRepository {
@@ -30,15 +31,29 @@ class DatabaseRepository {
 
     public function reset()
     {
-        UserGroup::truncate();
-        PageGroup::truncate();
-        ItemGroup::truncate();
-        ItemUser::truncate();
-        User::truncate();
-        Favorite::truncate();
-        Group::truncate();
-        Page::truncate();
-        Item::truncate();
+        DB::table('items_users')->delete();
+        DB::table('users_groups')->delete();
+        DB::table('pages_groups')->delete();
+        DB::table('items_groups')->delete();
+        DB::table('favorites')->delete();
+        DB::table('users')->delete();
+        DB::table('groups')->delete();
+        DB::table('items')->delete();
+        DB::table('pages')->delete();
+    }
+
+    public function create($file)
+    {
+        $part = explode('.', $file->getClientOriginalName())[1];
+        if( $part!= 'json') {
+            throw new \Exception('Arquivo precisa ser JSON.', 1155);
+        }
+
+        if(Storage::disk('backup')->exists($file->getClientOriginalName())) {
+            throw new \Exception('Já existe um backup desse dia. Antes de prosseguir exclua o arquivo.', 1155);
+        }
+
+        $path = Storage::putFileAs('backup', $file, $file->getClientOriginalName());
     }
 
 
@@ -82,6 +97,7 @@ class DatabaseRepository {
 
         $fileTranslation = [];
 
+
        //users
         foreach ($fileArray['users'] as $user) {
             $current  = User::create($user);
@@ -116,7 +132,13 @@ class DatabaseRepository {
 
         //favorites
         foreach ($fileArray['favorites'] as $favorite) {
-            $current  = Favorite::create($favorite);
+
+            $current  = Favorite::create([
+                'user_id' => $fileTranslation['users'][$favorite['user_id']],
+                'slug_page' => $favorite['slug_page'],
+                'description' => $favorite['description'],
+                'slug_item' => $favorite['slug_item'],
+            ]);
             $fileTranslation['favorites'][$favorite['id']] = $current['id'];
         }
 
@@ -129,7 +151,8 @@ class DatabaseRepository {
         }
 
         //items_users
-        foreach ($fileArray['items_users'] as $item_user) {
+        foreach ($fileArray['items_users'] as $key=>$item_user) {
+
             $current  = ItemUser::create([
                 'item_id' => $fileTranslation['items'][$item_user['item_id']],
                 'user_id' => $fileTranslation['users'][$item_user['user_id']],

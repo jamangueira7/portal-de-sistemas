@@ -77,6 +77,7 @@
 
         $(".chosen-select").chosen();
 
+
         $(document).ready(function () {
 
             $.ajaxSetup({
@@ -88,6 +89,10 @@
             $("#page").change(function() {
                buscarGroups();
                buscarItens();
+            });
+
+            $(document).on('change', '#father', function() {
+                buscarGroupsFather();
             });
 
             function buscarGroups() {
@@ -102,11 +107,39 @@
 
                         var html = '<label for="groups">Grupos da página escolhida:</label><div class="form-group row">';
 
+                        html += '<div class="form-check col-12"> <input class="form-check-input" type="checkbox" id="check-all" name="check-all" onClick="selectAll(this)"> <label class="form-check-label" for="check-all" >Selecionar todos</label></div><br><br>';
+
                         for (var i = 0, l = data['grupos'].length; i < l; i++) {
-                            html += '<div class="form-check col-4"><input class="form-check-input" type="checkbox"id="check-'+data['grupos'][i].id+'" name="groups[]" value="'+data['grupos'][i].id+'" "checked"> <label class="form-check-label" for="check-'+data['grupos'][i].id+'">'+data['grupos'][i].description+'</label></div>';
+                            html += '<div class="form-check col-4"><input class="form-check-input" type="checkbox"id="check-'+data['grupos'][i].id+'" name="groups[]" value="'+data['grupos'][i].id+'" "checked"> <label class="form-check-label" for="check-'+data['grupos'][i].id+'" style="font-size: 11px;">'+data['grupos'][i].description+'</label></div>';
                         }
                         html += '</div>';
                         $("#grupos_change").html(html);
+
+                    },
+
+                    error:function(data){
+                        console.log('Erro no Ajax!');
+                    },
+
+                });
+            }
+
+            function buscarGroupsFather() {
+
+                var url = "{{ route('admin.ajax.groups.father') }}";
+
+                $.ajax({
+                    type:'POST',
+                    url: url,
+                    data:{ codigo:  $("#father").val()},
+
+                    success:function(data){
+
+                        $("input:checkbox").prop('checked', false);
+
+                        data['items'].forEach(function(name){
+                            $("#check-" + name).prop("checked" , true);
+                        });
 
                     },
 
@@ -145,6 +178,9 @@
 
                 });
             }
+
+
+
         });
     </script>
 @stop

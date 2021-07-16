@@ -245,7 +245,7 @@ color:#fff;
     }
 }
 
-@media (max-height: 800px) {
+@media (max-height: 750px) {
     #container-main {
         height: 90%;
         overflow-y: scroll;
