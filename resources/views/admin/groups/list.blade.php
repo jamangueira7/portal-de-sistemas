@@ -9,18 +9,18 @@
         @if($groups)
             <table class="table table-striped" id="table">
                 <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Registro</th>
-                    <th scope="col">Ações</th>
+                <tr class="d-flex">
+                    <th scope="col" class="col-5">Descrição</th>
+                    <th scope="col" class="col-3">Registro</th>
+                    <th scope="col" class="col-4">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($groups as $group)
-                        <tr>
-                            <td class="align-bottom">{{$group->description}}</td>
-                            <td>{{\App\Helpers\Helper::formateDate($group->created_at)}}</td>
-                            <td>
+                        <tr class="d-flex">
+                            <td class="align-bottom col-5">{{$group->description}}</td>
+                            <td class="col-3">{{\App\Helpers\Helper::formateDate($group->created_at)}}</td>
+                            <td class="col-4">
                                 <a href="{{route('admin.groups.details', [$group->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
                             </td>
                         </tr>

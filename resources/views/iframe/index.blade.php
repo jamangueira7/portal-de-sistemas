@@ -107,7 +107,7 @@
       <div class="col-2">
           <a
               target="_blank"
-              href="{{ route('admin.items.details', [!empty($current) ? $current['id'] : '']) }}"
+              href="{{ route(!empty($current) ? 'admin.items.details' : 'admin.pages.details', [!empty($current) ? $current['id'] : $page['page']['id']]) }}"
               class="btn btn-lg btn-gradient"
               data-title="Detalhe"
               style="display: {!! session('userAccess') == true && empty($current) ? 'block' : 'none' !!};"

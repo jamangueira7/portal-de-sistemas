@@ -4,20 +4,20 @@
         @if($users)
             <table class="table table-striped" id="table">
                 <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Login</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Ações</th>
+                <tr class="d-flex">
+                    <th scope="col" class="col-4">Nome</th>
+                    <th scope="col" class="col-1">Login</th>
+                    <th scope="col" class="col-3">Email</th>
+                    <th scope="col" class="col-4">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($users as $user)
-                        <tr>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->login}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>
+                        <tr class="d-flex">
+                            <td class="col-4">{{$user->name}}</td>
+                            <td class="col-1">{{$user->login}}</td>
+                            <td class="col-3">{{$user->email}}</td>
+                            <td class="col-4">
                                 <a href="{{route('admin.responsible.details', [$user->id])}}" type="button" class="btn btn-outline-warning">Lista de Itens</a>
                             </td>
                         </tr>

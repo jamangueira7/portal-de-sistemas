@@ -9,20 +9,20 @@
         @if($items)
             <table class="table table-striped" id="table">
                 <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Registrado</th>
-                    <th scope="col">Página</th>
-                    <th scope="col">Ações</th>
+                <tr class="d-flex">
+                    <th scope="col" class="col-4">Titulo</th>
+                    <th scope="col" class="col-2">Registrado</th>
+                    <th scope="col" class="col-2">Página</th>
+                    <th scope="col" class="col-4">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($items as $item)
-                        <tr>
-                            <td>{{$item->title}}</td>
-                            <td>{{\App\Helpers\Helper::formateDate($item->created_at)}}</td>
-                            <td>{{$item->page->description ?? ''}}</td>
-                            <td>
+                        <tr class="d-flex">
+                            <td class="col-4">{{$item->title}}</td>
+                            <td class="col-2">{{\App\Helpers\Helper::formateDate($item->created_at)}}</td>
+                            <td class="col-2">{{$item->page->description ?? ''}}</td>
+                            <td class="col-4">
                                 <a href="{{route('admin.items.details', [$item->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
 
                                 <button onclick="deleteRegister('{{$item->id}}')" type="button" class="btn btn-outline-danger">Deletar</button>

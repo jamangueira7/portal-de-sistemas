@@ -9,18 +9,18 @@
         @if($pages)
             <table class="table table-striped" id="table">
                 <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Registro</th>
-                    <th scope="col">Ações</th>
+                <tr class="d-flex">
+                    <th scope="col" class="col-5">Descrição</th>
+                    <th scope="col" class="col-3">Registro</th>
+                    <th scope="col" class="col-4">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($pages as $page)
-                        <tr>
-                            <td>{{$page->description}}</td>
-                            <td>{{\App\Helpers\Helper::formateDate($page->created_at)}}</td>
-                            <td>
+                        <tr class="d-flex">
+                            <td class="col-5">{{$page->description}}</td>
+                            <td class="col-3">{{\App\Helpers\Helper::formateDate($page->created_at)}}</td>
+                            <td class="col-4">
                                 <a href="{{route('admin.pages.details', [$page->id])}}" type="button" class="btn btn-outline-warning">Detalhes</a>
                                 <button onclick="deleteRegister('{{$page->id}}')" type="button" class="btn btn-outline-danger">Deletar</button>
                             </td>

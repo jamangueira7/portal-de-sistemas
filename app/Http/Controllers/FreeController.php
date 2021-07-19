@@ -52,7 +52,7 @@ class FreeController extends Controller
     public function authenticate(Request $request, Response $response, LoginRepository $repository)
     {
         try {
-            //$res = $repository->login($request->all());
+            $res = $repository->login($request->all());
 
             session()->flash('success', [
                 'success' => true,
@@ -60,11 +60,11 @@ class FreeController extends Controller
             ]);
 
 
-            session(['iPlanetDirectoryPro' => 'adafds']);
+            /*session(['iPlanetDirectoryPro' => 'adafds']);
             session(['userName' => 'Elmer Mohr IV' ]);
             session(['userID' => '10f50b4e-f4a5-4698-bd66-6e8a20ff761d' ]);
             session(['userAccess' => true ]);
-            session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);
+            session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
 
 
             return redirect()->route('free.index');

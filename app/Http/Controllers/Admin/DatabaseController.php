@@ -138,9 +138,9 @@ class DatabaseController extends Controller
         try {
 
             //widonws
-            $destination = storage_path('app\backup\\');
+            //$destination = storage_path('app\backup\\');
             //linux
-            //$destination = storage_path('app/backup/');
+            $destination = storage_path('app/backup/');
 
             $pathToFile = $destination.$name;
 

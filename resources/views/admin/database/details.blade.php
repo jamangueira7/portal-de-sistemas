@@ -25,16 +25,16 @@
         @if($data)
             <table class="table table-striped" id="table">
                 <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Backup</th>
-                    <th scope="col">Ações</th>
+                <tr class="d-flex">
+                    <th scope="col" class="col-6">Backup</th>
+                    <th scope="col" class="col-6">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($data as $item)
-                    <tr>
-                        <td>{{$item}}</td>
-                        <td>
+                    <tr class="d-flex">
+                        <td class="col-6">{{$item}}</td>
+                        <td class="col-6">
                             <button onclick="useFile('{{$item}}')" type="button" class="btn btn-outline-warning">Usar</button>
                             <a href="{{route('admin.database.download', [$item])}}" type="button" class="btn btn-outline-info">Baixar</a>
                             <button onclick="deleteRegister('{{$item}}')" type="button" class="btn btn-outline-danger">Deletar</button>
