@@ -7,8 +7,12 @@
 @section('conteudo-view')
 
     <div class="container col-md-10">
+        <div class="row col-md-10 d-flex justify-content-between mb-4">
+            <h2 class="col-7">Alterar Item de menu</h2>
+            <a href="{{ route('auth.pages', [$item->page->slug, $item->slug]) }}" class="btn btn-warning col-3">Ver item</a>
+        </div>
 
-        <h2 class="mb-5">Alterar Item de menu</h2>
+
         <form method="POST" action="{{route('admin.items.update', [$item->id])}}">
             @csrf
             @method('PUT')

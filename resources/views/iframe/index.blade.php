@@ -110,7 +110,7 @@
               href="{{ route(!empty($current) ? 'admin.items.details' : 'admin.pages.details', [!empty($current) ? $current['id'] : $page['page']['id']]) }}"
               class="btn btn-lg btn-gradient"
               data-title="Detalhe"
-              style="display: {!! session('userAccess') == true && empty($current) ? 'block' : 'none' !!};"
+              style="display: {!! session('userAccess') == true ? 'block' : 'none' !!};"
           >Detalhe</a>
       </div>
     <div class="col-1">
