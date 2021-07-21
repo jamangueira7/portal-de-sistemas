@@ -8,6 +8,20 @@
             </li>
           <li class="menu_topo">
 
+              @if($favorites)
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Favoritos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="menu-categorias" id="menu_portais">
+                        @foreach($favorites as $favorite)
+                            <a href="{{ route('auth.pages', [$favorite['slug_page'], $favorite['slug_item']]) }}" class="dropdown-item">{{ $favorite['description'] }}</a>
+                        @endforeach
+                    </div>
+                </li>
+
+            @endif
+
             @if($pages)
               <li class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

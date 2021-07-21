@@ -21,6 +21,7 @@ class AuthPageController extends Controller
             $pagesBygroup = $repository->PagesByGroupWithUser($user_id);
             $pageBySlug = $repository->PagesBySlugWithChildrens($page, $user_id);
 
+            $favorites = $favoriteRepository->getFavoritesByUser($user_id);
 
             if(isset($item)) {
                 $current = $Itemsrepository->ItemBySlug($page, $item);
@@ -39,6 +40,7 @@ class AuthPageController extends Controller
                 'pages' => $pagesBygroup,
                 'current' => $current ?? null,
                 'favorite' => $favorite,
+                'favorites' => $favorites->isEmpty() ? [] : $favorites,
             ]);
 
         } catch (\Exception $err) {

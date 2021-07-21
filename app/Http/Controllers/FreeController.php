@@ -17,14 +17,17 @@ class FreeController extends Controller
         try {
             $user_id = session('userID');
 
+            $favorites = [];
+
             if($user_id) {
                 $pages = $repository->PagesByGroupWithUser($user_id);
                 $favorites = $favoriteRepository->getFavoritesByUser($user_id);
+                $favorites = $favorites->isEmpty() ? [] : $favorites;
             }
 
             return view('home.index', [
                 'pages' => $pages ?? [],
-                'favorites' => $favorites ?? [],
+                'favorites' => $favorites,
             ]);
 
         } catch (\Exception $err) {
@@ -37,7 +40,8 @@ class FreeController extends Controller
         try {
 
             return view('home.tela-login', [
-                'pages' =>  []
+                'pages' =>  [],
+                'favorites' =>  [],
             ]);
         } catch (\Exception $err) {
             session()->flash('error', [

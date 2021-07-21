@@ -48,6 +48,8 @@
 
         @yield('js-view')
 
+    @include('suport.checkInativity')
+
     </body>
 
 </html>

@@ -13,7 +13,6 @@ class FavoriteRepository {
 
     public function getFavoritesByUser($user_id)
     {
-
         return Favorite::where('user_id', $user_id)->get();
     }
 

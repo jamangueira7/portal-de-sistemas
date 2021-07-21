@@ -108,7 +108,7 @@
           <a
               target="_blank"
               href="{{ route(!empty($current) ? 'admin.items.details' : 'admin.pages.details', [!empty($current) ? $current['id'] : $page['page']['id']]) }}"
-              class="btn btn-lg btn-gradient"
+              class="btn btn-gradient"
               data-title="Detalhe"
               style="display: {!! session('userAccess') == true ? 'block' : 'none' !!};"
           >Detalhe</a>
@@ -121,7 +121,7 @@
         <a
             href="#"
            id="favorite-on"
-           class="btn btn-lg btn-gradient"
+           class="btn btn-gradient"
             data-title="Clique para retirar dos favoritos"
            style="display: {!! !$favorite ? 'none' : 'block' !!};"
         >
@@ -131,7 +131,7 @@
         <a
             href="#"
             id="favorite-off"
-            class="btn btn-lg btn-gradient"
+            class="btn btn-gradient"
             data-title="Clique para colocar nos favoritos"
             style="display: {!! $favorite ? 'none' : 'block' !!};"
         >

@@ -38,25 +38,24 @@
 
     </div>
 
-    @if(session('userName'))
-        <div class="col-md-2 lista_favoritos">
-            <ul class="list-group">
-                <li class="list-group-item active gradient">Favoritos</li>
+      @if(session('userName'))
+          <div class="col-md-2 lista_favoritos">
+              <ul class="list-group">
+                  <li class="list-group-item active gradient">Favoritos</li>
 
-                @foreach($favorites as $favorite)
-                    <li class="list-group-item">
-                        <a class="nav-link" href="{{ route('auth.pages', [$favorite['slug_page'], $favorite['slug_item']]) }}" >
-                            {{ $favorite['description'] }}
-                            <input id="desc-current-{{$favorite['id']}}" type="hidden" value="{{ $favorite['description'] }}">
-                            <button type="button" id="{{$favorite['id']}}" class="btn btn-light edit-fav"><i class="fas fa-edit"></i></button>
-                        </a>
+                  @foreach($favorites as $favorite)
+                      <li class="list-group-item">
+                          <a class="nav-link" href="{{ route('auth.pages', [$favorite['slug_page'], $favorite['slug_item']]) }}" >
+                              {{ $favorite['description'] }}
+                              <input id="desc-current-{{$favorite['id']}}" type="hidden" value="{{ $favorite['description'] }}">
+                              <button type="button" id="{{$favorite['id']}}" class="btn btn-light edit-fav"><i class="fas fa-edit"></i></button>
+                          </a>
 
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
+                      </li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
 
       <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
           <div class="modal-dialog modal-lg">
