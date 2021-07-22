@@ -24,7 +24,10 @@ class FavoriteRepository {
                 ->where('slug_item', $item)
                 ->first();
         } else {
-            $val = Favorite::where('user_id', $user_id)->where('slug_page', $slug)->first();
+            $val = Favorite::where('user_id', $user_id)
+                ->where('slug_item', "")
+                ->where('slug_page', $slug)
+                ->first();
         }
 
         return !empty($val) ? true : false;
