@@ -99,6 +99,7 @@ class FavoriteRepository {
 
 
                 $ter = Favorite::where('slug_page', Helper::slugify($val['slug']))
+                    ->where('slug_item', "")
                     ->where('user_id', $user_id)
                     ->forceDelete();
             }

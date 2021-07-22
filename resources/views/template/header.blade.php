@@ -8,7 +8,7 @@
             </li>
           <li class="menu_topo">
 
-            @if(isset($favorites))
+            @if(isset($favorites) && !empty($favorites))
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Favoritos
@@ -21,7 +21,7 @@
                 </li>
             @endif
 
-            @if(isset($pages))
+            @if(isset($pages) && !empty($pages))
               <li class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Meus Portais
