@@ -12,6 +12,7 @@ use App\model\Page;
 use App\model\PageGroup;
 use App\model\UserGroup;
 use App\model\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 

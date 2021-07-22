@@ -128,7 +128,16 @@ class Helper
                 } else {
                     $target = $items["father"]["new_tab"] ? 'target="_blank"' : '';
 
-                    $print .= '<ul><li><a '. $target . ' href="' . $items["father"]["url"] .'">' . $items["father"]["title"] . '</a></li></ul>';
+                    $print .= '<div class="col-lg-4 col-6">
+                                <div class="col-megamenu">
+                                <h6 class="title">' . $items["father"]["title"] . '</h6>
+                                    <ul>
+                                        <li>
+                                            <a '. $target . ' href="' . route('auth.pages', [$page['page']['slug'], $items["father"]["slug"]]) .'">' . $items["father"]["title"] . '</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                               </div>';
                 }
 
                 $print .= '</div></div></li>';

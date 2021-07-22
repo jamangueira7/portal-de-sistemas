@@ -65,8 +65,8 @@ class FreeController extends Controller
 
 
             /*session(['iPlanetDirectoryPro' => 'adafds']);
-            session(['userName' => 'Elmer Mohr IV' ]);
-            session(['userID' => '10f50b4e-f4a5-4698-bd66-6e8a20ff761d' ]);
+            session(['userName' => 'Usuario Mocado' ]);
+            session(['userID' => 'f25604c9-9a0b-491c-b002-83648d09302a' ]);
             session(['userAccess' => true ]);
             session(['PORTAL_COOKIE' => "SITEORIGEM=42144|TIPOSITE=SISTEMAS|"]);*/
 

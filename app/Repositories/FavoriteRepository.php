@@ -35,6 +35,7 @@ class FavoriteRepository {
         $item = '';
         $user_id = session('userID');
 
+
         if($data['slug_type'] == 'item') {
 
             $val = Item::where('id', $data['id_current'])->first();
@@ -52,6 +53,8 @@ class FavoriteRepository {
 
         } else {
             $val = Page::where('id', $data['id_current'])->first();
+
+
 
             $exist = Favorite::where('slug_page', Helper::slugify($val['slug']))
                 ->whereNull('slug_item')
@@ -79,7 +82,8 @@ class FavoriteRepository {
         try {
             $user_id = session('userID');
 
-            if($data['slug_type'] == 'item') {
+            if(strval($data['slug_type']) == "item") {
+
                 $val = Item::where('id', $data['id_current'])->first();
                 $item = $val;
                 $val = Page::where('id', $item['page_id'])->first();
@@ -89,14 +93,16 @@ class FavoriteRepository {
                     ->where('user_id', $user_id)
                     ->forceDelete();
 
-            } else {
-                $val = Page::where('slug', $data['slug_current'])->first();
+            }else{
 
-                Favorite::where('slug_page', Helper::slugify($val['slug']))
-                    ->whereNull('slug_item')
+                $val = Page::where('id', $data['id_current'])->first();
+
+
+                $ter = Favorite::where('slug_page', Helper::slugify($val['slug']))
                     ->where('user_id', $user_id)
                     ->forceDelete();
             }
+
             return true;
         } catch (\Exception $err) {
             session()->flash('error', [
