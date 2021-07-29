@@ -2,9 +2,14 @@
 @section('menu-search')
     <input type="text" id="myInput" onkeyup="mySearchFunction()" placeholder="Filtrar Menu" class="input form-control-sm border-0">
 @stop
+
 @section('master-title')
-    {{ !empty($current) ? $current['title'] : $page['page']['description'] }}
+    @php
+        $title_master = !empty($current) ? $current['title'] : $page['page']['description']
+    @endphp
+    {{ $title_master . " - Tokio Marine" }}
 @stop
+
 @section('conteudo-css')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
