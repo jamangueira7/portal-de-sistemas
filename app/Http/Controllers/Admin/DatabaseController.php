@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
+
 class DatabaseController extends Controller
 {
     public function index(DatabaseRepository $repository)
@@ -133,27 +134,34 @@ class DatabaseController extends Controller
 
     }
 
-    public function download(Request $request, $name, DatabaseRepository $repository)
+    public function download($name)
     {
         try {
 
             //widonws
             //$destination = storage_path('app\backup\\');
             //linux
-            $destination = storage_path('app/backup/');
+            $destination = storage_path('app/public/');
 
             $pathToFile = $destination.$name;
+            $headers = [
+                    'Access-Control-Allow-Origin' => '*',
+                    'Content-Type:' => 'application/json',
+                    'Content-Disposition' => 'attachment; filename='.$pathToFile
+                ];
 
-            return response()->download($pathToFile,$name);
+
+            return response()->download($pathToFile, $name, $headers);
 
         } catch (\Exception $err) {
             session()->flash('error', [
                 'error' => true,
-                'messages' => "Aconteceu algum problema na página de administração de banco de dados.",
+                'messages' => "Aconteceu algum problema na página de administração de banco de dados.".$err->getMessage(),
             ]);
 
-            return redirect()->route('admin.items.list');
+            return redirect()->route('admin.database.details');
         }
+
 
     }
 

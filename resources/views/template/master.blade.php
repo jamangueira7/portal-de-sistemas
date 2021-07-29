@@ -17,7 +17,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Sistemas</title>
+    <title>@yield('master-title')</title>
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -48,7 +48,7 @@
         </div>
     @endif
     <div class="alert alert-warning m-5" style="display:none;" id="alert-warning">
-        Devido a inatividade a sua sessão vai expeirar às <span id="time-warning">00:00</span>
+        Devido a inatividade a sua sessão vai expirar às <span id="time-warning">00:00</span>
     </div>
 
     @yield('conteudo-view')

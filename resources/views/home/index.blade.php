@@ -7,6 +7,10 @@
 
 @stop
 
+@section('master-title')
+    {{ "Portal de Sistemas" }}
+@stop
+
 @section('submenu-view')
     <div class="container-fluid bg-white bg-white mb-2 shadow-sm">
         <div class="row">

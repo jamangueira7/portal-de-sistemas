@@ -2,6 +2,9 @@
 $pages = [];
 ?>
 @extends('template.master')
+@section('master-title')
+    {{ "Portal de Sistemas" }}
+@stop
 @section('conteudo-view')
     <div class="container" id="container-404">
             <span class="erro404">404 - Página não encontrada.</span>
